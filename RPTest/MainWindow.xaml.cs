@@ -31,32 +31,98 @@ namespace RPTest
             var application = new Word.Application();
             Word.Document document = new Word.Document();
 
-            InsertSimpleRangeBoldCenterAlignment(document, "федеральное государственное бюджетное образовательное учреждение высшего образования «Казанский национальный исследовательский технический университет им. А.Н.Туполева - КАИ» (КНИТУ - КАИ)" + "\n");
+            InsertTitlePage(document);
 
-            InsertSimpleRangeCenterAlignment(document, "Институт компьютерных технологий и защиты информации" + "\n\n" + "Отделение СПО ИКТЗИ «Колледж информационных технологий»" + "\n");
+            InsertSecondPage(document);
 
-            InsertSimpleRangeSelectedAlignment(document, "УТВЕРЖДАЮ" + "\n" + "Проректор по ОДиВР" + "\n" + "______________А.А.Лопатин" + "\n" + "_____________________2020 г." + "\n" + "Регистрационный номер _______" + "\n\n\n", Word.WdParagraphAlignment.wdAlignParagraphRight);
+            InsertThirdPage(document);
 
-            InsertSimpleRangeBoldCenterAlignment(document, "РАБОЧАЯ ПРОГРАММА" + "\n" + "дисциплины" + "\n");
-
-            InsertSimpleRangeCenterAlignment(document, "КОД ДИСЦИПЛИНА" + "\n\n" + "для специальности 09.02.07 «Информационные системы и программирование»" + "\n\n" + "Квалификация выпускника: " + "программист" + "\n\n\n");
-
-            InsertSimpleRangeCenterAlignment(document, "2020 " + "год");
-            InsertPageBreak(document);
-
-            InsertSimpleRangeSelectedAlignment(document, "Составлена в соответствии с требованиями основной профессиональной образовательной программы ФГОС СПО по специальности " + "09.02.07 Информационные системы и программирование " + "и в соответствии с учебным планом специальности " + "09.02.07 " + "утвержденным ученым советом КНИТУ – КАИ __________________________________________." + "\n", Word.WdParagraphAlignment.wdAlignParagraphThaiJustify);
-            InsertSimpleRangeSelectedAlignment(document, "Рабочую программу учебной дисциплины разработал:", Word.WdParagraphAlignment.wdAlignParagraphLeft);
-            InsertSimpleRangeSelectedAlignment(document, "Преподаватель СПО ИКТЗИ   " + "Валиева Г.Р." + "\n", Word.WdParagraphAlignment.wdAlignParagraphThaiJustify);
-
-            InsertApprovalTable(document);
-            InsertPageBreak(document);
-
-            InsertSimpleRangeBoldCenterAlignment(document, "СОДЕРЖАНИЕ" + "\n");
-            InsertSimpleRangeSelectedAlignment(document, "1. Общая характеристика рабочей программы учебной дисциплины \n 2. Структура и примерное содержание учебной дисциплины \n 3. Условия реализации учебной дисциплины \n 4. Контроль и оценка результатов освоения учебной дисциплины \n 5. Возможности использования программы для других специальностей \n", Word.WdParagraphAlignment.wdAlignParagraphLeft);
+            InsertChapterFirst(document);
 
             application.Visible = true;
             document.SaveAs2(@"C:\Users\zzmin\source\repos\RPTest\RPTest\doc1.docx");
             document.Close();
+        }
+        /// <summary>
+        /// Добавление первого раздела (ОБЩАЯ ХАРАКТЕРИСТИКА РАБОЧЕЙ ПРОГРАММЫ УЧЕБНОЙ ДИСЦИПЛИНЫ)
+        /// </summary>
+        /// <param name="document">Ссылка на редактируемый документ</param>
+        private static void InsertChapterFirst(Word.Document document)
+        {
+            InsertSimpleRangeBoldCenterAlignment(document, "1. ОБЩАЯ ХАРАКТЕРИСТИКА РАБОЧЕЙ ПРОГРАММЫ УЧЕБНОЙ ДИСЦИПЛИНЫ" + "\n" + "1.1. Место дисциплины в структуре программы подготовки специалистов среднего звена");
+            InsertSimpleRangeSelectedAlignment(document, "Рабочая программа учебной дисциплины является частью программы подготовки специалистов среднего звена в соответствии с ФГОС СПО по специальности: " + "09.02.07 Информационные системы и программирование" + ". Дисциплина входит в " + "математический и общий естественнонаучный учебный цикл" + ".", Word.WdParagraphAlignment.wdAlignParagraphThaiJustify);
+            InsertSimpleRangeBoldCenterAlignment(document, "1.2. Цели и планируемые результаты освоения");
+            InsertCompetetionTable(document);
+            InsertPageBreak(document);
+        }
+        /// <summary>
+        /// Добавление таблицы компетенций
+        /// </summary>
+        /// <param name="document">Ссылка на редактируемый документ</param>
+        private static void InsertCompetetionTable(Word.Document document)
+        {
+            Word.Paragraph tableParagraph = document.Paragraphs.Add();
+            Word.Range tableRange = tableParagraph.Range;
+            Word.Table approvalTable = document.Tables.Add(tableRange, 2, 3);
+            approvalTable.Borders.InsideLineStyle = approvalTable.Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
+            approvalTable.Range.Cells.VerticalAlignment = Word.WdCellVerticalAlignment.wdCellAlignVerticalCenter;
+
+            Word.Range cellRange;
+
+            cellRange = approvalTable.Cell(1, 1).Range;
+            cellRange.Font.Name = "Times New Roman";
+            cellRange.Font.Size = 14;
+            cellRange.Text = "Код";
+            cellRange.Font.Bold = 1;
+            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            cellRange = approvalTable.Cell(1, 2).Range;
+            cellRange.Font.Name = "Times New Roman";
+            cellRange.Font.Size = 14;
+            cellRange.Font.Bold = 1;
+            cellRange.Text = "Умения";
+            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            cellRange = approvalTable.Cell(1, 3).Range;
+            cellRange.Font.Name = "Times New Roman";
+            cellRange.Font.Size = 14;
+            cellRange.Font.Bold = 1;
+            cellRange.Text = "Знания";
+            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+        }
+        /// <summary>
+        /// Добавление страницы с содержанием
+        /// </summary>
+        /// <param name="document">Ссылка на редактируемый документ</param>
+        private static void InsertThirdPage(Word.Document document)
+        {
+            InsertSimpleRangeBoldCenterAlignment(document, "СОДЕРЖАНИЕ" + "\n");
+            InsertSimpleRangeSelectedAlignment(document, "1. Общая характеристика рабочей программы учебной дисциплины \n 2. Структура и примерное содержание учебной дисциплины \n 3. Условия реализации учебной дисциплины \n 4. Контроль и оценка результатов освоения учебной дисциплины \n 5. Возможности использования программы для других специальностей \n", Word.WdParagraphAlignment.wdAlignParagraphLeft);
+            InsertPageBreak(document);
+        }
+        /// <summary>
+        /// Добавление второй страницы
+        /// </summary>
+        /// <param name="document"Ссылка на редактируемый документ</param>
+        private static void InsertSecondPage(Word.Document document)
+        {
+            InsertSimpleRangeSelectedAlignment(document, "Составлена в соответствии с требованиями основной профессиональной образовательной программы ФГОС СПО по специальности " + "09.02.07 Информационные системы и программирование " + "и в соответствии с учебным планом специальности " + "09.02.07 " + "утвержденным ученым советом КНИТУ – КАИ __________________________________________." + "\n", Word.WdParagraphAlignment.wdAlignParagraphThaiJustify);
+            InsertSimpleRangeSelectedAlignment(document, "Рабочую программу учебной дисциплины разработал:", Word.WdParagraphAlignment.wdAlignParagraphLeft);
+            InsertSimpleRangeSelectedAlignment(document, "Преподаватель СПО ИКТЗИ   " + "Валиева Г.Р." + "\n", Word.WdParagraphAlignment.wdAlignParagraphThaiJustify);
+            InsertApprovalTable(document);
+            InsertPageBreak(document);
+        }
+        /// <summary>
+        /// Добавление титульного листа
+        /// </summary>
+        /// <param name="document">Ссылка на редактируемый документ</param>
+        private static void InsertTitlePage(Word.Document document)
+        {
+            InsertSimpleRangeBoldCenterAlignment(document, "федеральное государственное бюджетное образовательное учреждение высшего образования «Казанский национальный исследовательский технический университет им. А.Н.Туполева - КАИ» (КНИТУ - КАИ)" + "\n");
+            InsertSimpleRangeCenterAlignment(document, "Институт компьютерных технологий и защиты информации" + "\n\n" + "Отделение СПО ИКТЗИ «Колледж информационных технологий»" + "\n");
+            InsertSimpleRangeSelectedAlignment(document, "УТВЕРЖДАЮ" + "\n" + "Проректор по ОДиВР" + "\n" + "______________А.А.Лопатин" + "\n" + "_____________________2020 г." + "\n" + "Регистрационный номер _______" + "\n\n\n", Word.WdParagraphAlignment.wdAlignParagraphRight);
+            InsertSimpleRangeBoldCenterAlignment(document, "РАБОЧАЯ ПРОГРАММА" + "\n" + "дисциплины" + "\n");
+            InsertSimpleRangeCenterAlignment(document, "КОД ДИСЦИПЛИНА" + "\n\n" + "для специальности 09.02.07 «Информационные системы и программирование»" + "\n\n" + "Квалификация выпускника: " + "программист" + "\n\n\n");
+            InsertSimpleRangeCenterAlignment(document, "2020 " + "год");
+            InsertPageBreak(document);
         }
         /// <summary>
         /// Добавление таблицы согласования
@@ -162,7 +228,6 @@ namespace RPTest
             cellRange.Text = "\n___________ Начальник УМУ";
             cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
         }
-
         /// <summary>
         /// Добавление разрыва страницы
         /// </summary>
