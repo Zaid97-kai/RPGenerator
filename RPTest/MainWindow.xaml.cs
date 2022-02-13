@@ -39,11 +39,26 @@ namespace RPTest
 
             InsertSimpleRangeBoldCenterAlignment(document, "РАБОЧАЯ ПРОГРАММА" + "\n" + "дисциплины" + "\n");
 
-            InsertSimpleRangeCenterAlignment(document, "КОД ДИСЦИПЛИНА" + "\n\n" + "для специальности 09.02.07 «Информационные системы и программирование»");
+            InsertSimpleRangeCenterAlignment(document, "КОД ДИСЦИПЛИНА" + "\n\n" + "для специальности 09.02.07 «Информационные системы и программирование»" + "\n\n" + "Квалификация выпускника: " + "программист" + "\n\n\n");
+
+            InsertSimpleRangeCenterAlignment(document, "2020 " + "год");
+            InsertPageBreak(document);
+
+            InsertSimpleRangeDistributeAlignment(document, "Составлена в соответствии с требованиями основной профессиональной образовательной программы ФГОС СПО по специальности " + "09.02.07 Информационные системы и программирование " + "и в соответствии с учебным планом специальности " + "09.02.07 " + "утвержденным ученым советом КНИТУ – КАИ __________________________________________.");
 
             application.Visible = true;
             document.SaveAs2(@"C:\Users\zzmin\source\repos\RPTest\RPTest\doc1.docx");
             document.Close();
+        }
+        /// <summary>
+        /// Добавление разрыва страницы
+        /// </summary>
+        /// <param name="document"></param>
+        private static void InsertPageBreak(Word.Document document)
+        {
+            Word.Paragraph paragraph = document.Paragraphs.Add();
+            Word.Range range = paragraph.Range;
+            range.InsertBreak(Word.WdBreakType.wdPageBreak);
         }
         /// <summary>
         /// Добавление параграфа текста (жирное начертание, выравнивание по центру)
@@ -70,6 +85,7 @@ namespace RPTest
         private static void InsertSimpleRangeCenterAlignment(Word.Document document, string insertedText)
         {
             Word.Paragraph paragraph = document.Paragraphs.Add();
+            //paragraph.LineSpacing = 1.5f;
             Word.Range range = paragraph.Range;
             range.Font.Color = Word.WdColor.wdColorBlack;
             range.Font.Size = 14;
@@ -92,6 +108,22 @@ namespace RPTest
             range.Font.Name = "Times New Roman";
             range.Text = insertedText;
             range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphRight;
+            range.InsertParagraphAfter();
+        }
+        /// <summary>
+        /// Добавление параграфа текста (обычное начертание, выравнивание по ширине)
+        /// </summary>
+        /// <param name="document"></param>
+        /// <param name="insertedText"></param>
+        private static void InsertSimpleRangeDistributeAlignment(Word.Document document, string insertedText)
+        {
+            Word.Paragraph paragraph = document.Paragraphs.Add();
+            Word.Range range = paragraph.Range;
+            range.Font.Color = Word.WdColor.wdColorBlack;
+            range.Font.Size = 14;
+            range.Font.Name = "Times New Roman";
+            range.Text = insertedText;
+            range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphThaiJustify;
             range.InsertParagraphAfter();
         }
     }
