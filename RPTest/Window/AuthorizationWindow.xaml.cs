@@ -17,7 +17,7 @@ namespace RPTest.Window
     /// <summary>
     /// Логика взаимодействия для AuthorizationWindow.xaml
     /// </summary>
-    public partial class AuthorizationWindow : Window
+    public partial class AuthorizationWindow : System.Windows.Window
     {
         public AuthorizationWindow()
         {
