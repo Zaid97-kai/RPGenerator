@@ -35,7 +35,7 @@ namespace RPTest
 
             InsertSimpleRangeCenterAlignment(document, "Институт компьютерных технологий и защиты информации" + "\n\n" + "Отделение СПО ИКТЗИ «Колледж информационных технологий»" + "\n");
 
-            InsertSimpleRangeRightAlignment(document, "УТВЕРЖДАЮ" + "\n" + "Проректор по ОДиВР" + "\n" + "______________А.А.Лопатин" + "\n" + "_____________________2020 г." + "\n" + "Регистрационный номер _______" + "\n\n\n");
+            InsertSimpleRangeSelectedAlignment(document, "УТВЕРЖДАЮ" + "\n" + "Проректор по ОДиВР" + "\n" + "______________А.А.Лопатин" + "\n" + "_____________________2020 г." + "\n" + "Регистрационный номер _______" + "\n\n\n", Word.WdParagraphAlignment.wdAlignParagraphRight);
 
             InsertSimpleRangeBoldCenterAlignment(document, "РАБОЧАЯ ПРОГРАММА" + "\n" + "дисциплины" + "\n");
 
@@ -44,16 +44,129 @@ namespace RPTest
             InsertSimpleRangeCenterAlignment(document, "2020 " + "год");
             InsertPageBreak(document);
 
-            InsertSimpleRangeDistributeAlignment(document, "Составлена в соответствии с требованиями основной профессиональной образовательной программы ФГОС СПО по специальности " + "09.02.07 Информационные системы и программирование " + "и в соответствии с учебным планом специальности " + "09.02.07 " + "утвержденным ученым советом КНИТУ – КАИ __________________________________________.");
+            InsertSimpleRangeSelectedAlignment(document, "Составлена в соответствии с требованиями основной профессиональной образовательной программы ФГОС СПО по специальности " + "09.02.07 Информационные системы и программирование " + "и в соответствии с учебным планом специальности " + "09.02.07 " + "утвержденным ученым советом КНИТУ – КАИ __________________________________________." + "\n", Word.WdParagraphAlignment.wdAlignParagraphThaiJustify);
+            InsertSimpleRangeSelectedAlignment(document, "Рабочую программу учебной дисциплины разработал:", Word.WdParagraphAlignment.wdAlignParagraphLeft);
+            InsertSimpleRangeSelectedAlignment(document, "Преподаватель СПО ИКТЗИ   " + "Валиева Г.Р." + "\n", Word.WdParagraphAlignment.wdAlignParagraphThaiJustify);
+
+            InsertApprovalTable(document);
+            InsertPageBreak(document);
+
+            InsertSimpleRangeBoldCenterAlignment(document, "СОДЕРЖАНИЕ" + "\n");
+            InsertSimpleRangeSelectedAlignment(document, "1. Общая характеристика рабочей программы учебной дисциплины \n 2. Структура и примерное содержание учебной дисциплины \n 3. Условия реализации учебной дисциплины \n 4. Контроль и оценка результатов освоения учебной дисциплины \n 5. Возможности использования программы для других специальностей \n", Word.WdParagraphAlignment.wdAlignParagraphLeft);
 
             application.Visible = true;
             document.SaveAs2(@"C:\Users\zzmin\source\repos\RPTest\RPTest\doc1.docx");
             document.Close();
         }
         /// <summary>
+        /// Добавление таблицы согласования
+        /// </summary>
+        /// <param name="document">Ссылка на редактируемый документ</param>
+        private static void InsertApprovalTable(Word.Document document)
+        {
+            Word.Paragraph tableParagraph = document.Paragraphs.Add();
+            Word.Range tableRange = tableParagraph.Range;
+            Word.Table approvalTable = document.Tables.Add(tableRange, 5, 5);
+            approvalTable.Borders.InsideLineStyle = approvalTable.Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
+            approvalTable.Range.Cells.VerticalAlignment = Word.WdCellVerticalAlignment.wdCellAlignVerticalCenter;
+
+            Word.Range cellRange;
+
+            cellRange = approvalTable.Cell(1, 1).Range;
+            cellRange.Font.Name = "Times New Roman";
+            cellRange.Font.Size = 14;
+            cellRange.Text = "Согласование";
+            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            cellRange = approvalTable.Cell(2, 1).Range;
+            cellRange.Font.Name = "Times New Roman";
+            cellRange.Font.Size = 14;
+            cellRange.Text = "ОДОБРЕНА";
+            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            cellRange = approvalTable.Cell(3, 1).Range;
+            cellRange.Font.Name = "Times New Roman";
+            cellRange.Font.Size = 14;
+            cellRange.Text = "ОДОБРЕНА";
+            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            cellRange = approvalTable.Cell(4, 1).Range;
+            cellRange.Font.Name = "Times New Roman";
+            cellRange.Font.Size = 14;
+            cellRange.Text = "СОГЛАСОВАНА";
+            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            cellRange = approvalTable.Cell(5, 1).Range;
+            cellRange.Font.Name = "Times New Roman";
+            cellRange.Font.Size = 14;
+            cellRange.Text = "СОГЛАСОВАНА";
+            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
+            cellRange = approvalTable.Cell(1, 2).Range;
+            cellRange.Font.Name = "Times New Roman";
+            cellRange.Font.Size = 14;
+            cellRange.Text = "Наименования подразделения";
+            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            cellRange = approvalTable.Cell(2, 2).Range;
+            cellRange.Font.Name = "Times New Roman";
+            cellRange.Font.Size = 14;
+            cellRange.Text = "Рецензент (Эксперт)";
+            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            cellRange = approvalTable.Cell(3, 2).Range;
+            cellRange.Font.Name = "Times New Roman";
+            cellRange.Font.Size = 14;
+            cellRange.Text = "ПЦК отделения СПО";
+            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            cellRange = approvalTable.Cell(4, 2).Range;
+            cellRange.Font.Name = "Times New Roman";
+            cellRange.Font.Size = 14;
+            cellRange.Text = "Научно-техническая библиотека";
+            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            cellRange = approvalTable.Cell(5, 2).Range;
+            cellRange.Font.Name = "Times New Roman";
+            cellRange.Font.Size = 14;
+            cellRange.Text = "УМУ";
+            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
+            cellRange = approvalTable.Cell(1, 3).Range;
+            cellRange.Font.Name = "Times New Roman";
+            cellRange.Font.Size = 14;
+            cellRange.Text = "Дата";
+            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
+            cellRange = approvalTable.Cell(1, 4).Range;
+            cellRange.Font.Name = "Times New Roman";
+            cellRange.Font.Size = 14;
+            cellRange.Text = "№ протокола";
+            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
+            cellRange = approvalTable.Cell(1, 5).Range;
+            cellRange.Font.Name = "Times New Roman";
+            cellRange.Font.Size = 14;
+            cellRange.Text = "Подпись";
+            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            cellRange = approvalTable.Cell(2, 5).Range;
+            cellRange.Font.Name = "Times New Roman";
+            cellRange.Font.Size = 14;
+            cellRange.Text = "\n___________  директор СПО ИКТЗИ";
+            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            cellRange = approvalTable.Cell(3, 5).Range;
+            cellRange.Font.Name = "Times New Roman";
+            cellRange.Font.Size = 14;
+            cellRange.Text = "\n___________ председатель цикловой комиссии";
+            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            cellRange = approvalTable.Cell(4, 5).Range;
+            cellRange.Font.Name = "Times New Roman";
+            cellRange.Font.Size = 14;
+            cellRange.Text = "\n___________ Директор/зам.директора НТБ";
+            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            cellRange = approvalTable.Cell(5, 5).Range;
+            cellRange.Font.Name = "Times New Roman";
+            cellRange.Font.Size = 14;
+            cellRange.Text = "\n___________ Начальник УМУ";
+            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+        }
+
+        /// <summary>
         /// Добавление разрыва страницы
         /// </summary>
-        /// <param name="document"></param>
+        /// <param name="document">Ссылка на редактируемый документ</param>
         private static void InsertPageBreak(Word.Document document)
         {
             Word.Paragraph paragraph = document.Paragraphs.Add();
@@ -95,11 +208,12 @@ namespace RPTest
             range.InsertParagraphAfter();
         }
         /// <summary>
-        /// Добавление параграфа текста (обычное начертание, выравнивание по правому краю)
+        /// Добавление параграфа текста с выбранным выравниванием
         /// </summary>
         /// <param name="document">Ссылка на редактируемый документ</param>
         /// <param name="insertedText">Вставляемый текст</param>
-        private static void InsertSimpleRangeRightAlignment(Word.Document document, string insertedText)
+        /// <param name="wdParagraphAlignment">Формат выравнивания</param>
+        private static void InsertSimpleRangeSelectedAlignment(Word.Document document, string insertedText, Word.WdParagraphAlignment wdParagraphAlignment)
         {
             Word.Paragraph paragraph = document.Paragraphs.Add();
             Word.Range range = paragraph.Range;
@@ -107,23 +221,7 @@ namespace RPTest
             range.Font.Size = 14;
             range.Font.Name = "Times New Roman";
             range.Text = insertedText;
-            range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphRight;
-            range.InsertParagraphAfter();
-        }
-        /// <summary>
-        /// Добавление параграфа текста (обычное начертание, выравнивание по ширине)
-        /// </summary>
-        /// <param name="document"></param>
-        /// <param name="insertedText"></param>
-        private static void InsertSimpleRangeDistributeAlignment(Word.Document document, string insertedText)
-        {
-            Word.Paragraph paragraph = document.Paragraphs.Add();
-            Word.Range range = paragraph.Range;
-            range.Font.Color = Word.WdColor.wdColorBlack;
-            range.Font.Size = 14;
-            range.Font.Name = "Times New Roman";
-            range.Text = insertedText;
-            range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphThaiJustify;
+            range.ParagraphFormat.Alignment = wdParagraphAlignment;
             range.InsertParagraphAfter();
         }
     }
