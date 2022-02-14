@@ -1,0 +1,31 @@
+﻿<Window x:Class="RPTest.Window.RegistrationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RPTest.Window"
+        mc:Ignorable="d"
+        Title="Регистрация" Height="200" Width="400" MinHeight="200" MinWidth="400" MaxHeight="350" MaxWidth="350">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="TitleRegistrationWindow" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black" FontSize="18">СОЗДАНИЕ УЧЕТНОЙ ЗАПИСИ</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" FontFamily="Arial Rounded MT Bold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">ЛОГИН</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Rounded MT Bold" FontSize="20">ПАРОЛЬ</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Rounded MT Bold" FontSize="20">E-MAIL</TextBlock>
+        <TextBox x:Name="TxtLog" Grid.Row="1" Grid.Column="1" FontFamily="Arial Rounded MT Bold" FontSize="20"></TextBox>
+        <TextBox x:Name="TxtPassword" Grid.Row="2" Grid.Column="1" FontFamily="Arial Rounded MT Bold" FontSize="20"></TextBox>
+        <TextBox x:Name="TxtEmail" Grid.Row="3" Grid.Column="1" FontFamily="Arial Rounded MT Bold" FontSize="20"></TextBox>
+        <Button x:Name="BtnBack" Click="BtnBack_Click" Content="НАЗАД" Grid.Row="4" Grid.Column="0" FontFamily="Arial Narrow" FontSize="20"></Button>
+        <Button x:Name="BtnReg" Click="BtnReg_Click" Content="СОЗДАТЬ" Grid.Row="4" Grid.Column="1" FontFamily="Arial Narrow" FontSize="20"></Button>
+    </Grid>
+</Window>

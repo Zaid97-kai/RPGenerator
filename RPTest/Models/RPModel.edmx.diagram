@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="edf11b4dc1ed4d5a8457b678294b6162" Name="Diagram1">
+        <EntityTypeShape EntityType="RPModel.AcademicPlan" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Assessment_Form" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Auditory" Width="1.5" PointX="9.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Auditory_Equipment" Width="1.5" PointX="12" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Author" Width="1.5" PointX="11.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Chapter" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Competencies" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Discipline" Width="1.5" PointX="7.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Discipline_Competencies" Width="1.5" PointX="7.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Equipment" Width="1.5" PointX="9.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Kind_Of_Discipline" Width="1.5" PointX="5.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Knowledge" Width="1.5" PointX="9.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Literary_Source" Width="1.5" PointX="11.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Literary_Source_Author" Width="1.5" PointX="14" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Proffessional_Module" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Skills" Width="1.5" PointX="5.25" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Software" Width="1.5" PointX="9.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Specialty" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Topic" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Topic_Competencies" Width="1.5" PointX="7.5" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Users" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPModel.Auditory_Software" Width="1.5" PointX="12" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="RPModel.FK_AcademicPlan_Specialty" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Competencies_AcademicPlan" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Proffessional_Module_AcademicPlan" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Discipline_Assessment_Form" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Auditory_Equipment_Auditory" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Auditory_Software_Auditory" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Auditory_Equipment_Equipment" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Literary_Source_Author_Author" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Topic_Chapter" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Discipline_Competencies_Competencies" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Topic_Competencies_Competencies" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Discipline_Competencies_Discipline" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Discipline_Kind_Of_Discipline" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Discipline_Proffessional_Module" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Discipline_Skills" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Knowledge_Discipline" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Literary_Source_Author_Literary_Source" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Auditory_Software_Software" ManuallyRouted="false" />
+        <AssociationConnector Association="RPModel.FK_Topic_Competencies_Topic" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

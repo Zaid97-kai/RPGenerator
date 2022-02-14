@@ -23,7 +23,7 @@ namespace RPTest.Window
         {
             InitializeComponent();
         }
-
+        
         private void BtnAuth_Click(object sender, RoutedEventArgs e)
         {
 
@@ -31,7 +31,9 @@ namespace RPTest.Window
 
         private void BtnReg_Click(object sender, RoutedEventArgs e)
         {
-
+            Window.RegistrationWindow registrationWindow = new Window.RegistrationWindow();
+            registrationWindow.ShowDialog();
+            this.Hide();
         }
     }
 }

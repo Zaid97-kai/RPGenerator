@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RPTest.Window"
         mc:Ignorable="d"
-        Title="Вход" Height="300" Width="300" MinHeight="300" MinWidth="300" MaxHeight="450" MaxWidth="450">
+        Title="Вход" Height="200" Width="300" MinHeight="200" MinWidth="300" MaxHeight="350" MaxWidth="350">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
