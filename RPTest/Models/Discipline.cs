@@ -18,7 +18,10 @@ namespace RPTest.Models
         public Discipline()
         {
             this.Discipline_Competencies = new HashSet<Discipline_Competencies>();
+            this.Discipline_HourlyLoad = new HashSet<Discipline_HourlyLoad>();
             this.Knowledge = new HashSet<Knowledge>();
+            this.Skills = new HashSet<Skills>();
+            this.Topic = new HashSet<Topic>();
         }
     
         public int Id { get; set; }
@@ -30,10 +33,15 @@ namespace RPTest.Models
         public virtual Assessment_Form Assessment_Form { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Discipline_Competencies> Discipline_Competencies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Discipline_HourlyLoad> Discipline_HourlyLoad { get; set; }
         public virtual Kind_Of_Discipline Kind_Of_Discipline { get; set; }
         public virtual Proffessional_Module Proffessional_Module { get; set; }
-        public virtual Skills Skills { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Knowledge> Knowledge { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Skills> Skills { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Topic> Topic { get; set; }
     }
 }

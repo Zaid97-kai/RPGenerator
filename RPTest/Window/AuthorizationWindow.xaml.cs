@@ -26,7 +26,9 @@ namespace RPTest.Window
         
         private void BtnAuth_Click(object sender, RoutedEventArgs e)
         {
-
+            Window.StateWindow stateWindow = new Window.StateWindow();
+            stateWindow.Show();
+            this.Hide();
         }
 
         private void BtnReg_Click(object sender, RoutedEventArgs e)

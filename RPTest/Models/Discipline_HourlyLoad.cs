@@ -12,23 +12,17 @@ namespace RPTest.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Topic
+    public partial class Discipline_HourlyLoad
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Topic()
-        {
-            this.Topic_Competencies = new HashSet<Topic_Competencies>();
-        }
-    
         public int Id { get; set; }
-        public string Name { get; set; }
-        public int Hourly_Load { get; set; }
-        public int Id_Chapter { get; set; }
+        public int TheoreticalTraining { get; set; }
+        public int PracticalTraining { get; set; }
+        public int LaboratoryTraining { get; set; }
+        public int Coursework { get; set; }
+        public int IndependentWork { get; set; }
+        public int AssesmentWork { get; set; }
         public int Id_Discipline { get; set; }
     
-        public virtual Chapter Chapter { get; set; }
         public virtual Discipline Discipline { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Topic_Competencies> Topic_Competencies { get; set; }
     }
 }

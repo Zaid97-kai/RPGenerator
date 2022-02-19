@@ -71,6 +71,9 @@
     <Compile Include="Models\AcademicPlan.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AcademicPlan_Competencies.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Assessment_Form.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
@@ -96,6 +99,9 @@
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Discipline_Competencies.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Discipline_HourlyLoad.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Equipment.cs">
@@ -149,11 +155,17 @@
     <Compile Include="Models\Users.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AddDisciplinePage.xaml.cs">
+      <DependentUpon>AddDisciplinePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Window\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Window\RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Window\StateWindow.xaml.cs">
+      <DependentUpon>StateWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -167,11 +179,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\AddDisciplinePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Window\AuthorizationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Window\RegistrationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window\StateWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -211,19 +231,20 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
     <Content Include="Models\RPModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>RPModel.Context.cs</LastGenOutput>
       <DependentUpon>RPModel.edmx</DependentUpon>
+      <LastGenOutput>RPModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\RPModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RPModel.edmx</DependentUpon>
       <LastGenOutput>RPModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -13,10 +13,10 @@ namespace RPTest.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RPEntities : DbContext
+    public partial class DBModel : DbContext
     {
-        public RPEntities()
-            : base("name=RPEntities")
+        public DBModel()
+            : base("name=DBModel")
         {
         }
     
@@ -26,14 +26,17 @@ namespace RPTest.Models
         }
     
         public virtual DbSet<AcademicPlan> AcademicPlan { get; set; }
+        public virtual DbSet<AcademicPlan_Competencies> AcademicPlan_Competencies { get; set; }
         public virtual DbSet<Assessment_Form> Assessment_Form { get; set; }
         public virtual DbSet<Auditory> Auditory { get; set; }
         public virtual DbSet<Auditory_Equipment> Auditory_Equipment { get; set; }
+        public virtual DbSet<Auditory_Software> Auditory_Software { get; set; }
         public virtual DbSet<Author> Author { get; set; }
         public virtual DbSet<Chapter> Chapter { get; set; }
         public virtual DbSet<Competencies> Competencies { get; set; }
         public virtual DbSet<Discipline> Discipline { get; set; }
         public virtual DbSet<Discipline_Competencies> Discipline_Competencies { get; set; }
+        public virtual DbSet<Discipline_HourlyLoad> Discipline_HourlyLoad { get; set; }
         public virtual DbSet<Equipment> Equipment { get; set; }
         public virtual DbSet<Kind_Of_Discipline> Kind_Of_Discipline { get; set; }
         public virtual DbSet<Knowledge> Knowledge { get; set; }
@@ -46,6 +49,5 @@ namespace RPTest.Models
         public virtual DbSet<Topic> Topic { get; set; }
         public virtual DbSet<Topic_Competencies> Topic_Competencies { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<Auditory_Software> Auditory_Software { get; set; }
     }
 }

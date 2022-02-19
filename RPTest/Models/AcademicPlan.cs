@@ -17,7 +17,7 @@ namespace RPTest.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AcademicPlan()
         {
-            this.Competencies = new HashSet<Competencies>();
+            this.AcademicPlan_Competencies = new HashSet<AcademicPlan_Competencies>();
             this.Proffessional_Module = new HashSet<Proffessional_Module>();
         }
     
@@ -25,9 +25,9 @@ namespace RPTest.Models
         public int Year { get; set; }
         public int Id_Specialty { get; set; }
     
-        public virtual Specialty Specialty { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Competencies> Competencies { get; set; }
+        public virtual ICollection<AcademicPlan_Competencies> AcademicPlan_Competencies { get; set; }
+        public virtual Specialty Specialty { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Proffessional_Module> Proffessional_Module { get; set; }
     }
