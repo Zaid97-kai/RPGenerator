@@ -18,18 +18,18 @@
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black">Учебный план</TextBlock>
             <ComboBox x:Name="CbAcademicPlan" FontFamily="Arial" FontSize="14" DisplayMemberPath="PlanName" SelectionChanged="CbAcademicPlan_SelectionChanged"></ComboBox>
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black" TextWrapping="Wrap">Название дисциплины</TextBlock>
-            <TextBox x:Name="TbNameDiscipline" FontSize="14" FontFamily="Arial"></TextBox>
+            <TextBox x:Name="TbNameDiscipline" FontSize="14" FontFamily="Arial" TextChanged="TbNameDiscipline_TextChanged"></TextBox>
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black">Вид дисциплины</TextBlock>
-            <ComboBox x:Name="CbTypeDiscipline" FontFamily="Arial" FontSize="14" DisplayMemberPath="Name"></ComboBox>
+            <ComboBox x:Name="CbTypeDiscipline" FontFamily="Arial" FontSize="14" DisplayMemberPath="Name" SelectionChanged="CbTypeDiscipline_SelectionChanged"></ComboBox>
             <Button x:Name="BtnSaveDiscipline" FontFamily="Arial Black" Click="BtnSaveDiscipline_Click">Сохранить</Button>
         </UniformGrid>
         <UniformGrid x:Name="UGSecondRow" Grid.Row="1" Columns="7">
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black" TextWrapping="Wrap">ПМ</TextBlock>
-            <ComboBox x:Name="CbProffessionalModule" FontFamily="Arial" FontSize="14" IsEnabled="False" DisplayMemberPath="Code"></ComboBox>
+            <ComboBox x:Name="CbProffessionalModule" FontFamily="Arial" FontSize="14" IsEnabled="False" DisplayMemberPath="Code" SelectionChanged="CbProffessionalModule_SelectionChanged"></ComboBox>
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black" TextWrapping="Wrap">Форма аттестации</TextBlock>
-            <ComboBox x:Name="CbAssessmentForm" FontSize="14" FontFamily="Arial"></ComboBox>
+            <ComboBox x:Name="CbAssessmentForm" FontSize="14" FontFamily="Arial" SelectionChanged="CbAssessmentForm_SelectionChanged"></ComboBox>
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black">Номер семестра</TextBlock>
-            <ComboBox x:Name="CbNumberSemestr" FontFamily="Arial" FontSize="14"></ComboBox>
+            <ComboBox x:Name="CbNumberSemestr" FontFamily="Arial" FontSize="14" SelectionChanged="CbNumberSemestr_SelectionChanged"></ComboBox>
             <Button x:Name="BtnEditDiscipline" FontFamily="Arial Black" Click="BtnEditDiscipline_Click">Редактировать</Button>
         </UniformGrid>
         <Grid x:Name="GridTrirdRow" Grid.Row="2">
@@ -60,7 +60,7 @@
                 <Button x:Name="BtnAddSkill" FontFamily="Arial" FontSize="14" Click="BtnAddSkill_Click">Добавить</Button>
                 <Button x:Name="BtnDeleteSkill" FontFamily="Arial" FontSize="14" Click="BtnDeleteSkill_Click">Удалить</Button>
             </UniformGrid>
-            <ComboBox Grid.Row="2" Grid.Column="2"></ComboBox>
+            <ComboBox x:Name="CbCompetenciesName" Grid.Row="2" Grid.Column="2" SelectionChanged="CbCompetenciesName_SelectionChanged" DisplayMemberPath="CompetenciesName"></ComboBox>
             <UniformGrid Grid.Row="3" Grid.Column="2" Columns="2">
                 <Button x:Name="BtnAddCompetencies" FontFamily="Arial" FontSize="14" Click="BtnAddCompetencies_Click">Добавить</Button>
                 <Button x:Name="BtnDeleteCompetencies" FontFamily="Arial" FontSize="14" Click="BtnDeleteCompetencies_Click">Удалить</Button>

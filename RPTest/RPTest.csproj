@@ -69,6 +69,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\AcademicPlan.cs" />
+    <Compile Include="Classes\Competencies.cs" />
+    <Compile Include="Classes\TemporaryDiscipline.cs" />
     <Compile Include="Models\AcademicPlan.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>

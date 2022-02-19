@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,6 +24,7 @@ namespace RPTest.Pages
     public partial class AddDisciplinePage : Page
     {
         private Models.DBModel _db = new Models.DBModel();
+        private Classes.TemporaryDiscipline _temporaryDiscipline = new Classes.TemporaryDiscipline();
         public AddDisciplinePage()
         {
             InitializeComponent();
@@ -30,6 +34,7 @@ namespace RPTest.Pages
             CbProffessionalModule.ItemsSource = _db.Proffessional_Module.ToList();
             CbAssessmentForm.ItemsSource = new List<string> { "Экзамен", "Зачет", "Дифференцированный зачет", "Курсовая работа", "Другая форма контроля" };
             CbNumberSemestr.ItemsSource = new List<string>() { "1", "2", "3", "4", "5", "6", "7", "8"};
+            CbCompetenciesName.ItemsSource = _db.Competencies.ToList();
         }
 
         private void CbAcademicPlan_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -45,6 +50,7 @@ namespace RPTest.Pages
                     }
                 }
             }
+            this._temporaryDiscipline.academicPlan = CbAcademicPlan.SelectedItem as Models.AcademicPlan;
         }
 
         private void BtnAddSkill_Click(object sender, RoutedEventArgs e)
@@ -79,12 +85,54 @@ namespace RPTest.Pages
 
         private void BtnSaveDiscipline_Click(object sender, RoutedEventArgs e)
         {
+            BinaryFormatter formatter = new BinaryFormatter();
+            using (FileStream fs = new FileStream("_temporaryDiscipline.dat", FileMode.OpenOrCreate))
+            {
+                // сериализуем весь массив people
+                formatter.Serialize(fs, _temporaryDiscipline);
 
+                Console.WriteLine("Объект сериализован");
+            }
         }
 
         private void BtnEditDiscipline_Click(object sender, RoutedEventArgs e)
         {
+            string FilePath;
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                FilePath = openFileDialog.FileName;
+            }
+        }
 
+        private void CbCompetenciesName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void TbNameDiscipline_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _temporaryDiscipline.Name = TbNameDiscipline.Text;
+        }
+
+        private void CbProffessionalModule_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _temporaryDiscipline.module = CbProffessionalModule.SelectedItem as Models.Proffessional_Module;
+        }
+
+        private void CbTypeDiscipline_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _temporaryDiscipline.kind = CbTypeDiscipline.SelectedItem as Models.Kind_Of_Discipline;
+        }
+
+        private void CbAssessmentForm_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _temporaryDiscipline.form = CbAssessmentForm.SelectedItem as Models.Assessment_Form;
+        }
+
+        private void CbNumberSemestr_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _temporaryDiscipline.NumberSemestr = Convert.ToInt32(CbNumberSemestr.SelectedItem);
         }
     }
 }

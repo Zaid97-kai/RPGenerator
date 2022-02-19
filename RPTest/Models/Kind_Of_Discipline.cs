@@ -11,7 +11,7 @@ namespace RPTest.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    [Serializable]
     public partial class Kind_Of_Discipline
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
