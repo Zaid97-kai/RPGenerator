@@ -19,11 +19,11 @@ namespace RPTest.Window
     /// </summary>
     public partial class RegistrationWindow : System.Windows.Window
     {
-        private Models.RPEntitiesCS _db;
+        private Models.DBModel _db;
         public RegistrationWindow()
         {
             InitializeComponent();
-            _db = new Models.RPEntitiesCS();
+            _db = new Models.DBModel();
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)

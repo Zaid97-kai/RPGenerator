@@ -23,12 +23,16 @@ namespace RPTest.Window
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            MainFrame.Navigate(new Pages.AddDisciplinePage());
         }
 
         private void MainFrame_ContentRendered(object sender, EventArgs e)
         {
 
+        }
+
+        private void MIAddDiscipline_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new Pages.AddDisciplinePage());
         }
     }
 }

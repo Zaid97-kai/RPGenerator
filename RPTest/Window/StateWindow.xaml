@@ -16,7 +16,7 @@
                 <MenuItem Header="Закрыть программу"></MenuItem>
             </MenuItem>
             <MenuItem Header="Дисциплина">
-                <MenuItem Header="Добавить"></MenuItem>
+                <MenuItem x:Name="MIAddDiscipline" Header="Добавить" Click="MIAddDiscipline_Click"></MenuItem>
                 <MenuItem Header="Удалить"></MenuItem>
             </MenuItem>
             <MenuItem Header="Рабочая программа">
