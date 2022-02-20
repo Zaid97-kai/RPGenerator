@@ -25,6 +25,8 @@ namespace RPTest.Pages
     {
         private Models.DBModel _db = new Models.DBModel();
         private Classes.TemporaryDiscipline _temporaryDiscipline = new Classes.TemporaryDiscipline();
+        private Classes.TemporaryDisciplineText _temporaryDisciplineText;
+        private BinaryFormatter _formatter = new BinaryFormatter();
         public AddDisciplinePage()
         {
             InitializeComponent();
@@ -85,23 +87,27 @@ namespace RPTest.Pages
 
         private void BtnSaveDiscipline_Click(object sender, RoutedEventArgs e)
         {
-            BinaryFormatter formatter = new BinaryFormatter();
             using (FileStream fs = new FileStream("_temporaryDiscipline.dat", FileMode.OpenOrCreate))
             {
-                // сериализуем весь массив people
-                formatter.Serialize(fs, _temporaryDiscipline);
-
-                Console.WriteLine("Объект сериализован");
+                Classes.TemporaryDisciplineText temporaryDisciplineText = new Classes.TemporaryDisciplineText(_temporaryDiscipline.knowledges, _temporaryDiscipline.skills, _temporaryDiscipline.competencies, _temporaryDiscipline.Name, _temporaryDiscipline.kind, _temporaryDiscipline.module, _temporaryDiscipline.form, _temporaryDiscipline.academicPlan, _temporaryDiscipline.NumberSemestr);
+                _formatter.Serialize(fs, temporaryDisciplineText);
             }
         }
 
         private void BtnEditDiscipline_Click(object sender, RoutedEventArgs e)
         {
-            string FilePath;
+            string FilePath = "";
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
                 FilePath = openFileDialog.FileName;
+            }
+
+            using (FileStream fs = new FileStream(FilePath, FileMode.Open))
+            {
+                this._temporaryDisciplineText = _formatter.Deserialize(fs) as Classes.TemporaryDisciplineText;
+                _temporaryDiscipline = new Classes.TemporaryDiscipline(_temporaryDisciplineText);
+                MessageBox.Show(_temporaryDiscipline.Name);
             }
         }
 
@@ -127,7 +133,7 @@ namespace RPTest.Pages
 
         private void CbAssessmentForm_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _temporaryDiscipline.form = CbAssessmentForm.SelectedItem as Models.Assessment_Form;
+            _temporaryDiscipline.form = Convert.ToString(CbAssessmentForm.SelectedItem);
         }
 
         private void CbNumberSemestr_SelectionChanged(object sender, SelectionChangedEventArgs e)

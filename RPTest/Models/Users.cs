@@ -11,7 +11,7 @@ namespace RPTest.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    [Serializable]
     public partial class Users
     {
         public int Id { get; set; }
@@ -19,5 +19,9 @@ namespace RPTest.Models
         public string Pass { get; set; }
         public string Role { get; set; }
         public string Email { get; set; }
+        public Users()
+        {
+
+        }
     }
 }
