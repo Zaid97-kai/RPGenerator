@@ -27,6 +27,8 @@ namespace RPTest.Pages
         private Classes.TemporaryDiscipline _temporaryDiscipline = new Classes.TemporaryDiscipline();
         private Classes.TemporaryDisciplineText _temporaryDisciplineText;
         private BinaryFormatter _formatter = new BinaryFormatter();
+        private List<string> _assessmentForms = new List<string> { "Экзамен", "Зачет", "Дифференцированный зачет", "Курсовая работа", "Другая форма контроля" };
+        private string FilePath = "";
         public AddDisciplinePage()
         {
             InitializeComponent();
@@ -34,7 +36,7 @@ namespace RPTest.Pages
             CbAcademicPlan.ItemsSource = _db.AcademicPlan.ToList();
             CbTypeDiscipline.ItemsSource = _db.Kind_Of_Discipline.ToList();
             CbProffessionalModule.ItemsSource = _db.Proffessional_Module.ToList();
-            CbAssessmentForm.ItemsSource = new List<string> { "Экзамен", "Зачет", "Дифференцированный зачет", "Курсовая работа", "Другая форма контроля" };
+            CbAssessmentForm.ItemsSource = _assessmentForms;
             CbNumberSemestr.ItemsSource = new List<string>() { "1", "2", "3", "4", "5", "6", "7", "8"};
             CbCompetenciesName.ItemsSource = _db.Competencies.ToList();
         }
@@ -84,31 +86,73 @@ namespace RPTest.Pages
         {
 
         }
-
+        /// <summary>
+        /// Сохранение дисциплины в файл
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnSaveDiscipline_Click(object sender, RoutedEventArgs e)
         {
-            using (FileStream fs = new FileStream("_temporaryDiscipline.dat", FileMode.OpenOrCreate))
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            if (saveFileDialog.ShowDialog() == true)
             {
-                Classes.TemporaryDisciplineText temporaryDisciplineText = new Classes.TemporaryDisciplineText(_temporaryDiscipline.knowledges, _temporaryDiscipline.skills, _temporaryDiscipline.competencies, _temporaryDiscipline.Name, _temporaryDiscipline.kind, _temporaryDiscipline.module, _temporaryDiscipline.form, _temporaryDiscipline.academicPlan, _temporaryDiscipline.NumberSemestr);
-                _formatter.Serialize(fs, temporaryDisciplineText);
+                using (FileStream fs = new FileStream(saveFileDialog.FileName + ".dat", FileMode.OpenOrCreate))
+                {
+                    Classes.TemporaryDisciplineText temporaryDisciplineText = new Classes.TemporaryDisciplineText(_temporaryDiscipline.knowledges, _temporaryDiscipline.skills, _temporaryDiscipline.competencies, _temporaryDiscipline.Name, _temporaryDiscipline.kind, _temporaryDiscipline.module, _temporaryDiscipline.form, _temporaryDiscipline.academicPlan, _temporaryDiscipline.NumberSemestr);
+                    _formatter.Serialize(fs, temporaryDisciplineText);
+                }
             }
         }
-
+        /// <summary>
+        /// Редактирование дисциплины
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnEditDiscipline_Click(object sender, RoutedEventArgs e)
-        {
-            string FilePath = "";
+        {            
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
                 FilePath = openFileDialog.FileName;
             }
-
-            using (FileStream fs = new FileStream(FilePath, FileMode.Open))
+            if (FilePath != null)
             {
-                this._temporaryDisciplineText = _formatter.Deserialize(fs) as Classes.TemporaryDisciplineText;
-                _temporaryDiscipline = new Classes.TemporaryDiscipline(_temporaryDisciplineText);
-                MessageBox.Show(_temporaryDiscipline.Name);
+                using (FileStream fs = new FileStream(FilePath, FileMode.Open))
+                {
+                    this._temporaryDisciplineText = _formatter.Deserialize(fs) as Classes.TemporaryDisciplineText;
+                    _temporaryDiscipline = new Classes.TemporaryDiscipline(_temporaryDisciplineText);
+                }
             }
+            for (int i = 0; i < (new Models.DBModel()).AcademicPlan.ToList().Count; i++)
+            {
+                if ((new Models.DBModel()).AcademicPlan.ToList()[i].PlanName == _temporaryDisciplineText.academicPlan)
+                {
+                    CbAcademicPlan.SelectedIndex = i;
+                }
+            }
+            for (int i = 0; i < (new Models.DBModel()).Kind_Of_Discipline.ToList().Count; i++)
+            {
+                if ((new Models.DBModel()).Kind_Of_Discipline.ToList()[i].Name == _temporaryDisciplineText.kind)
+                {
+                    CbTypeDiscipline.SelectedIndex = i;
+                }
+            }
+            for (int i = 0; i < (new Models.DBModel()).Proffessional_Module.ToList().Count; i++)
+            {
+                if ((new Models.DBModel()).Proffessional_Module.ToList()[i].Code == _temporaryDisciplineText.module)
+                {
+                    CbProffessionalModule.SelectedIndex = i;
+                }
+            }
+            for (int i = 0; i < this._assessmentForms.Count; i++)
+            {
+                if (this._assessmentForms[i] == _temporaryDisciplineText.form)
+                {
+                    CbAssessmentForm.SelectedIndex = i;
+                }
+            }
+            CbNumberSemestr.SelectedIndex = _temporaryDiscipline.NumberSemestr - 1;
+            TbNameDiscipline.Text = _temporaryDiscipline.Name;
         }
 
         private void CbCompetenciesName_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -18,6 +18,9 @@ namespace RPTest.Classes
         public Models.Kind_Of_Discipline kind;
         public Models.Proffessional_Module module;
         public Models.AcademicPlan academicPlan;
+        /// <summary>
+        /// Конструктор по умолчанию TemporaryDiscipline
+        /// </summary>
         public TemporaryDiscipline()
         {
         }
