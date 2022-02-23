@@ -153,6 +153,7 @@ namespace RPTest.Pages
         /// <param name="e"></param>
         private void BtnSaveDiscipline_Click(object sender, RoutedEventArgs e)
         {
+            bool flag = true;
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             if (saveFileDialog.ShowDialog() == true)
             {
@@ -161,9 +162,25 @@ namespace RPTest.Pages
                     Classes.TemporaryDisciplineText temporaryDisciplineText = new Classes.TemporaryDisciplineText(_temporaryDiscipline.knowledges, _temporaryDiscipline.skills, _temporaryDiscipline.competencies, _temporaryDiscipline.Name, _temporaryDiscipline.kind, _temporaryDiscipline.module, _temporaryDiscipline.form, _temporaryDiscipline.academicPlan, _temporaryDiscipline.NumberSemestr);
                     _formatter.Serialize(fs, temporaryDisciplineText);
                     Models.Discipline discipline = new Models.Discipline();
+                    
                     InitDiscipline(discipline);
-                    _db.GetContext().Discipline.Add(discipline);
-                    _db.GetContext().SaveChanges();
+                    foreach (Models.Discipline d in _db.GetContext().Discipline)
+                    {
+                        if (d.Name == discipline.Name && d.Proffessional_Module == discipline.Proffessional_Module && d.Kind_Of_Discipline == discipline.Kind_Of_Discipline)
+                        {
+                            flag = false;
+
+                            InitDiscipline(d);
+                            _db.GetContext().SaveChanges();
+
+                            return;
+                        }
+                    }
+                    if (flag)
+                    {
+                        _db.GetContext().Discipline.Add(discipline);
+                        _db.GetContext().SaveChanges();
+                    }
                 }
             }
         }

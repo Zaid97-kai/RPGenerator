@@ -20,7 +20,7 @@
                 <MenuItem Header="Удалить"></MenuItem>
             </MenuItem>
             <MenuItem Header="Рабочая программа">
-                <MenuItem Header="Создать РП"></MenuItem>
+                <MenuItem Header="Создать РП" Click="MenuItem_Click"></MenuItem>
                 <MenuItem Header="Редактировать РП"></MenuItem>
             </MenuItem>
         </Menu>

@@ -161,6 +161,9 @@
     <Compile Include="Pages\AddDisciplinePage.xaml.cs">
       <DependentUpon>AddDisciplinePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\WorkProgramPage.xaml.cs">
+      <DependentUpon>WorkProgramPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Window\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
     </Compile>
@@ -183,6 +186,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\AddDisciplinePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\WorkProgramPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
