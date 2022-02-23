@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RPTest.Models
 {
+    /// <summary>
+    /// Компетенция
+    /// </summary>
     public partial class Competencies
     {
         private string _CompetenciesName;

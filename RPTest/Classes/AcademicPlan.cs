@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RPTest.Models
 {
+    /// <summary>
+    /// Учебный план
+    /// </summary>
     public partial class AcademicPlan
     {
         private string _PlanName;

@@ -9,6 +9,9 @@ using _db = RPTest.Models.DBModel;
 
 namespace RPTest.Classes
 {
+    /// <summary>
+    /// Временная дисциплина (со сгенерированными типами
+    /// </summary>
     [Serializable]
     public class TemporaryDiscipline
     {
@@ -64,6 +67,9 @@ namespace RPTest.Classes
             }
         }
     }
+    /// <summary>
+    /// Временная дисциплина (со встроенными типами)
+    /// </summary>
     [Serializable]
     public class TemporaryDisciplineText
     {
