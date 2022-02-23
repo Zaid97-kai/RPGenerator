@@ -72,8 +72,24 @@ namespace RPTest.Classes
         /// </summary>
         public int HoursAttestation { get; set; }
         /// <summary>
-        /// Подвал РП
+        /// Подвал РПД
         /// </summary>
         public string Footer { get; set; }
+        /// <summary>
+        /// Темы РПД
+        /// </summary>
+        public List<Topic> Topics { get; set; }
+        public WorkProgram()
+        {
+            Topics = new List<Topic>();
+        }
+    }
+    /// <summary>
+    /// Тема
+    /// </summary>
+    public class Topic
+    {
+        public int NumberTopic { get; set; }
+        public string TopicName { get; set; }
     }
 }

@@ -118,10 +118,10 @@
                         <RowDefinition Height="9*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <DataGrid Grid.Row="0" AutoGenerateColumns="False">
+                    <DataGrid x:Name="DgThemes" Grid.Row="0" AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="*">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Номер"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Название темы"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Номер" Binding="{Binding NumberTopic}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Название темы" Binding="{Binding TopicName}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                     <UniformGrid Grid.Row="1" Columns="5">

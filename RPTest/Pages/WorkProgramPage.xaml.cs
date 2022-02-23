@@ -90,26 +90,41 @@ namespace RPTest.Pages
         {
             
         }
-
+        /// <summary>
+        /// Добавление компетенции
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnAddCompetencies_Click(object sender, RoutedEventArgs e)
         {
             _discipline.Discipline_Competencies.Add(new Models.Discipline_Competencies() { Discipline = _discipline, Competencies = CbCompetenciesName.SelectedItem as Models.Competencies });
             _db.GetContext().SaveChanges();
-
             UpdateLb();
         }
-
+        /// <summary>
+        /// Удаление компетенции
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnDeleteCompetencies_Click(object sender, RoutedEventArgs e)
         {
             _discipline.Discipline_Competencies.Remove(_discipline.Discipline_Competencies.Where(d => d.Competencies == LbCompetencies.SelectedItem as Models.Competencies).FirstOrDefault());
             _db.GetContext().SaveChanges();
-
             UpdateLb();
         }
-
+        /// <summary>
+        /// Добавление темы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnAddTopic_Click(object sender, RoutedEventArgs e)
         {
+            DgThemes.ItemsSource = _workProgram.Topics;
+            Classes.Topic topic = new Classes.Topic() { NumberTopic = Convert.ToInt32(TbNumberTopic.Text), TopicName = TbNameTopic.Text }; 
+            _workProgram.Topics.Add(topic);
 
+            TbNumberTopic.Text = "";
+            TbNameTopic.Text = "";
         }
 
         private void CbNameDiscipline_SelectionChanged(object sender, SelectionChangedEventArgs e)
