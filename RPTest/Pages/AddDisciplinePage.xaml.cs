@@ -27,6 +27,7 @@ namespace RPTest.Pages
     {
         private Classes.TemporaryDiscipline _temporaryDiscipline = new Classes.TemporaryDiscipline();
         private Classes.TemporaryDisciplineText _temporaryDisciplineText;
+        private Models.Discipline _discipline;
         private Models.Competencies _competencies;
         private Models.Knowledge _knowledge;
         private Models.Skills _skills;
@@ -159,7 +160,32 @@ namespace RPTest.Pages
                 {
                     Classes.TemporaryDisciplineText temporaryDisciplineText = new Classes.TemporaryDisciplineText(_temporaryDiscipline.knowledges, _temporaryDiscipline.skills, _temporaryDiscipline.competencies, _temporaryDiscipline.Name, _temporaryDiscipline.kind, _temporaryDiscipline.module, _temporaryDiscipline.form, _temporaryDiscipline.academicPlan, _temporaryDiscipline.NumberSemestr);
                     _formatter.Serialize(fs, temporaryDisciplineText);
+                    Models.Discipline discipline = new Models.Discipline();
+                    InitDiscipline(discipline);
+                    _db.GetContext().Discipline.Add(discipline);
+                    _db.GetContext().SaveChanges();
                 }
+            }
+        }
+        /// <summary>
+        /// Инициализация полей дисциплины перед добавление в базу данных
+        /// </summary>
+        /// <param name="discipline">Добавляемая дисциплина</param>
+        private void InitDiscipline(Models.Discipline discipline)
+        {
+            discipline.Name = this._temporaryDiscipline.Name;
+            discipline.Knowledge = this._temporaryDiscipline.knowledges;
+            discipline.Skills = this._temporaryDiscipline.skills;
+            discipline.Kind_Of_Discipline = this._temporaryDiscipline.kind;
+            discipline.Proffessional_Module = this._temporaryDiscipline.module;
+            discipline.Assessment_Form = new Models.Assessment_Form() { Name = _temporaryDiscipline.form, Discipline = new List<Models.Discipline>() { discipline }, Semestr_Number = _temporaryDiscipline.NumberSemestr };
+            discipline.Discipline_HourlyLoad = _db.GetContext().Discipline_HourlyLoad.ToList();
+            discipline.Discipline_Competencies = new List<Models.Discipline_Competencies>();
+            foreach (var competencies in this._temporaryDiscipline.competencies)
+            {
+                Models.Discipline_Competencies discipline_Competencies = new Models.Discipline_Competencies() { Discipline = discipline, Competencies = competencies };
+                discipline.Discipline_Competencies.Add(discipline_Competencies);
+                _db.GetContext().Discipline_Competencies.Add(discipline_Competencies);
             }
         }
         /// <summary>
@@ -180,6 +206,7 @@ namespace RPTest.Pages
                 {
                     this._temporaryDisciplineText = _formatter.Deserialize(fs) as Classes.TemporaryDisciplineText;
                     _temporaryDiscipline = new Classes.TemporaryDiscipline(_temporaryDisciplineText);
+                    _discipline = _db.GetContext().Discipline.Where(_discipline => _discipline.Name == _temporaryDiscipline.Name).FirstOrDefault();
                 }
             }
             UpdateAddDisciplinePage();
