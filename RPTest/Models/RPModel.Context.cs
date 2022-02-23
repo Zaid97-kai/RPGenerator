@@ -15,11 +15,19 @@ namespace RPTest.Models
     
     public partial class DBModel : DbContext
     {
+        private static DBModel entities;
         public DBModel()
             : base("name=DBModel")
         {
         }
-    
+
+        public static DBModel GetContext()
+        {
+            if (entities == null)
+                entities = new DBModel();
+            return entities;
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

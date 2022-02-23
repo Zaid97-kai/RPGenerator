@@ -11,7 +11,7 @@ namespace RPTest.Models
         private string _PlanName;
         public string PlanName
         {
-            get { return Year + " " + Specialty.Code; }
+            get {  return Year + " " + Specialty.Code; }
             set { _PlanName = value; }
         }
     }
