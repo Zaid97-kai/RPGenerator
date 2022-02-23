@@ -74,9 +74,9 @@ namespace RPTest.Pages
         /// <param name="e"></param>
         private void BtnDeleteSkill_Click(object sender, RoutedEventArgs e)
         {
-            _db.GetContext().Skills.Remove(_db.GetContext().Skills.Where(s => s.Id == this._skills.Id).FirstOrDefault());
+            //_db.GetContext().Skills.Remove(_db.GetContext().Skills.Where(s => s.Id == this._skills.Id).FirstOrDefault());
+            //_db.GetContext().SaveChanges();
             _temporaryDiscipline.skills.Remove(this._skills);
-            _db.GetContext().SaveChanges();
 
             UpdateAddDisciplinePage();
         }
@@ -87,9 +87,9 @@ namespace RPTest.Pages
         /// <param name="e"></param>
         private void BtnDeleteKnowledge_Click(object sender, RoutedEventArgs e)
         {
-            _db.GetContext().Knowledge.Remove(_db.GetContext().Knowledge.Where(k => k.Id == this._knowledge.Id).FirstOrDefault());
+            //_db.GetContext().Knowledge.Remove(_db.GetContext().Knowledge.Where(k => k.Id == this._knowledge.Id).FirstOrDefault());
+            //_db.GetContext().SaveChanges();
             _temporaryDiscipline.knowledges.Remove(this._knowledge);
-            _db.GetContext().SaveChanges();
 
             UpdateAddDisciplinePage();
         }
@@ -101,8 +101,8 @@ namespace RPTest.Pages
         private void BtnAddSkill_Click(object sender, RoutedEventArgs e)
         {
             _temporaryDiscipline.skills.Add(new Models.Skills() { Name = TbSkillName.Text });
-            _db.GetContext().Skills.Add(new Models.Skills() { Name = TbSkillName.Text, Discipline = _db.GetContext().Discipline.ToList()[0] });
-            _db.GetContext().SaveChanges();
+            //_db.GetContext().Skills.Add(new Models.Skills() { Name = TbSkillName.Text, Discipline = _db.GetContext().Discipline.ToList()[0] });
+            //_db.GetContext().SaveChanges();
 
             UpdateAddDisciplinePage();
         }
@@ -114,8 +114,8 @@ namespace RPTest.Pages
         private void BtnAddKnowledge_Click(object sender, RoutedEventArgs e)
         {
             _temporaryDiscipline.knowledges.Add(new Models.Knowledge() { Name = TbKnowledgeName.Text });
-            _db.GetContext().Knowledge.Add(new Models.Knowledge() { Name = TbKnowledgeName.Text, Discipline = _db.GetContext().Discipline.ToList()[0] });
-            _db.GetContext().SaveChanges();
+            //_db.GetContext().Knowledge.Add(new Models.Knowledge() { Name = TbKnowledgeName.Text, Discipline = _db.GetContext().Discipline.ToList()[0] });
+            //_db.GetContext().SaveChanges();
 
             UpdateAddDisciplinePage();
         }
@@ -127,8 +127,8 @@ namespace RPTest.Pages
         private void BtnAddCompetencies_Click(object sender, RoutedEventArgs e)
         {
             _temporaryDiscipline.competencies.Add(CbCompetenciesName.SelectedItem as Models.Competencies);
-            _db.GetContext().Competencies.Add(new Models.Competencies() { CompetenciesName = (CbCompetenciesName.SelectedItem as Models.Competencies).CompetenciesName, Code = (CbCompetenciesName.SelectedItem as Models.Competencies).Code, Description = (CbCompetenciesName.SelectedItem as Models.Competencies).Description });
-            _db.GetContext().SaveChanges();
+            //_db.GetContext().Competencies.Add(new Models.Competencies() { CompetenciesName = (CbCompetenciesName.SelectedItem as Models.Competencies).CompetenciesName, Code = (CbCompetenciesName.SelectedItem as Models.Competencies).Code, Description = (CbCompetenciesName.SelectedItem as Models.Competencies).Description });
+            //_db.GetContext().SaveChanges();
             
             UpdateAddDisciplinePage();
         }
@@ -139,9 +139,9 @@ namespace RPTest.Pages
         /// <param name="e"></param>
         private void BtnDeleteCompetencies_Click(object sender, RoutedEventArgs e)
         {
-            _db.GetContext().Competencies.Remove(_db.GetContext().Competencies.Where(c => c.Id == this._competencies.Id).FirstOrDefault());
             _temporaryDiscipline.competencies.Remove(this._competencies);
-            _db.GetContext().SaveChanges();
+            //_db.GetContext().Competencies.Remove(_db.GetContext().Competencies.Where(c => c.Id == this._competencies.Id).FirstOrDefault());
+            //_db.GetContext().SaveChanges();
 
             UpdateAddDisciplinePage();
         }

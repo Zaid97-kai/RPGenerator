@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using _db = RPTest.Models.DBModel;
 
 namespace RPTest.Classes
 {
@@ -35,28 +36,30 @@ namespace RPTest.Classes
             this.Name = temporaryDisciplineText.Name;
             this.form = temporaryDisciplineText.form;
             this.NumberSemestr = temporaryDisciplineText.NumberSemestr;
-            this.kind = (new Models.DBModel()).Kind_Of_Discipline.ToList().Where(k => k.Name == temporaryDisciplineText.kind).FirstOrDefault();
-            this.module = (new Models.DBModel()).Proffessional_Module.ToList().Where(m => m.Code == temporaryDisciplineText.module).FirstOrDefault();
-            this.academicPlan = (new Models.DBModel()).AcademicPlan.ToList().Where(a => a.PlanName == temporaryDisciplineText.academicPlan).FirstOrDefault();
+            this.kind = _db.GetContext().Kind_Of_Discipline.ToList().Where(k => k.Name == temporaryDisciplineText.kind).FirstOrDefault();
+            this.module = _db.GetContext().Proffessional_Module.ToList().Where(m => m.Code == temporaryDisciplineText.module).FirstOrDefault();
+            this.academicPlan = _db.GetContext().AcademicPlan.ToList().Where(a => a.PlanName == temporaryDisciplineText.academicPlan).FirstOrDefault();
             if (temporaryDisciplineText.knowledges.Count != 0)
             {
-                foreach (var knowledge in temporaryDisciplineText.knowledges)
+                foreach (string knowledge in temporaryDisciplineText.knowledges)
                 {
-                    this.knowledges.AddRange((new Models.DBModel()).Knowledge.ToList().Where(k => k.Name == knowledge).ToList());
+                    this.knowledges.Add(new Models.Knowledge() { Name = knowledge});
+                    //this.knowledges.AddRange(_db.GetContext().Knowledge.ToList().Where(k => k.Name == knowledge).ToList());
                 }
             }
             if (temporaryDisciplineText.skills.Count != 0)
             {
-                foreach (var skill in temporaryDisciplineText.skills)
+                foreach (string skill in temporaryDisciplineText.skills)
                 {
-                    this.skills.AddRange((new Models.DBModel()).Skills.ToList().Where(s => s.Name == skill).ToList());
+                    this.skills.Add(new Models.Skills() { Name = skill});
+                    //this.skills.AddRange(_db.GetContext().Skills.ToList().Where(s => s.Name == skill).ToList());
                 }
             }
             if (temporaryDisciplineText.competencies.Count != 0)
             {
-                foreach (var competence in temporaryDisciplineText.competencies)
+                foreach (string competence in temporaryDisciplineText.competencies)
                 {
-                    this.competencies.AddRange((new Models.DBModel()).Competencies.ToList().Where(c => c.CompetenciesName == competence).ToList());
+                    this.competencies.AddRange(_db.GetContext().Competencies.ToList().Where(c => c.CompetenciesName == competence).ToList());
                 }
             }
         }
