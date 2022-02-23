@@ -28,11 +28,22 @@
                     <TextBlock Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" TextWrapping="Wrap" TextAlignment="Center"><LineBreak/><LineBreak/>РАБОЧАЯ ПРОГРАММА<LineBreak/>учебной дисциплины<LineBreak/><LineBreak/></TextBlock>
                     <TextBlock x:Name="TbNameDiscipline" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16">ШИФР.00 НАЗВАНИЕ ДИСЦИПЛИНЫ</TextBlock>
                     <TextBlock x:Name="TbCode" Grid.Row="5" FontFamily="Times New Roman" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center">для специальности</TextBlock>
-                    <ComboBox x:Name="CbCode" Grid.Row="6" FontFamily="Times New Roman" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" ></ComboBox>
+                    <ComboBox x:Name="CbCode" Grid.Row="6" FontFamily="Times New Roman" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectionChanged="CbCode_SelectionChanged" ></ComboBox>
                     <TextBox x:Name="TbYear" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Times New Roman" FontSize="16">Казань 2020</TextBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Лист согласования"></TabItem>
+            <TabItem Header="Лист согласования">
+                <UniformGrid Columns="2" Rows="4">
+                    <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold">Специальность</TextBlock>
+                    <TextBox x:Name="TbSpecialtyApprovalSheet" IsReadOnly="True" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="20,0,20,0"></TextBox>
+                    <TextBlock TextWrapping="Wrap" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center">Дата утверждения ученым советом</TextBlock>
+                    <TextBox x:Name="TbDateApproval" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="20,0,20,0"></TextBox>
+                    <TextBlock TextWrapping="Wrap" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center">Номер протокола</TextBlock>
+                    <TextBox x:Name="TbNumberProtocol" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="20,0,20,0"></TextBox>
+                    <TextBlock TextWrapping="Wrap" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center">Разработчик рабочей программы</TextBlock>
+                    <TextBox x:Name="TbAuthor" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="20,0,20,0"></TextBox>
+                </UniformGrid>
+            </TabItem>
             <TabItem Header="Объем учебной дисциплины"></TabItem>
             <TabItem Header="Тематический план"></TabItem>
             <TabItem Header="МТО"></TabItem>

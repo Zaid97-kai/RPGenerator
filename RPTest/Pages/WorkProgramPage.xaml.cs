@@ -26,5 +26,10 @@ namespace RPTest.Pages
             InitializeComponent();
             CbCode.ItemsSource = _specialtyCodes;
         }
+
+        private void CbCode_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TbSpecialtyApprovalSheet.Text = CbCode.SelectedItem.ToString();
+        }
     }
 }
