@@ -34,5 +34,10 @@ namespace RPTest.Window
         {
             MainFrame.Navigate(new Pages.AddDisciplinePage());
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
     }
 }

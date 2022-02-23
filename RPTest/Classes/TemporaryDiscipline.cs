@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace RPTest.Classes
 {
@@ -36,25 +38,25 @@ namespace RPTest.Classes
             this.kind = (new Models.DBModel()).Kind_Of_Discipline.ToList().Where(k => k.Name == temporaryDisciplineText.kind).FirstOrDefault();
             this.module = (new Models.DBModel()).Proffessional_Module.ToList().Where(m => m.Code == temporaryDisciplineText.module).FirstOrDefault();
             this.academicPlan = (new Models.DBModel()).AcademicPlan.ToList().Where(a => a.PlanName == temporaryDisciplineText.academicPlan).FirstOrDefault();
-            if (knowledges.Count != 0)
+            if (temporaryDisciplineText.knowledges.Count != 0)
             {
                 foreach (var knowledge in temporaryDisciplineText.knowledges)
                 {
-                    this.knowledges = (new Models.DBModel()).Knowledge.ToList().Where(k => k.Name == knowledge).ToList();
+                    this.knowledges.AddRange((new Models.DBModel()).Knowledge.ToList().Where(k => k.Name == knowledge).ToList());
                 }
             }
-            if (skills.Count != 0)
+            if (temporaryDisciplineText.skills.Count != 0)
             {
                 foreach (var skill in temporaryDisciplineText.skills)
                 {
-                    this.skills = (new Models.DBModel()).Skills.ToList().Where(s => s.Name == skill).ToList();
+                    this.skills.AddRange((new Models.DBModel()).Skills.ToList().Where(s => s.Name == skill).ToList());
                 }
             }
-            if (competencies.Count != 0)
+            if (temporaryDisciplineText.competencies.Count != 0)
             {
                 foreach (var competence in temporaryDisciplineText.competencies)
                 {
-                    this.competencies = (new Models.DBModel()).Competencies.ToList().Where(c => c.Description == competence).ToList();
+                    this.competencies.AddRange((new Models.DBModel()).Competencies.ToList().Where(c => c.CompetenciesName == competence).ToList());
                 }
             }
         }

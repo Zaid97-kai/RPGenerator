@@ -47,9 +47,9 @@
             <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Знания</TextBlock>
             <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Умения</TextBlock>
             <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Компетенции</TextBlock>
-            <ListBox x:Name="LbKnowledge" Grid.Row="1" Grid.Column="0"></ListBox>
-            <ListBox x:Name="LbSkill" Grid.Row="1" Grid.Column="1"></ListBox>
-            <ListBox x:Name="LbCompetencies" Grid.Row="1" Grid.Column="2"></ListBox>
+            <ListBox x:Name="LbKnowledge" Grid.Row="1" Grid.Column="0" DisplayMemberPath="Name"></ListBox>
+            <ListBox x:Name="LbSkill" Grid.Row="1" Grid.Column="1" DisplayMemberPath="Name"></ListBox>
+            <ListBox x:Name="LbCompetencies" Grid.Row="1" Grid.Column="2" DisplayMemberPath="CompetenciesName"></ListBox>
             <TextBox x:Name="TbKnowledgeName" Grid.Row="2" Grid.Column="0"></TextBox>
             <UniformGrid Grid.Row="3" Grid.Column="0" Columns="2">
                 <Button x:Name="BtnAddKnowledge" FontFamily="Arial" FontSize="14" Click="BtnAddKnowledge_Click">Добавить</Button>

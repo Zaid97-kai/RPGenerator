@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -23,7 +24,7 @@ namespace RPTest.Pages
     /// </summary>
     public partial class AddDisciplinePage : Page
     {
-        private Models.DBModel _db = new Models.DBModel();
+        private Models.DBModel _db;
         private Classes.TemporaryDiscipline _temporaryDiscipline = new Classes.TemporaryDiscipline();
         private Classes.TemporaryDisciplineText _temporaryDisciplineText;
         private BinaryFormatter _formatter = new BinaryFormatter();
@@ -33,24 +34,34 @@ namespace RPTest.Pages
         {
             InitializeComponent();
 
-            CbAcademicPlan.ItemsSource = _db.AcademicPlan.ToList();
-            CbTypeDiscipline.ItemsSource = _db.Kind_Of_Discipline.ToList();
-            CbProffessionalModule.ItemsSource = _db.Proffessional_Module.ToList();
-            CbAssessmentForm.ItemsSource = _assessmentForms;
-            CbNumberSemestr.ItemsSource = new List<string>() { "1", "2", "3", "4", "5", "6", "7", "8"};
-            CbCompetenciesName.ItemsSource = _db.Competencies.ToList();
+            using (_db = new Models.DBModel())
+            {
+                CbAcademicPlan.ItemsSource = _db.AcademicPlan.ToList();
+                CbTypeDiscipline.ItemsSource = _db.Kind_Of_Discipline.ToList();
+                CbProffessionalModule.ItemsSource = _db.Proffessional_Module.ToList();
+                CbAssessmentForm.ItemsSource = _assessmentForms;
+                CbNumberSemestr.ItemsSource = new List<string>() { "1", "2", "3", "4", "5", "6", "7", "8" };
+                CbCompetenciesName.ItemsSource = _db.Competencies.ToList();
+            }
         }
-
+        /// <summary>
+        /// Выбор учебного плана
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CbAcademicPlan_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(CbAcademicPlan.SelectedIndex != -1)
             {
                 CbProffessionalModule.IsEnabled = true;
-                foreach (Models.Proffessional_Module proffessional_Module in _db.Proffessional_Module.ToList())
+                using (_db = new Models.DBModel())
                 {
-                    if(proffessional_Module.AcademicPlan.PlanName == ((Models.AcademicPlan)CbAcademicPlan.SelectedItem).PlanName)
+                    foreach (Models.Proffessional_Module proffessional_Module in _db.Proffessional_Module.ToList())
                     {
-                        CbProffessionalModule.ItemsSource = proffessional_Module.AcademicPlan.Proffessional_Module.ToList();
+                        if (proffessional_Module.AcademicPlan.PlanName == ((Models.AcademicPlan)CbAcademicPlan.SelectedItem).PlanName)
+                        {
+                            CbProffessionalModule.ItemsSource = proffessional_Module.AcademicPlan.Proffessional_Module.ToList();
+                        }
                     }
                 }
             }
@@ -59,7 +70,9 @@ namespace RPTest.Pages
 
         private void BtnAddSkill_Click(object sender, RoutedEventArgs e)
         {
-
+            _temporaryDiscipline.skills.Add(new Models.Skills() { Name = TbSkillName.Text });
+            (new Models.DBModel()).Skills.Add(new Models.Skills() { Name = TbSkillName.Text, Discipline = (new Models.DBModel().Discipline.FirstOrDefault())});
+            UpdateAddDisciplinePage();
         }
 
         private void BtnDeleteSkill_Click(object sender, RoutedEventArgs e)
@@ -74,12 +87,23 @@ namespace RPTest.Pages
 
         private void BtnAddKnowledge_Click(object sender, RoutedEventArgs e)
         {
-
+            _temporaryDiscipline.knowledges.Add(new Models.Knowledge() { Name = TbKnowledgeName.Text });
+            Models.Discipline discipline = (new Models.DBModel().Discipline.ToList()[0]);
+            Models.Knowledge knowledge = new Models.Knowledge() { Name = TbKnowledgeName.Text, Discipline = discipline };
+            using (_db = new Models.DBModel())
+            {
+                _db.Entry(knowledge).State = EntityState.Detached;
+                _db.Knowledge.Add(knowledge);
+                _db.SaveChanges();
+            }
+            UpdateAddDisciplinePage();
         }
 
         private void BtnAddCompetencies_Click(object sender, RoutedEventArgs e)
         {
-
+            _temporaryDiscipline.competencies.Add(CbCompetenciesName.SelectedItem as Models.Competencies);
+            (new Models.DBModel()).Competencies.Add(new Models.Competencies() { CompetenciesName = (CbCompetenciesName.SelectedItem as Models.Competencies).CompetenciesName, Code = (CbCompetenciesName.SelectedItem as Models.Competencies).Code, Description = (CbCompetenciesName.SelectedItem as Models.Competencies).Description });
+            UpdateAddDisciplinePage();
         }
 
         private void BtnDeleteCompetencies_Click(object sender, RoutedEventArgs e)
@@ -109,7 +133,7 @@ namespace RPTest.Pages
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void BtnEditDiscipline_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
@@ -123,6 +147,13 @@ namespace RPTest.Pages
                     _temporaryDiscipline = new Classes.TemporaryDiscipline(_temporaryDisciplineText);
                 }
             }
+            UpdateAddDisciplinePage();
+        }
+        /// <summary>
+        /// Обновление элементов страницы
+        /// </summary>
+        private void UpdateAddDisciplinePage()
+        {
             for (int i = 0; i < (new Models.DBModel()).AcademicPlan.ToList().Count; i++)
             {
                 if ((new Models.DBModel()).AcademicPlan.ToList()[i].PlanName == _temporaryDisciplineText.academicPlan)
@@ -153,6 +184,18 @@ namespace RPTest.Pages
             }
             CbNumberSemestr.SelectedIndex = _temporaryDiscipline.NumberSemestr - 1;
             TbNameDiscipline.Text = _temporaryDiscipline.Name;
+            foreach (var competence in _temporaryDiscipline.competencies)
+            {
+                LbCompetencies.Items.Add(competence); 
+            }
+            foreach (var knowledge in _temporaryDiscipline.knowledges)
+            {
+                LbKnowledge.Items.Add(knowledge);
+            }
+            foreach (var skill in _temporaryDiscipline.skills)
+            {
+                LbSkill.Items.Add(skill);
+            }
         }
 
         private void CbCompetenciesName_SelectionChanged(object sender, SelectionChangedEventArgs e)
