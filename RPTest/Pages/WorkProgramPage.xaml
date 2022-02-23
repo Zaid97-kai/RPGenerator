@@ -7,6 +7,22 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="WorkProgramPage">
+    <Page.Resources>
+        <Style x:Key="FirstStyle">
+            <Setter Property="TextBlock.TextWrapping" Value="Wrap"></Setter>
+            <Setter Property="Control.FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="Control.FontSize" Value="16"></Setter>
+            <Setter Property="Control.VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="Control.HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="TextBlock.TextAlignment" Value="Center"></Setter>
+        </Style>
+        <Style x:Key="TbStyle">
+            <Setter Property="Control.FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="Control.FontSize" Value="16"></Setter>
+            <Setter Property="Control.VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="Control.HorizontalAlignment" Value="Center"></Setter>
+        </Style>
+    </Page.Resources>
 
     <Grid>
         <TabControl>
@@ -22,12 +38,12 @@
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" TextWrapping="Wrap" FontFamily="Times New Roman" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" TextAlignment="Center">федеральное государственное бюджетное образовательное учреждение высшего образования «Казанский национальный исследовательский технический университет им. А.Н. Туполева - КАИ» (КНИТУ-КАИ)<LineBreak/></TextBlock>
-                    <TextBlock Grid.Row="1" TextWrapping="Wrap" FontFamily="Times New Roman" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center">Институт компьютерных технологий и защиты информации <LineBreak/> Отделение СПО ИКТЗИ «Колледж информационных технологий» <LineBreak/></TextBlock>
-                    <TextBlock Grid.Row="2" TextWrapping="Wrap" FontFamily="Times New Roman" FontSize="16" TextAlignment="Right" HorizontalAlignment="Right" VerticalAlignment="Center">УТВЕРЖДАЮ<LineBreak/>Проректор по ОД<LineBreak/>____________________ А.А. Лопатин<LineBreak/>«___» ______________ 20 __ г.<LineBreak/>Регистрационный  №_____</TextBlock>
-                    <TextBlock Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" TextWrapping="Wrap" TextAlignment="Center"><LineBreak/><LineBreak/>РАБОЧАЯ ПРОГРАММА<LineBreak/>учебной дисциплины<LineBreak/><LineBreak/></TextBlock>
-                    <TextBlock x:Name="TbNameDiscipline" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16">ШИФР.00 НАЗВАНИЕ ДИСЦИПЛИНЫ</TextBlock>
-                    <TextBlock x:Name="TbCode" Grid.Row="5" FontFamily="Times New Roman" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center">для специальности</TextBlock>
+                    <TextBlock Grid.Row="0" Style="{StaticResource FirstStyle}" FontWeight="Bold">федеральное государственное бюджетное образовательное учреждение высшего образования «Казанский национальный исследовательский технический университет им. А.Н. Туполева - КАИ» (КНИТУ-КАИ)<LineBreak/></TextBlock>
+                    <TextBlock Grid.Row="1" Style="{StaticResource FirstStyle}">Институт компьютерных технологий и защиты информации <LineBreak/> Отделение СПО ИКТЗИ «Колледж информационных технологий» <LineBreak/></TextBlock>
+                    <TextBlock Grid.Row="2" Style="{StaticResource FirstStyle}" HorizontalAlignment="Right" TextAlignment="Right">УТВЕРЖДАЮ<LineBreak/>Проректор по ОД<LineBreak/>____________________ А.А. Лопатин<LineBreak/>«___» ______________ 20 __ г.<LineBreak/>Регистрационный  №_____</TextBlock>
+                    <TextBlock Grid.Row="3" Style="{StaticResource FirstStyle}" FontWeight="Bold"><LineBreak/><LineBreak/>РАБОЧАЯ ПРОГРАММА<LineBreak/>учебной дисциплины<LineBreak/><LineBreak/></TextBlock>
+                    <TextBlock x:Name="TbNameDiscipline" Grid.Row="4" Style="{StaticResource FirstStyle}">ШИФР.00 НАЗВАНИЕ ДИСЦИПЛИНЫ</TextBlock>
+                    <TextBlock x:Name="TbCode" Grid.Row="5" Style="{StaticResource FirstStyle}">для специальности</TextBlock>
                     <ComboBox x:Name="CbCode" Grid.Row="6" FontFamily="Times New Roman" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectionChanged="CbCode_SelectionChanged" ></ComboBox>
                     <TextBox x:Name="TbYear" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Times New Roman" FontSize="16">Казань 2020</TextBox>
                 </Grid>
@@ -44,7 +60,58 @@
                     <TextBox x:Name="TbAuthor" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="20,0,20,0"></TextBox>
                 </UniformGrid>
             </TabItem>
-            <TabItem Header="Объем учебной дисциплины"></TabItem>
+            <TabItem Header="Компетенции">
+                <Grid x:Name="GridTrirdRow">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="11*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Знания</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Умения</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Компетенции</TextBlock>
+                    <ListBox x:Name="LbKnowledge" Grid.Row="1" Grid.Column="0" DisplayMemberPath="Name" SelectionChanged="LbKnowledge_SelectionChanged"></ListBox>
+                    <ListBox x:Name="LbSkill" Grid.Row="1" Grid.Column="1" DisplayMemberPath="Name" SelectionChanged="LbSkill_SelectionChanged"></ListBox>
+                    <ListBox x:Name="LbCompetencies" Grid.Row="1" Grid.Column="2" DisplayMemberPath="CompetenciesName" SelectionChanged="LbCompetencies_SelectionChanged"></ListBox>
+                    <TextBox x:Name="TbKnowledgeName" Grid.Row="2" Grid.Column="0"></TextBox>
+                    <UniformGrid Grid.Row="3" Grid.Column="0" Columns="2">
+                        <Button x:Name="BtnAddKnowledge" FontFamily="Arial" FontSize="14" Click="BtnAddKnowledge_Click">Добавить</Button>
+                        <Button x:Name="BtnDeleteKnowledge" FontFamily="Arial" FontSize="14" Click="BtnDeleteKnowledge_Click">Удалить</Button>
+                    </UniformGrid>
+                    <TextBox x:Name="TbSkillName" Grid.Row="2" Grid.Column="1"></TextBox>
+                    <UniformGrid Grid.Row="3" Grid.Column="1" Columns="2">
+                        <Button x:Name="BtnAddSkill" FontFamily="Arial" FontSize="14" Click="BtnAddSkill_Click">Добавить</Button>
+                        <Button x:Name="BtnDeleteSkill" FontFamily="Arial" FontSize="14" Click="BtnDeleteSkill_Click">Удалить</Button>
+                    </UniformGrid>
+                    <ComboBox x:Name="CbCompetenciesName" Grid.Row="2" Grid.Column="2" SelectionChanged="CbCompetenciesName_SelectionChanged" DisplayMemberPath="CompetenciesName"></ComboBox>
+                    <UniformGrid Grid.Row="3" Grid.Column="2" Columns="2">
+                        <Button x:Name="BtnAddCompetencies" FontFamily="Arial" FontSize="14" Click="BtnAddCompetencies_Click">Добавить</Button>
+                        <Button x:Name="BtnDeleteCompetencies" FontFamily="Arial" FontSize="14" Click="BtnDeleteCompetencies_Click">Удалить</Button>
+                    </UniformGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Объем учебной дисциплины">
+                <UniformGrid Columns="2" Rows="6">
+                    <TextBlock Style="{StaticResource FirstStyle}">Теоретическое обучение (количество часов)</TextBlock>
+                    <TextBox x:Name="TbTheoreticalTraining" Style="{StaticResource TbStyle}"></TextBox>
+                    <TextBlock Style="{StaticResource FirstStyle}">Практические занятия (количество часов)</TextBlock>
+                    <TextBox x:Name="TbPracticalTraining" Style="{StaticResource TbStyle}"></TextBox>
+                    <TextBlock Style="{StaticResource FirstStyle}">Лабораторные занятия (количество часов)</TextBlock>
+                    <TextBox x:Name="TbLaboratoryTraining" Style="{StaticResource TbStyle}"></TextBox>
+                    <TextBlock Style="{StaticResource FirstStyle}">Курсовая работа (количество часов)</TextBlock>
+                    <TextBox x:Name="TbCoursework" Style="{StaticResource TbStyle}"></TextBox>
+                    <TextBlock Style="{StaticResource FirstStyle}">Самостоятельная работа (количество часов)</TextBlock>
+                    <TextBox x:Name="TbIndependentWork" Style="{StaticResource TbStyle}"></TextBox>
+                    <TextBlock Style="{StaticResource FirstStyle}">Промежуточная аттестация (количество часов)</TextBlock>
+                    <TextBox x:Name="TbAttestation" Style="{StaticResource TbStyle}"></TextBox>
+                </UniformGrid>
+            </TabItem>
             <TabItem Header="Тематический план"></TabItem>
             <TabItem Header="МТО"></TabItem>
             <TabItem Header="Литература"></TabItem>

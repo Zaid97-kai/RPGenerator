@@ -31,5 +31,55 @@ namespace RPTest.Pages
         {
             TbSpecialtyApprovalSheet.Text = CbCode.SelectedItem.ToString();
         }
+
+        private void LbKnowledge_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void LbSkill_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void LbCompetencies_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void BtnAddKnowledge_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnDeleteKnowledge_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnAddSkill_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnDeleteSkill_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CbCompetenciesName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void BtnAddCompetencies_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnDeleteCompetencies_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
