@@ -17,44 +17,36 @@ namespace RPTest.Window
     /// <summary>
     /// Логика взаимодействия для AddTopicWindow.xaml
     /// </summary>
-    public partial class AddTopicWindow : Window
+    public partial class AddTopicWindow : System.Windows.Window
     {
-        public AddTopicWindow()
+        private Classes.Topic _topic;
+        public AddTopicWindow(Classes.Topic topic)
         {
             InitializeComponent();
+            _topic = topic;
+        }
+
+        private void BnTrainingDeleteTopic_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BnTrainingEditTopic_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BnTrainingAddTopic_Click(object sender, RoutedEventArgs e)
+        {
+            if(TabTheoreticalTraining.SelectedIndex.ToString() == "0")
+            {
+                _topic.Topics.Add(new Classes.TrainingTopic() { TopicName = TbTrainingTopicDescription.Text, TypeTrainingTopic = "Теория", Hours = Convert.ToInt32(TbTrainingHours.Text), Id = Convert.ToInt32(TbTrainingTopicName.Text), Competencies = new List<string>() { "ОК 1", "ОК 2" } });
+                DgHoursTheoreticalTraining.ItemsSource = _topic.Topics;
+                DgHoursTheoreticalTraining.Items.Refresh();
+            }
         }
 
         private void DgHoursTheoreticalTraining_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void BnTheoreticalTrainingTopic_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BnTheoreticalTrainingEditTopic_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BnPracticalTrainingAddTopic_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BnPracticalTrainingEditTopic_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BnPracticalTrainingDeleteTopic_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BnTheoreticalTrainingDeleteTopic_Click(object sender, RoutedEventArgs e)
         {
 
         }

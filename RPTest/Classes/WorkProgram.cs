@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/// <summary>
+/// Дополнительные классы
+/// </summary>
 namespace RPTest.Classes
 {
-    [Serializable]
     /// <summary>
     /// Рабочая программа
     /// </summary>
+    [Serializable]
     public partial class WorkProgram
     {
         /// <summary>
@@ -92,13 +94,57 @@ namespace RPTest.Classes
         /// </summary>
         public string Year { get; set; }
     }
+    /// <summary>
+    /// Раздел
+    /// </summary>
     [Serializable]
+    public class Topic
+    {
+        /// <summary>
+        /// Конструктор класса Topic
+        /// </summary>
+        public Topic()
+        {
+            Topics = new List<TrainingTopic>();
+        }
+        /// <summary>
+        /// Порядковый номер раздела
+        /// </summary>
+        public int NumberTopic { get; set; }
+        /// <summary>
+        /// Наименование раздела
+        /// </summary>
+        public string TopicName { get; set; }
+        /// <summary>
+        /// Список тем
+        /// </summary>
+        public List<TrainingTopic> Topics { get; set; }
+    }
     /// <summary>
     /// Тема
     /// </summary>
-    public class Topic
+    [Serializable]
+    public class TrainingTopic
     {
-        public int NumberTopic { get; set; }
+        /// <summary>
+        /// Порядковый номер темы
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
+        /// Тип занятия
+        /// </summary>
+        public string TypeTrainingTopic { get; set; }
+        /// <summary>
+        /// Наименование темы
+        /// </summary>
         public string TopicName { get; set; }
+        /// <summary>
+        /// Количество часов
+        /// </summary>
+        public int Hours { get; set; }
+        /// <summary>
+        /// Осваиваемые компетенции
+        /// </summary>
+        public List<string> Competencies { get; set; }
     }
 }

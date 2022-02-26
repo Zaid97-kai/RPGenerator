@@ -24,7 +24,7 @@ namespace RPTest.Pages
     /// </summary>
     public partial class WorkProgramPage : Page
     {
-        private Classes.WorkProgram _workProgram = new Classes.WorkProgram();
+        private static Classes.WorkProgram _workProgram = new Classes.WorkProgram();
         private Models.Discipline _discipline;
         private BinaryFormatter _formatter = new BinaryFormatter();
         private List<string> _specialtyCodes = new List<string>() { "09.02.06 Сетевое и системное администрирование", "09.02.07 Информационные системы и программирование", "10.02.05 Обеспечение информационной безопасности автоматизированных систем" };
@@ -356,10 +356,15 @@ namespace RPTest.Pages
         {
             _workProgram.HoursSelfStudy = Convert.ToInt32(TbIndependentWork.Text);
         }
-
+        /// <summary>
+        /// Выбор раздела из списка разделов
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DgThemes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //MessageBox.Show((DgThemes.SelectedItem as Classes.Topic).TopicName.ToString());
+            Window.AddTopicWindow addTopicWindow = new Window.AddTopicWindow(DgThemes.SelectedItem as Classes.Topic);
+            addTopicWindow.ShowDialog();
         }
     }
 }
