@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,7 +26,11 @@ namespace RPTest.Pages
     {
         private Classes.WorkProgram _workProgram;
         private Models.Discipline _discipline;
+        private BinaryFormatter _formatter = new BinaryFormatter();
         private List<string> _specialtyCodes = new List<string>() { "09.02.06 Сетевое и системное администрирование", "09.02.07 Информационные системы и программирование", "10.02.05 Обеспечение информационной безопасности автоматизированных систем" };
+        /// <summary>
+        /// Конструктор класса WorkProgramPage
+        /// </summary>
         public WorkProgramPage()
         {
             InitializeComponent();
@@ -32,28 +39,48 @@ namespace RPTest.Pages
             CbCompetenciesName.ItemsSource = _db.GetContext().Competencies.ToList();
             CbNameDiscipline.ItemsSource = _db.GetContext().Discipline.ToList();
         }
-
+        /// <summary>
+        /// Выбор кода специальности из выпадающего списка
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CbCode_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _workProgram.Specialization = CbCode.SelectedItem.ToString();
             TbSpecialtyApprovalSheet.Text = CbCode.SelectedItem.ToString();
         }
-
+        /// <summary>
+        /// Выбор знания из списка
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LbKnowledge_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            return;
         }
-
+        /// <summary>
+        /// Выбор умения из списка
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LbSkill_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            return;
         }
-
+        /// <summary>
+        /// Выбор компетенции из списка
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LbCompetencies_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            return;
         }
-
+        /// <summary>
+        /// Добавление знания в дисциплину
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnAddKnowledge_Click(object sender, RoutedEventArgs e)
         {
             _discipline.Knowledge.Add(new Models.Knowledge() { Discipline = _discipline, Name = TbKnowledgeName.Text });
@@ -61,7 +88,11 @@ namespace RPTest.Pages
 
             UpdateLb();
         }
-
+        /// <summary>
+        /// Удаление знания из дисциплины
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnDeleteKnowledge_Click(object sender, RoutedEventArgs e)
         {
             _discipline.Knowledge.Remove(LbKnowledge.SelectedItem as Models.Knowledge);
@@ -69,7 +100,11 @@ namespace RPTest.Pages
 
             UpdateLb();
         }
-
+        /// <summary>
+        /// Добавление умения в дисциплину
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnAddSkill_Click(object sender, RoutedEventArgs e)
         {
             _discipline.Skills.Add(new Models.Skills() { Name = TbSkillName.Text, Discipline = _discipline });
@@ -77,7 +112,11 @@ namespace RPTest.Pages
 
             UpdateLb();
         }
-
+        /// <summary>
+        /// Удаление знания из дисциплины
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnDeleteSkill_Click(object sender, RoutedEventArgs e)
         {
             _discipline.Skills.Remove(LbSkill.SelectedItem as Models.Skills);
@@ -85,10 +124,14 @@ namespace RPTest.Pages
 
             UpdateLb();
         }
-
+        /// <summary>
+        /// Выбор компетенции из выпадающего списка
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CbCompetenciesName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            return;
         }
         /// <summary>
         /// Добавление компетенции
@@ -119,34 +162,45 @@ namespace RPTest.Pages
         /// <param name="e"></param>
         private void BtnAddTopic_Click(object sender, RoutedEventArgs e)
         {
-            DgThemes.ItemsSource = _workProgram.Topics;
             Classes.Topic topic = new Classes.Topic() { NumberTopic = Convert.ToInt32(TbNumberTopic.Text), TopicName = TbNameTopic.Text }; 
             _workProgram.Topics.Add(topic);
 
+            DgThemes.ItemsSource = _workProgram.Topics;
+            DgThemes.Items.Refresh();
             TbNumberTopic.Text = "";
             TbNameTopic.Text = "";
         }
-
+        /// <summary>
+        /// Выбор дисциплины из выпадающего списка
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CbNameDiscipline_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _discipline = (CbNameDiscipline.SelectedItem as Models.Discipline);
             _workProgram.NameDiscipline = _discipline.Name;
             UpdateLb();
         }
-
+        /// <summary>
+        /// Обновление списка знаний, умений и компетенций
+        /// </summary>
         private void UpdateLb()
         {
             ClearLb();
             FillLb();
         }
-
+        /// <summary>
+        /// Очистка списка знаний, умений и компетенций
+        /// </summary>
         private void ClearLb()
         {
             LbCompetencies.Items.Clear();
             LbKnowledge.Items.Clear();
             LbSkill.Items.Clear();
         }
-
+        /// <summary>
+        /// Заполнение списка знаний, умений и компетенций
+        /// </summary>
         private void FillLb()
         {
             foreach (var competence in _discipline.Discipline_Competencies)
@@ -162,20 +216,51 @@ namespace RPTest.Pages
                 LbSkill.Items.Add(skill);
             }
         }
-
+        /// <summary>
+        /// Инициализация поля даты утверждения рабочей программы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TbDateApproval_TextChanged(object sender, TextChangedEventArgs e)
         {
             _workProgram.DateApproval = TbDateApproval.Text;
         }
-
+        /// <summary>
+        /// Инициализация поля номера протокола
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TbNumberProtocol_TextChanged(object sender, TextChangedEventArgs e)
         {
             _workProgram.ProtocolNumber = Convert.ToInt32(TbNumberProtocol.Text);
         }
-
+        /// <summary>
+        /// Инициализация поля автора рабочей программы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TbAuthor_TextChanged(object sender, TextChangedEventArgs e)
         {
             _workProgram.TeacherName = TbAuthor.Text;
+        }
+        /// <summary>
+        /// Обработчик нажатия на клавишу Ctrl+S
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Page_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.S)
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    using (FileStream fs = new FileStream(saveFileDialog.FileName + ".dat", FileMode.OpenOrCreate))
+                    {
+                        _formatter.Serialize(fs, _discipline);
+                    }
+                }
+            }
         }
     }
 }

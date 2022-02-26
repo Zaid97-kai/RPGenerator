@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:RPTest.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="WorkProgramPage">
+      Title="WorkProgramPage" KeyDown="Page_KeyDown">
     <Page.Resources>
         <Style x:Key="FirstStyle">
             <Setter Property="TextBlock.TextWrapping" Value="Wrap"></Setter>
