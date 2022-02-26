@@ -356,5 +356,10 @@ namespace RPTest.Pages
         {
             _workProgram.HoursSelfStudy = Convert.ToInt32(TbIndependentWork.Text);
         }
+
+        private void DgThemes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //MessageBox.Show((DgThemes.SelectedItem as Classes.Topic).TopicName.ToString());
+        }
     }
 }

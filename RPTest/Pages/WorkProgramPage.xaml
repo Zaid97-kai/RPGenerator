@@ -51,13 +51,13 @@
             <TabItem Header="Лист согласования">
                 <UniformGrid Columns="2" Rows="4">
                     <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold">Специальность</TextBlock>
-                    <TextBox x:Name="TbSpecialtyApprovalSheet" IsReadOnly="True" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="20,0,20,0"/>
+                    <TextBox x:Name="TbSpecialtyApprovalSheet" IsReadOnly="True" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="20,0,20,0" Width="100"/>
                     <TextBlock TextWrapping="Wrap" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center">Дата утверждения ученым советом</TextBlock>
-                    <TextBox x:Name="TbDateApproval" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="20,0,20,0" TextChanged="TbDateApproval_TextChanged"></TextBox>
+                    <TextBox x:Name="TbDateApproval" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="20,0,20,0" TextChanged="TbDateApproval_TextChanged" Width="100"></TextBox>
                     <TextBlock TextWrapping="Wrap" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center">Номер протокола</TextBlock>
-                    <TextBox x:Name="TbNumberProtocol" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="20,0,20,0" TextChanged="TbNumberProtocol_TextChanged"></TextBox>
+                    <TextBox x:Name="TbNumberProtocol" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="20,0,20,0" TextChanged="TbNumberProtocol_TextChanged" Width="100"></TextBox>
                     <TextBlock TextWrapping="Wrap" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center">Разработчик рабочей программы</TextBlock>
-                    <TextBox x:Name="TbAuthor" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="20,0,20,0" TextChanged="TbAuthor_TextChanged"></TextBox>
+                    <TextBox x:Name="TbAuthor" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="20,0,20,0" TextChanged="TbAuthor_TextChanged" Width="106"></TextBox>
                 </UniformGrid>
             </TabItem>
             <TabItem Header="Компетенции">
@@ -118,10 +118,10 @@
                         <RowDefinition Height="9*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <DataGrid x:Name="DgThemes" Grid.Row="0" AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="*">
+                    <DataGrid x:Name="DgThemes" Grid.Row="0" AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="*" SelectionChanged="DgThemes_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Номер" Binding="{Binding NumberTopic}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Название темы" Binding="{Binding TopicName}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Название раздела" Binding="{Binding TopicName}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                     <UniformGrid Grid.Row="1" Columns="5">
