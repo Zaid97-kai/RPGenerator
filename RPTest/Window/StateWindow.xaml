@@ -20,8 +20,8 @@
                 <MenuItem Header="Удалить"></MenuItem>
             </MenuItem>
             <MenuItem Header="Рабочая программа">
-                <MenuItem Header="Создать РП" Click="MenuItem_Click"></MenuItem>
-                <MenuItem Header="Редактировать РП"></MenuItem>
+                <MenuItem x:Name="AddProgramItem" Header="Создать РП" Click="MenuItem_Click"></MenuItem>
+                <MenuItem x:Name="EditProgramItem" Header="Редактировать РП" Click="EditProgramItem_Click"></MenuItem>
             </MenuItem>
         </Menu>
         <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" ContentRendered="MainFrame_ContentRendered"></Frame>

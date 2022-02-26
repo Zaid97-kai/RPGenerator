@@ -6,11 +6,19 @@ using System.Threading.Tasks;
 
 namespace RPTest.Classes
 {
+    [Serializable]
     /// <summary>
     /// Рабочая программа
     /// </summary>
     public partial class WorkProgram
     {
+        /// <summary>
+        /// Конструктор класса WorkProgram
+        /// </summary>
+        public WorkProgram()
+        {
+            Topics = new List<Topic>();
+        }
         /// <summary>
         /// Наименование дисциплины
         /// </summary>
@@ -79,11 +87,12 @@ namespace RPTest.Classes
         /// Темы РПД
         /// </summary>
         public List<Topic> Topics { get; set; }
-        public WorkProgram()
-        {
-            Topics = new List<Topic>();
-        }
+        /// <summary>
+        /// Год создания РПД
+        /// </summary>
+        public string Year { get; set; }
     }
+    [Serializable]
     /// <summary>
     /// Тема
     /// </summary>

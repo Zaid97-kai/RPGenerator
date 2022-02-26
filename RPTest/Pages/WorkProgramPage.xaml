@@ -45,7 +45,7 @@
                     <ComboBox x:Name="CbNameDiscipline" Grid.Row="4" FontFamily="Times New Roman" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="30,3,30,3" DisplayMemberPath="Name" SelectionChanged="CbNameDiscipline_SelectionChanged"></ComboBox>
                     <TextBlock x:Name="TbCode" Grid.Row="5" Style="{StaticResource FirstStyle}">для специальности</TextBlock>
                     <ComboBox x:Name="CbCode" Grid.Row="6" FontFamily="Times New Roman" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectionChanged="CbCode_SelectionChanged" Padding="30,3,30,3" ></ComboBox>
-                    <TextBox x:Name="TbYear" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Times New Roman" FontSize="16">Казань 2020</TextBox>
+                    <TextBox x:Name="TbYear" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Times New Roman" FontSize="16" TextChanged="TbYear_TextChanged">Казань 2020</TextBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Лист согласования">
@@ -99,17 +99,17 @@
             <TabItem Header="Объем учебной дисциплины">
                 <UniformGrid Columns="2" Rows="6">
                     <TextBlock Style="{StaticResource FirstStyle}">Теоретическое обучение (количество часов)</TextBlock>
-                    <TextBox x:Name="TbTheoreticalTraining" Style="{StaticResource TbStyle}"></TextBox>
+                    <TextBox x:Name="TbTheoreticalTraining" Style="{StaticResource TbStyle}" TextChanged="TbTheoreticalTraining_TextChanged" Width="100"></TextBox>
                     <TextBlock Style="{StaticResource FirstStyle}">Практические занятия (количество часов)</TextBlock>
-                    <TextBox x:Name="TbPracticalTraining" Style="{StaticResource TbStyle}"></TextBox>
+                    <TextBox x:Name="TbPracticalTraining" Style="{StaticResource TbStyle}" TextChanged="TbPracticalTraining_TextChanged" Width="100"></TextBox>
                     <TextBlock Style="{StaticResource FirstStyle}">Лабораторные занятия (количество часов)</TextBlock>
-                    <TextBox x:Name="TbLaboratoryTraining" Style="{StaticResource TbStyle}"></TextBox>
+                    <TextBox x:Name="TbLaboratoryTraining" Style="{StaticResource TbStyle}" TextChanged="TbLaboratoryTraining_TextChanged" Width="100"></TextBox>
                     <TextBlock Style="{StaticResource FirstStyle}">Курсовая работа (количество часов)</TextBlock>
-                    <TextBox x:Name="TbCoursework" Style="{StaticResource TbStyle}"></TextBox>
+                    <TextBox x:Name="TbCoursework" Style="{StaticResource TbStyle}" TextChanged="TbCoursework_TextChanged" Width="100"></TextBox>
                     <TextBlock Style="{StaticResource FirstStyle}">Самостоятельная работа (количество часов)</TextBlock>
-                    <TextBox x:Name="TbIndependentWork" Style="{StaticResource TbStyle}"></TextBox>
+                    <TextBox x:Name="TbIndependentWork" Style="{StaticResource TbStyle}" TextChanged="TbIndependentWork_TextChanged" Width="100"></TextBox>
                     <TextBlock Style="{StaticResource FirstStyle}">Промежуточная аттестация (количество часов)</TextBlock>
-                    <TextBox x:Name="TbAttestation" Style="{StaticResource TbStyle}" Margin="0,0,0,0"></TextBox>
+                    <TextBox x:Name="TbAttestation" Style="{StaticResource TbStyle}" Margin="0,0,0,0" Width="100"></TextBox>
                 </UniformGrid>
             </TabItem>
             <TabItem Header="Тематический план">

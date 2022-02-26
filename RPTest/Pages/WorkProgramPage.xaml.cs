@@ -24,7 +24,7 @@ namespace RPTest.Pages
     /// </summary>
     public partial class WorkProgramPage : Page
     {
-        private Classes.WorkProgram _workProgram;
+        private Classes.WorkProgram _workProgram = new Classes.WorkProgram();
         private Models.Discipline _discipline;
         private BinaryFormatter _formatter = new BinaryFormatter();
         private List<string> _specialtyCodes = new List<string>() { "09.02.06 Сетевое и системное администрирование", "09.02.07 Информационные системы и программирование", "10.02.05 Обеспечение информационной безопасности автоматизированных систем" };
@@ -34,7 +34,47 @@ namespace RPTest.Pages
         public WorkProgramPage()
         {
             InitializeComponent();
-            _workProgram = new Classes.WorkProgram();
+            InitCb();
+        }
+        /// <summary>
+        /// Конструктор инициализации класса WorkProgramPage
+        /// </summary>
+        /// <param name="workProgram"></param>
+        public WorkProgramPage(Classes.WorkProgram workProgram)
+        {
+            InitializeComponent();
+            _workProgram = workProgram;
+            InitCb();
+            TbYear.Text = Convert.ToString(workProgram.Year);
+            TbTheoreticalTraining.Text = Convert.ToString(workProgram.HoursTheoreticalTraining);
+            TbSpecialtyApprovalSheet.Text = Convert.ToString(workProgram.DateApproval);
+            TbPracticalTraining.Text = Convert.ToString(workProgram.HoursPracticalTraining);
+            TbLaboratoryTraining.Text = Convert.ToString(workProgram.HoursLaboratoryTraining);
+            TbNumberProtocol.Text = Convert.ToString(workProgram.ProtocolNumber);
+            TbCoursework.Text = Convert.ToString(workProgram.HoursCoursework);
+            TbIndependentWork.Text = Convert.ToString(workProgram.HoursSelfStudy);
+            for (int i = 0; i < _specialtyCodes.Count; i++)
+            {
+                if (_specialtyCodes[i] == workProgram.Specialization)
+                {
+                    CbCode.SelectedIndex = i;
+                    break;
+                }
+            }
+            for (int i = 0; i < _db.GetContext().Discipline.ToList().Count; i++)
+            {
+                if (_db.GetContext().Discipline.ToList()[i].Name == workProgram.NameDiscipline)
+                {
+                    CbCode.SelectedIndex = i;
+                    break;
+                }
+            }
+        }
+        /// <summary>
+        /// Инициализация выпадающих списков
+        /// </summary>
+        private void InitCb()
+        {
             CbCode.ItemsSource = _specialtyCodes;
             CbCompetenciesName.ItemsSource = _db.GetContext().Competencies.ToList();
             CbNameDiscipline.ItemsSource = _db.GetContext().Discipline.ToList();
@@ -257,10 +297,64 @@ namespace RPTest.Pages
                 {
                     using (FileStream fs = new FileStream(saveFileDialog.FileName + ".dat", FileMode.OpenOrCreate))
                     {
-                        _formatter.Serialize(fs, _discipline);
+                        _formatter.Serialize(fs, _workProgram);
                     }
                 }
             }
+        }
+        /// <summary>
+        /// Инициализация поля года создания рабочей программы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TbYear_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _workProgram.Year = TbYear.Text;
+        }
+        /// <summary>
+        /// Инициализация поля часы для теоретического обучения
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TbTheoreticalTraining_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _workProgram.HoursTheoreticalTraining = Convert.ToInt32(TbTheoreticalTraining.Text);
+        }
+        /// <summary>
+        /// Инициализация поля часы для практического обучения
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TbPracticalTraining_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _workProgram.HoursPracticalTraining = Convert.ToInt32(TbPracticalTraining.Text);
+        }
+        /// <summary>
+        /// Инициализация поля часы для лабораторного обучения
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TbLaboratoryTraining_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _workProgram.HoursLaboratoryTraining = Convert.ToInt32(TbLaboratoryTraining.Text);
+        }
+        /// <summary>
+        /// Инициализация поля часы для курсовой работы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TbCoursework_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _workProgram.HoursCoursework = Convert.ToInt32(TbCoursework.Text);
+        }
+        /// <summary>
+        /// Инициализация поля часы для самостоятельной работы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TbIndependentWork_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _workProgram.HoursSelfStudy = Convert.ToInt32(TbIndependentWork.Text);
         }
     }
 }
