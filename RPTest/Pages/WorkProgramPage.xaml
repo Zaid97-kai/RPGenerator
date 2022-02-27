@@ -124,12 +124,14 @@
                             <DataGridTextColumn Header="Название раздела" Binding="{Binding TopicName}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <UniformGrid Grid.Row="1" Columns="5">
+                    <UniformGrid Grid.Row="1" Columns="7">
                         <TextBlock FontFamily="Times New Roman" FontSize="14" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center">Номер темы</TextBlock>
                         <TextBox x:Name="TbNumberTopic"></TextBox>
                         <TextBlock FontFamily="Times New Roman" FontSize="14" TextAlignment="Right" HorizontalAlignment="Center" VerticalAlignment="Center">Название темы</TextBlock>
                         <TextBox x:Name="TbNameTopic"></TextBox>
-                        <Button x:Name="BtnAddTopic" FontFamily="Arial" FontSize="14" Click="BtnAddTopic_Click">Добавить тему</Button>
+                        <Button x:Name="BtnAddTopic" FontFamily="Arial" FontSize="14" Click="BtnAddTopic_Click">Добавить</Button>
+                        <Button x:Name="BtnDeleteTopic" FontFamily="Arial" FontSize="14" Click="BtnDeleteTopic_Click">Удалить</Button>
+                        <Button x:Name="BtnEditTopic" FontFamily="Arial" FontSize="14" Click="BtnEditTopic_Click">Редактировать</Button>
                     </UniformGrid>
                 </Grid>
             </TabItem>

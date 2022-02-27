@@ -24,8 +24,9 @@ namespace RPTest.Pages
     /// </summary>
     public partial class WorkProgramPage : Page
     {
-        private static Classes.WorkProgram _workProgram = new Classes.WorkProgram();
+        public static Classes.WorkProgram _workProgram = new Classes.WorkProgram();
         private Models.Discipline _discipline;
+        private bool _flag = true;
         private BinaryFormatter _formatter = new BinaryFormatter();
         private List<string> _specialtyCodes = new List<string>() { "09.02.06 Сетевое и системное администрирование", "09.02.07 Информационные системы и программирование", "10.02.05 Обеспечение информационной безопасности автоматизированных систем" };
         /// <summary>
@@ -69,6 +70,8 @@ namespace RPTest.Pages
                     break;
                 }
             }
+            DgThemes.ItemsSource = _workProgram.Topics;
+            DgThemes.Items.Refresh();
         }
         /// <summary>
         /// Инициализация выпадающих списков
@@ -194,21 +197,6 @@ namespace RPTest.Pages
             _discipline.Discipline_Competencies.Remove(_discipline.Discipline_Competencies.Where(d => d.Competencies == LbCompetencies.SelectedItem as Models.Competencies).FirstOrDefault());
             _db.GetContext().SaveChanges();
             UpdateLb();
-        }
-        /// <summary>
-        /// Добавление темы
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnAddTopic_Click(object sender, RoutedEventArgs e)
-        {
-            Classes.Topic topic = new Classes.Topic() { NumberTopic = Convert.ToInt32(TbNumberTopic.Text), TopicName = TbNameTopic.Text }; 
-            _workProgram.Topics.Add(topic);
-
-            DgThemes.ItemsSource = _workProgram.Topics;
-            DgThemes.Items.Refresh();
-            TbNumberTopic.Text = "";
-            TbNameTopic.Text = "";
         }
         /// <summary>
         /// Выбор дисциплины из выпадающего списка
@@ -363,8 +351,51 @@ namespace RPTest.Pages
         /// <param name="e"></param>
         private void DgThemes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Window.AddTopicWindow addTopicWindow = new Window.AddTopicWindow(DgThemes.SelectedItem as Classes.Topic);
-            addTopicWindow.ShowDialog();
+            if (MessageBox.Show("Открыть окно добавления тем?", "Сообщение", MessageBoxButton.OKCancel) == MessageBoxResult.OK && _flag)
+            {
+                Window.AddTopicWindow addTopicWindow = new Window.AddTopicWindow(DgThemes.SelectedItem as Classes.Topic, _workProgram);
+                addTopicWindow.ShowDialog();
+                return;
+            }
+            else if(!_flag)
+            {
+                return;
+            }
+        }
+        /// <summary>
+        /// Добавление темы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnAddTopic_Click(object sender, RoutedEventArgs e)
+        {
+            Classes.Topic topic = new Classes.Topic() { NumberTopic = Convert.ToInt32(TbNumberTopic.Text), TopicName = TbNameTopic.Text };
+            _workProgram.Topics.Add(topic);
+
+            DgThemes.ItemsSource = _workProgram.Topics;
+            DgThemes.Items.Refresh();
+            TbNumberTopic.Text = "";
+            TbNameTopic.Text = "";
+        }
+        /// <summary>
+        /// Удаление раздела
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnDeleteTopic_Click(object sender, RoutedEventArgs e)
+        {
+            _workProgram.Topics.Remove(DgThemes.SelectedItem as Classes.Topic);
+            DgThemes.ItemsSource = _workProgram.Topics;
+            DgThemes.Items.Refresh();
+        }
+        /// <summary>
+        /// Редактирование раздела
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnEditTopic_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

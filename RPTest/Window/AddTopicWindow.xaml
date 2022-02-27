@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RPTest.Window"
         mc:Ignorable="d"
-        Title="Добавление тем" Height="450" Width="800" MinHeight="450" MinWidth="800">
+        Title="Добавление тем" Height="450" Width="800" MinHeight="450" MinWidth="800" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"></RowDefinition>
@@ -25,7 +25,7 @@
             <TabItem Header="Практические занятия">
                 <DataGrid x:Name="DgHoursPracticalTraining" Grid.Row="0" AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="*" SelectionChanged="DgHoursTheoreticalTraining_SelectionChanged">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Номер" Binding="{Binding NumberTopic}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Номер" Binding="{Binding Id}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Описание темы" Binding="{Binding TopicName}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Количество часов" Binding="{Binding Hours}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Компетенции" Binding="{Binding Competencies}"></DataGridTextColumn>
@@ -35,7 +35,7 @@
             <TabItem Header="Лабораторные работы">
                 <DataGrid x:Name="DgHoursLaboratoryTraining" Grid.Row="0" AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="*" SelectionChanged="DgHoursTheoreticalTraining_SelectionChanged">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Номер" Binding="{Binding NumberTopic}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Номер" Binding="{Binding Id}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Описание темы" Binding="{Binding TopicName}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Количество часов" Binding="{Binding Hours}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Компетенции" Binding="{Binding Competencies}"></DataGridTextColumn>
@@ -45,7 +45,7 @@
             <TabItem Header="Самостоятельная работа">
                 <DataGrid x:Name="DgHoursSelfStudy" Grid.Row="0" AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="*" SelectionChanged="DgHoursTheoreticalTraining_SelectionChanged">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Номер" Binding="{Binding NumberTopic}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Номер" Binding="{Binding Id}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Описание темы" Binding="{Binding TopicName}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Количество часов" Binding="{Binding Hours}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Компетенции" Binding="{Binding Competencies}"></DataGridTextColumn>
