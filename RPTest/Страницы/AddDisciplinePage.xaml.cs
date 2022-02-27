@@ -348,7 +348,7 @@ namespace RPTest.Pages
             _temporaryDiscipline.NumberSemestr = Convert.ToInt32(CbNumberSemestr.SelectedItem);
         }
         /// <summary>
-        /// Выбранный элемент из списка компетенций
+        /// Выбирает элемент из списка компетенций
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
