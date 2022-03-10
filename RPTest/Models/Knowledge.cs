@@ -11,7 +11,7 @@ namespace RPTest.Models
 {
     using System;
     using System.Collections.Generic;
-    [Serializable]
+    
     public partial class Knowledge
     {
         public int Id { get; set; }

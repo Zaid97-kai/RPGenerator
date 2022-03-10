@@ -133,8 +133,89 @@
                     </UniformGrid>
                 </Grid>
             </TabItem>
-            <TabItem Header="МТО"></TabItem>
-            <TabItem Header="Литература"></TabItem>
+            <TabItem Header="МТО">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="11*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Аудитория</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Условия</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Программное обеспечение</TextBlock>
+                    <ListBox  Grid.Row="1" Grid.Column="0" ></ListBox>
+                    <ListBox  Grid.Row="1" Grid.Column="1" ></ListBox>
+                    <ListBox  Grid.Row="1" Grid.Column="2" ></ListBox>
+                    <ComboBox Grid.Row="2" Grid.Column="0" ></ComboBox>
+                    <UniformGrid Grid.Row="3" Grid.Column="0" Columns="2">
+                        <Button  FontFamily="Arial" FontSize="14">Добавить</Button>
+                        <Button  FontFamily="Arial" FontSize="14" >Удалить</Button>
+                    </UniformGrid>
+                    <TextBox Grid.Row="2" Grid.Column="1"></TextBox>
+                    <UniformGrid Grid.Row="3" Grid.Column="1" Columns="2">
+                        <Button FontFamily="Arial" FontSize="14">Добавить</Button>
+                        <Button  FontFamily="Arial" FontSize="14">Удалить</Button>
+                    </UniformGrid>
+                    <TextBox  Grid.Row="2" Grid.Column="2"></TextBox>
+                    <UniformGrid Grid.Row="3" Grid.Column="2" Columns="2">
+                        <Button FontFamily="Arial" FontSize="14">Добавить</Button>
+                        <Button FontFamily="Arial" FontSize="14" >Удалить</Button>
+                    </UniformGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Литература">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="7*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <UniformGrid Rows="10" Grid.Column="0">
+                        <TextBlock Style="{StaticResource FirstStyle}">Автор</TextBlock>
+                        <TextBlock Style="{StaticResource FirstStyle}">Название</TextBlock>
+                        <TextBlock Style="{StaticResource FirstStyle}">Издательство</TextBlock>
+                        <TextBlock Style="{StaticResource FirstStyle}">Тип</TextBlock>
+                        <TextBlock Style="{StaticResource FirstStyle}">URL</TextBlock>
+                        <TextBlock Style="{StaticResource FirstStyle}">Город</TextBlock>
+                        <TextBlock Style="{StaticResource FirstStyle}">Год выпуска</TextBlock>
+                        <TextBlock Style="{StaticResource FirstStyle}">Количество страниц</TextBlock>
+                        <TextBlock Style="{StaticResource FirstStyle}">Дата обращения</TextBlock>
+                        <TextBlock Style="{StaticResource FirstStyle}">Тип доступа</TextBlock>
+
+                    </UniformGrid>
+                    <UniformGrid Grid.Column="1" Rows="10">
+                        <TextBox Style="{StaticResource TbStyle}"></TextBox>
+                        <TextBox Style="{StaticResource TbStyle}"></TextBox>
+                        <TextBox Style="{StaticResource TbStyle}"></TextBox>
+                        <TextBox Style="{StaticResource TbStyle}"></TextBox>
+                        <TextBox Style="{StaticResource TbStyle}"></TextBox>
+                        <TextBox Style="{StaticResource TbStyle}"></TextBox>
+                        <TextBox Style="{StaticResource TbStyle}"></TextBox>
+                        <TextBox Style="{StaticResource TbStyle}"></TextBox>
+                        <TextBox Style="{StaticResource TbStyle}"></TextBox>
+                        <TextBox Style="{StaticResource TbStyle}"></TextBox>
+                    </UniformGrid>
+                    <UniformGrid Grid.Row="2" Columns="1">
+                        <UniformGrid Grid.Row="2">
+                            <ComboBox Grid.Row="1"></ComboBox>
+                        </UniformGrid>
+                        <Button  FontFamily="Arial" FontSize="14" Grid.Row="1">Добавить</Button>
+                        <Button  FontFamily="Arial" FontSize="14" >Удалить</Button>
+                    </UniformGrid>
+                    <DataGrid Grid.Column="1" Grid.Row="2">
+
+                    </DataGrid>
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 </Page>
