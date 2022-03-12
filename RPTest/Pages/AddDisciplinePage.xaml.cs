@@ -102,6 +102,7 @@ namespace RPTest.Pages
         private void BtnAddSkill_Click(object sender, RoutedEventArgs e)
         {
             _temporaryDiscipline.skills.Add(new Models.Skills() { Name = TbSkillName.Text });
+            TbSkillName.Text = "";
             //_db.GetContext().Skills.Add(new Models.Skills() { Name = TbSkillName.Text, Discipline = _db.GetContext().Discipline.ToList()[0] });
             //_db.GetContext().SaveChanges();
 
@@ -115,6 +116,7 @@ namespace RPTest.Pages
         private void BtnAddKnowledge_Click(object sender, RoutedEventArgs e)
         {
             _temporaryDiscipline.knowledges.Add(new Models.Knowledge() { Name = TbKnowledgeName.Text });
+            TbKnowledgeName.Text = "";
             //_db.GetContext().Knowledge.Add(new Models.Knowledge() { Name = TbKnowledgeName.Text, Discipline = _db.GetContext().Discipline.ToList()[0] });
             //_db.GetContext().SaveChanges();
 
