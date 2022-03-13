@@ -36,7 +36,6 @@ namespace RPTest.Pages
             InitializeComponent();
             _workProgram = new Classes.WorkProgram();
             CbCode.ItemsSource = _specialtyCodes;
-            CbCompetenciesName.ItemsSource = _db.GetContext().Competencies.ToList();
             CbNameDiscipline.ItemsSource = _db.GetContext().Discipline.ToList();
         }
         /// <summary>

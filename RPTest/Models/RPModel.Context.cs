@@ -20,7 +20,6 @@ namespace RPTest.Models
             : base("name=DBModel")
         {
         }
-
         public static DBModel GetContext()
         {
             if (entities == null)
@@ -57,5 +56,7 @@ namespace RPTest.Models
         public virtual DbSet<Topic> Topic { get; set; }
         public virtual DbSet<Topic_Competencies> Topic_Competencies { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<ExpPractice> ExpPractice { get; set; }
     }
 }

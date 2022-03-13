@@ -12,21 +12,12 @@ namespace RPTest.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Proffessional_Module
+    public partial class ExpPractice
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Proffessional_Module()
-        {
-            this.Discipline = new HashSet<Discipline>();
-        }
-    
-        public int Id { get; set; }
-        public string Code { get; set; }
-        public int Id_AcademicPlan { get; set; }
+        public int id { get; set; }
         public string Name { get; set; }
+        public int Id_Discipline { get; set; }
     
-        public virtual AcademicPlan AcademicPlan { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Discipline> Discipline { get; set; }
+        public virtual Discipline Discipline { get; set; }
     }
 }

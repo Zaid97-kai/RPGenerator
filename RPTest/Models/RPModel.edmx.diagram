@@ -51,6 +51,9 @@
         <AssociationConnector Association="RPModel.FK_Topic_Discipline" ManuallyRouted="false" />
         <AssociationConnector Association="RPModel.FK_Literary_Source_Author_Literary_Source" ManuallyRouted="false" />
         <AssociationConnector Association="RPModel.FK_Topic_Competencies_Topic" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RPModel.sysdiagrams" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="RPModel.ExpPractice" Width="1.5" PointX="9.75" PointY="22.125" />
+        <AssociationConnector Association="RPModel.FK_ExpPractice_Discipline" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

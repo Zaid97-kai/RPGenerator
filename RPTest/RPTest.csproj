@@ -111,6 +111,9 @@
     <Compile Include="Models\Equipment.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ExpPractice.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Kind_Of_Discipline.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
@@ -148,6 +151,9 @@
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Specialty.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Topic.cs">

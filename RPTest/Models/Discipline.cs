@@ -22,6 +22,7 @@ namespace RPTest.Models
             this.Knowledge = new HashSet<Knowledge>();
             this.Skills = new HashSet<Skills>();
             this.Topic = new HashSet<Topic>();
+            this.ExpPractice = new HashSet<ExpPractice>();
         }
     
         public int Id { get; set; }
@@ -43,5 +44,7 @@ namespace RPTest.Models
         public virtual ICollection<Skills> Skills { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Topic> Topic { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ExpPractice> ExpPractice { get; set; }
     }
 }

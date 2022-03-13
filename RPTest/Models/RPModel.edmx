@@ -113,6 +113,14 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
+        <EntityType Name="ExpPractice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Id_Discipline" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Kind_Of_Discipline">
           <Key>
             <PropertyRef Name="Id" />
@@ -125,7 +133,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Id_Discipline" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Literary_Source">
@@ -157,6 +165,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Id_AcademicPlan" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Skills">
@@ -164,7 +173,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Id_Discipline" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Software">
@@ -182,6 +191,16 @@
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Qualification" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Topic">
           <Key>
@@ -367,6 +386,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ExpPractice_Discipline">
+          <End Role="Discipline" Type="Self.Discipline" Multiplicity="1" />
+          <End Role="ExpPractice" Type="Self.ExpPractice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discipline">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpPractice">
+              <PropertyRef Name="Id_Discipline" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Knowledge_Discipline">
           <End Role="Discipline" Type="Self.Discipline" Multiplicity="1" />
           <End Role="Knowledge" Type="Self.Knowledge" Multiplicity="*" />
@@ -489,6 +520,7 @@
           <EntitySet Name="Discipline_Competencies" EntityType="Self.Discipline_Competencies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Discipline_HourlyLoad" EntityType="Self.Discipline_HourlyLoad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExpPractice" EntityType="Self.ExpPractice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Kind_Of_Discipline" EntityType="Self.Kind_Of_Discipline" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Knowledge" EntityType="Self.Knowledge" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Literary_Source" EntityType="Self.Literary_Source" Schema="dbo" store:Type="Tables" />
@@ -497,6 +529,7 @@
           <EntitySet Name="Skills" EntityType="Self.Skills" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Software" EntityType="Self.Software" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Specialty" EntityType="Self.Specialty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Topic" EntityType="Self.Topic" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Topic_Competencies" EntityType="Self.Topic_Competencies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -551,6 +584,10 @@
           <AssociationSet Name="FK_Discipline_Proffessional_Module" Association="Self.FK_Discipline_Proffessional_Module">
             <End Role="Proffessional_Module" EntitySet="Proffessional_Module" />
             <End Role="Discipline" EntitySet="Discipline" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExpPractice_Discipline" Association="Self.FK_ExpPractice_Discipline">
+            <End Role="Discipline" EntitySet="Discipline" />
+            <End Role="ExpPractice" EntitySet="ExpPractice" />
           </AssociationSet>
           <AssociationSet Name="FK_Knowledge_Discipline" Association="Self.FK_Knowledge_Discipline">
             <End Role="Discipline" EntitySet="Discipline" />
@@ -697,6 +734,7 @@
           <NavigationProperty Name="Knowledge" Relationship="Self.FK_Knowledge_Discipline" FromRole="Discipline" ToRole="Knowledge" />
           <NavigationProperty Name="Skills" Relationship="Self.FK_Skills_Discipline" FromRole="Discipline" ToRole="Skills" />
           <NavigationProperty Name="Topic" Relationship="Self.FK_Topic_Discipline" FromRole="Discipline" ToRole="Topic" />
+          <NavigationProperty Name="ExpPractice" Relationship="RPModel.FK_ExpPractice_Discipline" FromRole="Discipline" ToRole="ExpPractice" />
         </EntityType>
         <EntityType Name="Discipline_Competencies">
           <Key>
@@ -743,7 +781,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Id_Discipline" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Discipline" Relationship="Self.FK_Knowledge_Discipline" FromRole="Knowledge" ToRole="Discipline" />
         </EntityType>
@@ -782,13 +820,14 @@
           <Property Name="Id_AcademicPlan" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AcademicPlan" Relationship="Self.FK_Proffessional_Module_AcademicPlan" FromRole="Proffessional_Module" ToRole="AcademicPlan" />
           <NavigationProperty Name="Discipline" Relationship="Self.FK_Discipline_Proffessional_Module" FromRole="Proffessional_Module" ToRole="Discipline" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Skills">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Id_Discipline" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Discipline" Relationship="Self.FK_Skills_Discipline" FromRole="Skills" ToRole="Discipline" />
         </EntityType>
@@ -1220,7 +1259,44 @@
             <End Role="Topic" EntitySet="Topic" />
             <End Role="Topic_Competencies" EntitySet="Topic_Competencies" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="RPModel.sysdiagrams" />
+          <EntitySet Name="ExpPractice" EntityType="RPModel.ExpPractice" />
+          <AssociationSet Name="FK_ExpPractice_Discipline" Association="RPModel.FK_ExpPractice_Discipline">
+            <End Role="Discipline" EntitySet="Discipline" />
+            <End Role="ExpPractice" EntitySet="ExpPractice" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ExpPractice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Id_Discipline" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Discipline" Relationship="RPModel.FK_ExpPractice_Discipline" FromRole="ExpPractice" ToRole="Discipline" />
+        </EntityType>
+        <Association Name="FK_ExpPractice_Discipline">
+          <End Type="RPModel.Discipline" Role="Discipline" Multiplicity="1" />
+          <End Type="RPModel.ExpPractice" Role="ExpPractice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discipline">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpPractice">
+              <PropertyRef Name="Id_Discipline" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1393,6 +1469,7 @@
           <EntitySetMapping Name="Proffessional_Module">
             <EntityTypeMapping TypeName="RPModel.Proffessional_Module">
               <MappingFragment StoreEntitySet="Proffessional_Module">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Id_AcademicPlan" ColumnName="Id_AcademicPlan" />
@@ -1454,6 +1531,26 @@
                 <ScalarProperty Name="Pass" ColumnName="Pass" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="RPModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpPractice">
+            <EntityTypeMapping TypeName="RPModel.ExpPractice">
+              <MappingFragment StoreEntitySet="ExpPractice">
+                <ScalarProperty Name="Id_Discipline" ColumnName="Id_Discipline" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
