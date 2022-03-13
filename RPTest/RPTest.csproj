@@ -75,9 +75,6 @@
     <Compile Include="Models\AcademicPlan.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AcademicPlan_Competencies.cs">
-      <DependentUpon>RPModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Assessment_Form.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
@@ -99,22 +96,19 @@
     <Compile Include="Models\Competencies.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Content.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Discipline.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Discipline_Competencies.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Discipline_HourlyLoad.cs">
-      <DependentUpon>RPModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Equipment.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ExpPractice.cs">
-      <DependentUpon>RPModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Kind_Of_Discipline.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Knowledge.cs">
@@ -154,12 +148,6 @@
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>RPModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Topic.cs">
-      <DependentUpon>RPModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Topic_Competencies.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Users.cs">

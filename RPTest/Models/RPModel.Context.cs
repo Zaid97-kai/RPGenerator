@@ -20,6 +20,7 @@ namespace RPTest.Models
             : base("name=DBModel")
         {
         }
+
         public static DBModel GetContext()
         {
             if (entities == null)
@@ -33,7 +34,6 @@ namespace RPTest.Models
         }
     
         public virtual DbSet<AcademicPlan> AcademicPlan { get; set; }
-        public virtual DbSet<AcademicPlan_Competencies> AcademicPlan_Competencies { get; set; }
         public virtual DbSet<Assessment_Form> Assessment_Form { get; set; }
         public virtual DbSet<Auditory> Auditory { get; set; }
         public virtual DbSet<Auditory_Equipment> Auditory_Equipment { get; set; }
@@ -43,9 +43,7 @@ namespace RPTest.Models
         public virtual DbSet<Competencies> Competencies { get; set; }
         public virtual DbSet<Discipline> Discipline { get; set; }
         public virtual DbSet<Discipline_Competencies> Discipline_Competencies { get; set; }
-        public virtual DbSet<Discipline_HourlyLoad> Discipline_HourlyLoad { get; set; }
         public virtual DbSet<Equipment> Equipment { get; set; }
-        public virtual DbSet<Kind_Of_Discipline> Kind_Of_Discipline { get; set; }
         public virtual DbSet<Knowledge> Knowledge { get; set; }
         public virtual DbSet<Literary_Source> Literary_Source { get; set; }
         public virtual DbSet<Literary_Source_Author> Literary_Source_Author { get; set; }
@@ -53,10 +51,9 @@ namespace RPTest.Models
         public virtual DbSet<Skills> Skills { get; set; }
         public virtual DbSet<Software> Software { get; set; }
         public virtual DbSet<Specialty> Specialty { get; set; }
-        public virtual DbSet<Topic> Topic { get; set; }
-        public virtual DbSet<Topic_Competencies> Topic_Competencies { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<ExpPractice> ExpPractice { get; set; }
+        public virtual DbSet<Content> Content { get; set; }
     }
 }

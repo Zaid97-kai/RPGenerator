@@ -14,21 +14,11 @@ namespace RPTest.Models
     
     public partial class AcademicPlan
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AcademicPlan()
-        {
-            this.AcademicPlan_Competencies = new HashSet<AcademicPlan_Competencies>();
-            this.Proffessional_Module = new HashSet<Proffessional_Module>();
-        }
-    
         public int Id { get; set; }
-        public int Year { get; set; }
-        public int Id_Specialty { get; set; }
+        public int Id_PM { get; set; }
+        public int Id_Discipline { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AcademicPlan_Competencies> AcademicPlan_Competencies { get; set; }
-        public virtual Specialty Specialty { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Proffessional_Module> Proffessional_Module { get; set; }
+        public virtual Discipline Discipline1 { get; set; }
+        public virtual Proffessional_Module Proffessional_Module { get; set; }
     }
 }

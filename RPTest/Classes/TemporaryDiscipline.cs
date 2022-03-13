@@ -9,6 +9,7 @@ using _db = RPTest.Models.DBModel;
 
 namespace RPTest.Classes
 {
+     /*
     /// <summary>
     /// Временная дисциплина (со сгенерированными типами
     /// </summary>
@@ -106,5 +107,5 @@ namespace RPTest.Classes
             this.academicPlan = academicPlan.PlanName;
             this.NumberSemestr = NumberSemestr;
         }
-    }
+    }*/
 }

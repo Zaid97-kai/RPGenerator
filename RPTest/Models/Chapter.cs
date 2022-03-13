@@ -17,13 +17,15 @@ namespace RPTest.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Chapter()
         {
-            this.Topic = new HashSet<Topic>();
+            this.Content1 = new HashSet<Content>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
+        public int Id_Discipline { get; set; }
     
+        public virtual Discipline Discipline1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Topic> Topic { get; set; }
+        public virtual ICollection<Content> Content1 { get; set; }
     }
 }

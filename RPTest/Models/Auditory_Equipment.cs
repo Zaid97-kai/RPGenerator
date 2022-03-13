@@ -17,7 +17,6 @@ namespace RPTest.Models
         public int Id { get; set; }
         public int Id_Auditory { get; set; }
         public int Id_Equipment { get; set; }
-        public int Count { get; set; }
     
         public virtual Auditory Auditory { get; set; }
         public virtual Equipment Equipment { get; set; }

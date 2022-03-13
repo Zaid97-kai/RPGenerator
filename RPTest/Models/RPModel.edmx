@@ -10,16 +10,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Year" Type="int" Nullable="false" />
-          <Property Name="Id_Specialty" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="AcademicPlan_Competencies">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Id_AcademicPlan" Type="int" Nullable="false" />
-          <Property Name="Id_Competencies" Type="int" Nullable="false" />
+          <Property Name="Id_PM" Type="int" Nullable="false" />
+          <Property Name="Id_Discipline" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Assessment_Form">
           <Key>
@@ -27,7 +19,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Semestr_Number" Type="int" Nullable="false" />
+          <Property Name="Hourly_Load" Type="int" Nullable="false" />
+          <Property Name="Id_Discipline" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Auditory">
           <Key>
@@ -43,7 +36,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_Auditory" Type="int" Nullable="false" />
           <Property Name="Id_Equipment" Type="int" Nullable="false" />
-          <Property Name="Count" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Auditory_Software">
           <Key>
@@ -65,7 +57,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Id_Discipline" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Competencies">
           <Key>
@@ -75,15 +68,22 @@
           <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Hourly_Load" Type="int" Nullable="false" />
+          <Property Name="Id_Chapter" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Discipline">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Id_Kind_Of_Discipline" Type="int" Nullable="false" />
-          <Property Name="Id_PM" Type="int" />
-          <Property Name="Id_Assessment_Form" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Discipline_Competencies">
           <Key>
@@ -92,19 +92,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_Discipline" Type="int" Nullable="false" />
           <Property Name="Id_Competencies" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Discipline_HourlyLoad">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TheoreticalTraining" Type="int" Nullable="false" />
-          <Property Name="PracticalTraining" Type="int" Nullable="false" />
-          <Property Name="LaboratoryTraining" Type="int" Nullable="false" />
-          <Property Name="Coursework" Type="int" Nullable="false" />
-          <Property Name="IndependentWork" Type="int" Nullable="false" />
-          <Property Name="AssesmentWork" Type="int" Nullable="false" />
-          <Property Name="Id_Discipline" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Equipment">
           <Key>
@@ -117,16 +104,9 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Id_Discipline" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Kind_Of_Discipline">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Knowledge">
           <Key>
@@ -166,7 +146,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Id_AcademicPlan" Type="int" Nullable="false" />
+          <Property Name="Id_Specialty" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Skills">
           <Key>
@@ -202,24 +182,6 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="Topic">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Hourly_Load" Type="int" Nullable="false" />
-          <Property Name="Id_Chapter" Type="int" Nullable="false" />
-          <Property Name="Id_Discipline" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Topic_Competencies">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Id_Topic" Type="int" Nullable="false" />
-          <Property Name="Id_Competencies" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="Id" />
@@ -230,39 +192,39 @@
           <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK_AcademicPlan_Competencies_AcademicPlan">
-          <End Role="AcademicPlan" Type="Self.AcademicPlan" Multiplicity="1" />
-          <End Role="AcademicPlan_Competencies" Type="Self.AcademicPlan_Competencies" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AcademicPlan">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AcademicPlan_Competencies">
-              <PropertyRef Name="Id_AcademicPlan" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AcademicPlan_Competencies_Competencies">
-          <End Role="Competencies" Type="Self.Competencies" Multiplicity="1" />
-          <End Role="AcademicPlan_Competencies" Type="Self.AcademicPlan_Competencies" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Competencies">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AcademicPlan_Competencies">
-              <PropertyRef Name="Id_Competencies" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AcademicPlan_Specialty">
-          <End Role="Specialty" Type="Self.Specialty" Multiplicity="1" />
+        <Association Name="FK_AcademicPlan_Discipline">
+          <End Role="Discipline" Type="Self.Discipline" Multiplicity="1" />
           <End Role="AcademicPlan" Type="Self.AcademicPlan" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Specialty">
+            <Principal Role="Discipline">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="AcademicPlan">
-              <PropertyRef Name="Id_Specialty" />
+              <PropertyRef Name="Id_Discipline" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AcademicPlan_Proffessional_Module">
+          <End Role="Proffessional_Module" Type="Self.Proffessional_Module" Multiplicity="1" />
+          <End Role="AcademicPlan" Type="Self.AcademicPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proffessional_Module">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicPlan">
+              <PropertyRef Name="Id_PM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assessment_Form_Discipline">
+          <End Role="Discipline" Type="Self.Discipline" Multiplicity="1" />
+          <End Role="Assessment_Form" Type="Self.Assessment_Form" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discipline">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Assessment_Form">
+              <PropertyRef Name="Id_Discipline" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -314,19 +276,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Discipline_Assessment_Form">
-          <End Role="Assessment_Form" Type="Self.Assessment_Form" Multiplicity="1" />
-          <End Role="Discipline" Type="Self.Discipline" Multiplicity="*" />
+        <Association Name="FK_Chapter_Discipline">
+          <End Role="Discipline" Type="Self.Discipline" Multiplicity="1" />
+          <End Role="Chapter" Type="Self.Chapter" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Assessment_Form">
+            <Principal Role="Discipline">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Discipline">
-              <PropertyRef Name="Id_Assessment_Form" />
+            <Dependent Role="Chapter">
+              <PropertyRef Name="Id_Discipline" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Discipline_Competencies_Competencies">
+        <Association Name="FK_Content_Chapter">
+          <End Role="Chapter" Type="Self.Chapter" Multiplicity="1" />
+          <End Role="Content" Type="Self.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chapter">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="Id_Chapter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Discipline_Competencies_Competencies1">
           <End Role="Competencies" Type="Self.Competencies" Multiplicity="1" />
           <End Role="Discipline_Competencies" Type="Self.Discipline_Competencies" Multiplicity="*" />
           <ReferentialConstraint>
@@ -338,7 +312,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Discipline_Competencies_Discipline">
+        <Association Name="FK_Discipline_Competencies_Discipline1">
           <End Role="Discipline" Type="Self.Discipline" Multiplicity="1" />
           <End Role="Discipline_Competencies" Type="Self.Discipline_Competencies" Multiplicity="*" />
           <ReferentialConstraint>
@@ -350,43 +324,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Discipline_HourlyLoad_Discipline">
-          <End Role="Discipline" Type="Self.Discipline" Multiplicity="1" />
-          <End Role="Discipline_HourlyLoad" Type="Self.Discipline_HourlyLoad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Discipline">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Discipline_HourlyLoad">
-              <PropertyRef Name="Id_Discipline" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Discipline_Kind_Of_Discipline">
-          <End Role="Kind_Of_Discipline" Type="Self.Kind_Of_Discipline" Multiplicity="1" />
-          <End Role="Discipline" Type="Self.Discipline" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Kind_Of_Discipline">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Discipline">
-              <PropertyRef Name="Id_Kind_Of_Discipline" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Discipline_Proffessional_Module">
-          <End Role="Proffessional_Module" Type="Self.Proffessional_Module" Multiplicity="0..1" />
-          <End Role="Discipline" Type="Self.Discipline" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Proffessional_Module">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Discipline">
-              <PropertyRef Name="Id_PM" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ExpPractice_Discipline">
+        <Association Name="FK_ExpPractice_Discipline1">
           <End Role="Discipline" Type="Self.Discipline" Multiplicity="1" />
           <End Role="ExpPractice" Type="Self.ExpPractice" Multiplicity="*" />
           <ReferentialConstraint>
@@ -398,7 +336,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Knowledge_Discipline">
+        <Association Name="FK_Knowledge_Discipline1">
           <End Role="Discipline" Type="Self.Discipline" Multiplicity="1" />
           <End Role="Knowledge" Type="Self.Knowledge" Multiplicity="*" />
           <ReferentialConstraint>
@@ -434,19 +372,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Proffessional_Module_AcademicPlan">
-          <End Role="AcademicPlan" Type="Self.AcademicPlan" Multiplicity="1" />
+        <Association Name="FK_Proffessional_Module_Specialty">
+          <End Role="Specialty" Type="Self.Specialty" Multiplicity="1" />
           <End Role="Proffessional_Module" Type="Self.Proffessional_Module" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AcademicPlan">
+            <Principal Role="Specialty">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Proffessional_Module">
-              <PropertyRef Name="Id_AcademicPlan" />
+              <PropertyRef Name="Id_Specialty" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Skills_Discipline">
+        <Association Name="FK_Skills_Discipline1">
           <End Role="Discipline" Type="Self.Discipline" Multiplicity="1" />
           <End Role="Skills" Type="Self.Skills" Multiplicity="*" />
           <ReferentialConstraint>
@@ -458,57 +396,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Topic_Chapter">
-          <End Role="Chapter" Type="Self.Chapter" Multiplicity="1" />
-          <End Role="Topic" Type="Self.Topic" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Chapter">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Topic">
-              <PropertyRef Name="Id_Chapter" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Topic_Competencies_Competencies">
-          <End Role="Competencies" Type="Self.Competencies" Multiplicity="1" />
-          <End Role="Topic_Competencies" Type="Self.Topic_Competencies" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Competencies">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Topic_Competencies">
-              <PropertyRef Name="Id_Competencies" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Topic_Competencies_Topic">
-          <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
-          <End Role="Topic_Competencies" Type="Self.Topic_Competencies" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Topic">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Topic_Competencies">
-              <PropertyRef Name="Id_Topic" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Topic_Discipline">
-          <End Role="Discipline" Type="Self.Discipline" Multiplicity="1" />
-          <End Role="Topic" Type="Self.Topic" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Discipline">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Topic">
-              <PropertyRef Name="Id_Discipline" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Хранилище RPModelContainer">
           <EntitySet Name="AcademicPlan" EntityType="Self.AcademicPlan" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AcademicPlan_Competencies" EntityType="Self.AcademicPlan_Competencies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Assessment_Form" EntityType="Self.Assessment_Form" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Auditory" EntityType="Self.Auditory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Auditory_Equipment" EntityType="Self.Auditory_Equipment" Schema="dbo" store:Type="Tables" />
@@ -516,12 +405,11 @@
           <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Chapter" EntityType="Self.Chapter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Competencies" EntityType="Self.Competencies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Content" EntityType="Self.Content" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Discipline" EntityType="Self.Discipline" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Discipline_Competencies" EntityType="Self.Discipline_Competencies" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Discipline_HourlyLoad" EntityType="Self.Discipline_HourlyLoad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ExpPractice" EntityType="Self.ExpPractice" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Kind_Of_Discipline" EntityType="Self.Kind_Of_Discipline" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Knowledge" EntityType="Self.Knowledge" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Literary_Source" EntityType="Self.Literary_Source" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Literary_Source_Author" EntityType="Self.Literary_Source_Author" Schema="dbo" store:Type="Tables" />
@@ -530,20 +418,18 @@
           <EntitySet Name="Software" EntityType="Self.Software" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Specialty" EntityType="Self.Specialty" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Topic" EntityType="Self.Topic" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Topic_Competencies" EntityType="Self.Topic_Competencies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_AcademicPlan_Competencies_AcademicPlan" Association="Self.FK_AcademicPlan_Competencies_AcademicPlan">
+          <AssociationSet Name="FK_AcademicPlan_Discipline" Association="Self.FK_AcademicPlan_Discipline">
+            <End Role="Discipline" EntitySet="Discipline" />
             <End Role="AcademicPlan" EntitySet="AcademicPlan" />
-            <End Role="AcademicPlan_Competencies" EntitySet="AcademicPlan_Competencies" />
           </AssociationSet>
-          <AssociationSet Name="FK_AcademicPlan_Competencies_Competencies" Association="Self.FK_AcademicPlan_Competencies_Competencies">
-            <End Role="Competencies" EntitySet="Competencies" />
-            <End Role="AcademicPlan_Competencies" EntitySet="AcademicPlan_Competencies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AcademicPlan_Specialty" Association="Self.FK_AcademicPlan_Specialty">
-            <End Role="Specialty" EntitySet="Specialty" />
+          <AssociationSet Name="FK_AcademicPlan_Proffessional_Module" Association="Self.FK_AcademicPlan_Proffessional_Module">
+            <End Role="Proffessional_Module" EntitySet="Proffessional_Module" />
             <End Role="AcademicPlan" EntitySet="AcademicPlan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assessment_Form_Discipline" Association="Self.FK_Assessment_Form_Discipline">
+            <End Role="Discipline" EntitySet="Discipline" />
+            <End Role="Assessment_Form" EntitySet="Assessment_Form" />
           </AssociationSet>
           <AssociationSet Name="FK_Auditory_Equipment_Auditory" Association="Self.FK_Auditory_Equipment_Auditory">
             <End Role="Auditory" EntitySet="Auditory" />
@@ -561,35 +447,27 @@
             <End Role="Software" EntitySet="Software" />
             <End Role="Auditory_Software" EntitySet="Auditory_Software" />
           </AssociationSet>
-          <AssociationSet Name="FK_Discipline_Assessment_Form" Association="Self.FK_Discipline_Assessment_Form">
-            <End Role="Assessment_Form" EntitySet="Assessment_Form" />
+          <AssociationSet Name="FK_Chapter_Discipline" Association="Self.FK_Chapter_Discipline">
             <End Role="Discipline" EntitySet="Discipline" />
+            <End Role="Chapter" EntitySet="Chapter" />
           </AssociationSet>
-          <AssociationSet Name="FK_Discipline_Competencies_Competencies" Association="Self.FK_Discipline_Competencies_Competencies">
+          <AssociationSet Name="FK_Content_Chapter" Association="Self.FK_Content_Chapter">
+            <End Role="Chapter" EntitySet="Chapter" />
+            <End Role="Content" EntitySet="Content" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Discipline_Competencies_Competencies1" Association="Self.FK_Discipline_Competencies_Competencies1">
             <End Role="Competencies" EntitySet="Competencies" />
             <End Role="Discipline_Competencies" EntitySet="Discipline_Competencies" />
           </AssociationSet>
-          <AssociationSet Name="FK_Discipline_Competencies_Discipline" Association="Self.FK_Discipline_Competencies_Discipline">
+          <AssociationSet Name="FK_Discipline_Competencies_Discipline1" Association="Self.FK_Discipline_Competencies_Discipline1">
             <End Role="Discipline" EntitySet="Discipline" />
             <End Role="Discipline_Competencies" EntitySet="Discipline_Competencies" />
           </AssociationSet>
-          <AssociationSet Name="FK_Discipline_HourlyLoad_Discipline" Association="Self.FK_Discipline_HourlyLoad_Discipline">
-            <End Role="Discipline" EntitySet="Discipline" />
-            <End Role="Discipline_HourlyLoad" EntitySet="Discipline_HourlyLoad" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Discipline_Kind_Of_Discipline" Association="Self.FK_Discipline_Kind_Of_Discipline">
-            <End Role="Kind_Of_Discipline" EntitySet="Kind_Of_Discipline" />
-            <End Role="Discipline" EntitySet="Discipline" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Discipline_Proffessional_Module" Association="Self.FK_Discipline_Proffessional_Module">
-            <End Role="Proffessional_Module" EntitySet="Proffessional_Module" />
-            <End Role="Discipline" EntitySet="Discipline" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ExpPractice_Discipline" Association="Self.FK_ExpPractice_Discipline">
+          <AssociationSet Name="FK_ExpPractice_Discipline1" Association="Self.FK_ExpPractice_Discipline1">
             <End Role="Discipline" EntitySet="Discipline" />
             <End Role="ExpPractice" EntitySet="ExpPractice" />
           </AssociationSet>
-          <AssociationSet Name="FK_Knowledge_Discipline" Association="Self.FK_Knowledge_Discipline">
+          <AssociationSet Name="FK_Knowledge_Discipline1" Association="Self.FK_Knowledge_Discipline1">
             <End Role="Discipline" EntitySet="Discipline" />
             <End Role="Knowledge" EntitySet="Knowledge" />
           </AssociationSet>
@@ -601,29 +479,13 @@
             <End Role="Literary_Source" EntitySet="Literary_Source" />
             <End Role="Literary_Source_Author" EntitySet="Literary_Source_Author" />
           </AssociationSet>
-          <AssociationSet Name="FK_Proffessional_Module_AcademicPlan" Association="Self.FK_Proffessional_Module_AcademicPlan">
-            <End Role="AcademicPlan" EntitySet="AcademicPlan" />
+          <AssociationSet Name="FK_Proffessional_Module_Specialty" Association="Self.FK_Proffessional_Module_Specialty">
+            <End Role="Specialty" EntitySet="Specialty" />
             <End Role="Proffessional_Module" EntitySet="Proffessional_Module" />
           </AssociationSet>
-          <AssociationSet Name="FK_Skills_Discipline" Association="Self.FK_Skills_Discipline">
+          <AssociationSet Name="FK_Skills_Discipline1" Association="Self.FK_Skills_Discipline1">
             <End Role="Discipline" EntitySet="Discipline" />
             <End Role="Skills" EntitySet="Skills" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Topic_Chapter" Association="Self.FK_Topic_Chapter">
-            <End Role="Chapter" EntitySet="Chapter" />
-            <End Role="Topic" EntitySet="Topic" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Topic_Competencies_Competencies" Association="Self.FK_Topic_Competencies_Competencies">
-            <End Role="Competencies" EntitySet="Competencies" />
-            <End Role="Topic_Competencies" EntitySet="Topic_Competencies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Topic_Competencies_Topic" Association="Self.FK_Topic_Competencies_Topic">
-            <End Role="Topic" EntitySet="Topic" />
-            <End Role="Topic_Competencies" EntitySet="Topic_Competencies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Topic_Discipline" Association="Self.FK_Topic_Discipline">
-            <End Role="Discipline" EntitySet="Discipline" />
-            <End Role="Topic" EntitySet="Topic" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -635,21 +497,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Year" Type="Int32" Nullable="false" />
-          <Property Name="Id_Specialty" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AcademicPlan_Competencies" Relationship="Self.FK_AcademicPlan_Competencies_AcademicPlan" FromRole="AcademicPlan" ToRole="AcademicPlan_Competencies" />
-          <NavigationProperty Name="Specialty" Relationship="Self.FK_AcademicPlan_Specialty" FromRole="AcademicPlan" ToRole="Specialty" />
-          <NavigationProperty Name="Proffessional_Module" Relationship="Self.FK_Proffessional_Module_AcademicPlan" FromRole="AcademicPlan" ToRole="Proffessional_Module" />
-        </EntityType>
-        <EntityType Name="AcademicPlan_Competencies">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Id_AcademicPlan" Type="Int32" Nullable="false" />
-          <Property Name="Id_Competencies" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AcademicPlan" Relationship="Self.FK_AcademicPlan_Competencies_AcademicPlan" FromRole="AcademicPlan_Competencies" ToRole="AcademicPlan" />
-          <NavigationProperty Name="Competencies" Relationship="Self.FK_AcademicPlan_Competencies_Competencies" FromRole="AcademicPlan_Competencies" ToRole="Competencies" />
+          <Property Name="Id_PM" Type="Int32" Nullable="false" />
+          <Property Name="Id_Discipline" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Discipline1" Relationship="RPModel.FK_AcademicPlan_Discipline1" FromRole="AcademicPlan" ToRole="Discipline" />
+          <NavigationProperty Name="Proffessional_Module" Relationship="RPModel.FK_AcademicPlan_Proffessional_Module1" FromRole="AcademicPlan" ToRole="Proffessional_Module" />
         </EntityType>
         <EntityType Name="Assessment_Form">
           <Key>
@@ -657,8 +508,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Semestr_Number" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Discipline" Relationship="Self.FK_Discipline_Assessment_Form" FromRole="Assessment_Form" ToRole="Discipline" />
+          <Property Name="Hourly_Load" Type="Int32" Nullable="false" />
+          <Property Name="Id_Discipline" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Discipline" Relationship="RPModel.FK_Assessment_Form_Discipline1" FromRole="Assessment_Form" ToRole="Discipline" />
         </EntityType>
         <EntityType Name="Auditory">
           <Key>
@@ -676,7 +528,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_Auditory" Type="Int32" Nullable="false" />
           <Property Name="Id_Equipment" Type="Int32" Nullable="false" />
-          <Property Name="Count" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Auditory" Relationship="Self.FK_Auditory_Equipment_Auditory" FromRole="Auditory_Equipment" ToRole="Auditory" />
           <NavigationProperty Name="Equipment" Relationship="Self.FK_Auditory_Equipment_Equipment" FromRole="Auditory_Equipment" ToRole="Equipment" />
         </EntityType>
@@ -703,8 +554,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Topic" Relationship="Self.FK_Topic_Chapter" FromRole="Chapter" ToRole="Topic" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id_Discipline" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Discipline1" Relationship="RPModel.FK_Chapter_Discipline1" FromRole="Chapter" ToRole="Discipline" />
+          <NavigationProperty Name="Content1" Relationship="RPModel.FK_Content_Chapter1" FromRole="Chapter" ToRole="Content" />
         </EntityType>
         <EntityType Name="Competencies">
           <Key>
@@ -713,9 +566,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AcademicPlan_Competencies" Relationship="Self.FK_AcademicPlan_Competencies_Competencies" FromRole="Competencies" ToRole="AcademicPlan_Competencies" />
           <NavigationProperty Name="Discipline_Competencies" Relationship="Self.FK_Discipline_Competencies_Competencies" FromRole="Competencies" ToRole="Discipline_Competencies" />
-          <NavigationProperty Name="Topic_Competencies" Relationship="Self.FK_Topic_Competencies_Competencies" FromRole="Competencies" ToRole="Topic_Competencies" />
         </EntityType>
         <EntityType Name="Discipline">
           <Key>
@@ -723,18 +574,13 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Id_Kind_Of_Discipline" Type="Int32" Nullable="false" />
-          <Property Name="Id_PM" Type="Int32" />
-          <Property Name="Id_Assessment_Form" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Assessment_Form" Relationship="Self.FK_Discipline_Assessment_Form" FromRole="Discipline" ToRole="Assessment_Form" />
           <NavigationProperty Name="Discipline_Competencies" Relationship="Self.FK_Discipline_Competencies_Discipline" FromRole="Discipline" ToRole="Discipline_Competencies" />
-          <NavigationProperty Name="Discipline_HourlyLoad" Relationship="Self.FK_Discipline_HourlyLoad_Discipline" FromRole="Discipline" ToRole="Discipline_HourlyLoad" />
-          <NavigationProperty Name="Kind_Of_Discipline" Relationship="Self.FK_Discipline_Kind_Of_Discipline" FromRole="Discipline" ToRole="Kind_Of_Discipline" />
-          <NavigationProperty Name="Proffessional_Module" Relationship="Self.FK_Discipline_Proffessional_Module" FromRole="Discipline" ToRole="Proffessional_Module" />
           <NavigationProperty Name="Knowledge" Relationship="Self.FK_Knowledge_Discipline" FromRole="Discipline" ToRole="Knowledge" />
           <NavigationProperty Name="Skills" Relationship="Self.FK_Skills_Discipline" FromRole="Discipline" ToRole="Skills" />
-          <NavigationProperty Name="Topic" Relationship="Self.FK_Topic_Discipline" FromRole="Discipline" ToRole="Topic" />
           <NavigationProperty Name="ExpPractice" Relationship="RPModel.FK_ExpPractice_Discipline" FromRole="Discipline" ToRole="ExpPractice" />
+          <NavigationProperty Name="AcademicPlan1" Relationship="RPModel.FK_AcademicPlan_Discipline1" FromRole="Discipline" ToRole="AcademicPlan" />
+          <NavigationProperty Name="Assessment_Form" Relationship="RPModel.FK_Assessment_Form_Discipline1" FromRole="Discipline" ToRole="Assessment_Form" />
+          <NavigationProperty Name="Chapter1" Relationship="RPModel.FK_Chapter_Discipline1" FromRole="Discipline" ToRole="Chapter" />
         </EntityType>
         <EntityType Name="Discipline_Competencies">
           <Key>
@@ -746,20 +592,6 @@
           <NavigationProperty Name="Competencies" Relationship="Self.FK_Discipline_Competencies_Competencies" FromRole="Discipline_Competencies" ToRole="Competencies" />
           <NavigationProperty Name="Discipline" Relationship="Self.FK_Discipline_Competencies_Discipline" FromRole="Discipline_Competencies" ToRole="Discipline" />
         </EntityType>
-        <EntityType Name="Discipline_HourlyLoad">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TheoreticalTraining" Type="Int32" Nullable="false" />
-          <Property Name="PracticalTraining" Type="Int32" Nullable="false" />
-          <Property Name="LaboratoryTraining" Type="Int32" Nullable="false" />
-          <Property Name="Coursework" Type="Int32" Nullable="false" />
-          <Property Name="IndependentWork" Type="Int32" Nullable="false" />
-          <Property Name="AssesmentWork" Type="Int32" Nullable="false" />
-          <Property Name="Id_Discipline" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Discipline" Relationship="Self.FK_Discipline_HourlyLoad_Discipline" FromRole="Discipline_HourlyLoad" ToRole="Discipline" />
-        </EntityType>
         <EntityType Name="Equipment">
           <Key>
             <PropertyRef Name="Id" />
@@ -767,14 +599,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Auditory_Equipment" Relationship="Self.FK_Auditory_Equipment_Equipment" FromRole="Equipment" ToRole="Auditory_Equipment" />
-        </EntityType>
-        <EntityType Name="Kind_Of_Discipline">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Discipline" Relationship="Self.FK_Discipline_Kind_Of_Discipline" FromRole="Kind_Of_Discipline" ToRole="Discipline" />
         </EntityType>
         <EntityType Name="Knowledge">
           <Key>
@@ -817,10 +641,10 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Id_AcademicPlan" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AcademicPlan" Relationship="Self.FK_Proffessional_Module_AcademicPlan" FromRole="Proffessional_Module" ToRole="AcademicPlan" />
-          <NavigationProperty Name="Discipline" Relationship="Self.FK_Discipline_Proffessional_Module" FromRole="Proffessional_Module" ToRole="Discipline" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Id_Specialty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Specialty" Relationship="RPModel.FK_Proffessional_Module_Specialty" FromRole="Proffessional_Module" ToRole="Specialty" />
+          <NavigationProperty Name="AcademicPlan" Relationship="RPModel.FK_AcademicPlan_Proffessional_Module1" FromRole="Proffessional_Module" ToRole="AcademicPlan" />
         </EntityType>
         <EntityType Name="Skills">
           <Key>
@@ -847,30 +671,7 @@
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AcademicPlan" Relationship="Self.FK_AcademicPlan_Specialty" FromRole="Specialty" ToRole="AcademicPlan" />
-        </EntityType>
-        <EntityType Name="Topic">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Hourly_Load" Type="Int32" Nullable="false" />
-          <Property Name="Id_Chapter" Type="Int32" Nullable="false" />
-          <Property Name="Id_Discipline" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Chapter" Relationship="Self.FK_Topic_Chapter" FromRole="Topic" ToRole="Chapter" />
-          <NavigationProperty Name="Discipline" Relationship="Self.FK_Topic_Discipline" FromRole="Topic" ToRole="Discipline" />
-          <NavigationProperty Name="Topic_Competencies" Relationship="Self.FK_Topic_Competencies_Topic" FromRole="Topic" ToRole="Topic_Competencies" />
-        </EntityType>
-        <EntityType Name="Topic_Competencies">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Id_Topic" Type="Int32" Nullable="false" />
-          <Property Name="Id_Competencies" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Competencies" Relationship="Self.FK_Topic_Competencies_Competencies" FromRole="Topic_Competencies" ToRole="Competencies" />
-          <NavigationProperty Name="Topic" Relationship="Self.FK_Topic_Competencies_Topic" FromRole="Topic_Competencies" ToRole="Topic" />
+          <NavigationProperty Name="Proffessional_Module" Relationship="RPModel.FK_Proffessional_Module_Specialty" FromRole="Specialty" ToRole="Proffessional_Module" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -882,66 +683,6 @@
           <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <Association Name="FK_AcademicPlan_Competencies_AcademicPlan">
-          <End Role="AcademicPlan" Type="Self.AcademicPlan" Multiplicity="1" />
-          <End Role="AcademicPlan_Competencies" Type="Self.AcademicPlan_Competencies" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AcademicPlan">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AcademicPlan_Competencies">
-              <PropertyRef Name="Id_AcademicPlan" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AcademicPlan_Specialty">
-          <End Role="Specialty" Type="Self.Specialty" Multiplicity="1" />
-          <End Role="AcademicPlan" Type="Self.AcademicPlan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Specialty">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AcademicPlan">
-              <PropertyRef Name="Id_Specialty" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Proffessional_Module_AcademicPlan">
-          <End Role="AcademicPlan" Type="Self.AcademicPlan" Multiplicity="1" />
-          <End Role="Proffessional_Module" Type="Self.Proffessional_Module" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AcademicPlan">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Proffessional_Module">
-              <PropertyRef Name="Id_AcademicPlan" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AcademicPlan_Competencies_Competencies">
-          <End Role="Competencies" Type="Self.Competencies" Multiplicity="1" />
-          <End Role="AcademicPlan_Competencies" Type="Self.AcademicPlan_Competencies" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Competencies">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AcademicPlan_Competencies">
-              <PropertyRef Name="Id_Competencies" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Discipline_Assessment_Form">
-          <End Role="Assessment_Form" Type="Self.Assessment_Form" Multiplicity="1" />
-          <End Role="Discipline" Type="Self.Discipline" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assessment_Form">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Discipline">
-              <PropertyRef Name="Id_Assessment_Form" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Auditory_Equipment_Auditory">
           <End Role="Auditory" Type="Self.Auditory" Multiplicity="1" />
           <End Role="Auditory_Equipment" Type="Self.Auditory_Equipment" Multiplicity="*" />
@@ -1002,18 +743,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Topic_Chapter">
-          <End Role="Chapter" Type="Self.Chapter" Multiplicity="1" />
-          <End Role="Topic" Type="Self.Topic" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Chapter">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Topic">
-              <PropertyRef Name="Id_Chapter" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Discipline_Competencies_Competencies">
           <End Role="Competencies" Type="Self.Competencies" Multiplicity="1" />
           <End Role="Discipline_Competencies" Type="Self.Discipline_Competencies" Multiplicity="*" />
@@ -1022,18 +751,6 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Discipline_Competencies">
-              <PropertyRef Name="Id_Competencies" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Topic_Competencies_Competencies">
-          <End Role="Competencies" Type="Self.Competencies" Multiplicity="1" />
-          <End Role="Topic_Competencies" Type="Self.Topic_Competencies" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Competencies">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Topic_Competencies">
               <PropertyRef Name="Id_Competencies" />
             </Dependent>
           </ReferentialConstraint>
@@ -1047,42 +764,6 @@
             </Principal>
             <Dependent Role="Discipline_Competencies">
               <PropertyRef Name="Id_Discipline" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Discipline_HourlyLoad_Discipline">
-          <End Role="Discipline" Type="Self.Discipline" Multiplicity="1" />
-          <End Role="Discipline_HourlyLoad" Type="Self.Discipline_HourlyLoad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Discipline">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Discipline_HourlyLoad">
-              <PropertyRef Name="Id_Discipline" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Discipline_Kind_Of_Discipline">
-          <End Role="Kind_Of_Discipline" Type="Self.Kind_Of_Discipline" Multiplicity="1" />
-          <End Role="Discipline" Type="Self.Discipline" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Kind_Of_Discipline">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Discipline">
-              <PropertyRef Name="Id_Kind_Of_Discipline" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Discipline_Proffessional_Module">
-          <End Role="Proffessional_Module" Type="Self.Proffessional_Module" Multiplicity="0..1" />
-          <End Role="Discipline" Type="Self.Discipline" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Proffessional_Module">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Discipline">
-              <PropertyRef Name="Id_PM" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1110,18 +791,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Topic_Discipline">
-          <End Role="Discipline" Type="Self.Discipline" Multiplicity="1" />
-          <End Role="Topic" Type="Self.Topic" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Discipline">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Topic">
-              <PropertyRef Name="Id_Discipline" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Literary_Source_Author_Literary_Source">
           <End Role="Literary_Source" Type="Self.Literary_Source" Multiplicity="1" />
           <End Role="Literary_Source_Author" Type="Self.Literary_Source_Author" Multiplicity="*" />
@@ -1134,21 +803,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Topic_Competencies_Topic">
-          <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
-          <End Role="Topic_Competencies" Type="Self.Topic_Competencies" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Topic">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Topic_Competencies">
-              <PropertyRef Name="Id_Topic" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="DBModel" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AcademicPlan" EntityType="Self.AcademicPlan" />
-          <EntitySet Name="AcademicPlan_Competencies" EntityType="Self.AcademicPlan_Competencies" />
           <EntitySet Name="Assessment_Form" EntityType="Self.Assessment_Form" />
           <EntitySet Name="Auditory" EntityType="Self.Auditory" />
           <EntitySet Name="Auditory_Equipment" EntityType="Self.Auditory_Equipment" />
@@ -1158,9 +814,7 @@
           <EntitySet Name="Competencies" EntityType="Self.Competencies" />
           <EntitySet Name="Discipline" EntityType="Self.Discipline" />
           <EntitySet Name="Discipline_Competencies" EntityType="Self.Discipline_Competencies" />
-          <EntitySet Name="Discipline_HourlyLoad" EntityType="Self.Discipline_HourlyLoad" />
           <EntitySet Name="Equipment" EntityType="Self.Equipment" />
-          <EntitySet Name="Kind_Of_Discipline" EntityType="Self.Kind_Of_Discipline" />
           <EntitySet Name="Knowledge" EntityType="Self.Knowledge" />
           <EntitySet Name="Literary_Source" EntityType="Self.Literary_Source" />
           <EntitySet Name="Literary_Source_Author" EntityType="Self.Literary_Source_Author" />
@@ -1168,29 +822,7 @@
           <EntitySet Name="Skills" EntityType="Self.Skills" />
           <EntitySet Name="Software" EntityType="Self.Software" />
           <EntitySet Name="Specialty" EntityType="Self.Specialty" />
-          <EntitySet Name="Topic" EntityType="Self.Topic" />
-          <EntitySet Name="Topic_Competencies" EntityType="Self.Topic_Competencies" />
           <EntitySet Name="Users" EntityType="Self.Users" />
-          <AssociationSet Name="FK_AcademicPlan_Competencies_AcademicPlan" Association="Self.FK_AcademicPlan_Competencies_AcademicPlan">
-            <End Role="AcademicPlan" EntitySet="AcademicPlan" />
-            <End Role="AcademicPlan_Competencies" EntitySet="AcademicPlan_Competencies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AcademicPlan_Specialty" Association="Self.FK_AcademicPlan_Specialty">
-            <End Role="Specialty" EntitySet="Specialty" />
-            <End Role="AcademicPlan" EntitySet="AcademicPlan" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Proffessional_Module_AcademicPlan" Association="Self.FK_Proffessional_Module_AcademicPlan">
-            <End Role="AcademicPlan" EntitySet="AcademicPlan" />
-            <End Role="Proffessional_Module" EntitySet="Proffessional_Module" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AcademicPlan_Competencies_Competencies" Association="Self.FK_AcademicPlan_Competencies_Competencies">
-            <End Role="Competencies" EntitySet="Competencies" />
-            <End Role="AcademicPlan_Competencies" EntitySet="AcademicPlan_Competencies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Discipline_Assessment_Form" Association="Self.FK_Discipline_Assessment_Form">
-            <End Role="Assessment_Form" EntitySet="Assessment_Form" />
-            <End Role="Discipline" EntitySet="Discipline" />
-          </AssociationSet>
           <AssociationSet Name="FK_Auditory_Equipment_Auditory" Association="Self.FK_Auditory_Equipment_Auditory">
             <End Role="Auditory" EntitySet="Auditory" />
             <End Role="Auditory_Equipment" EntitySet="Auditory_Equipment" />
@@ -1211,33 +843,13 @@
             <End Role="Author" EntitySet="Author" />
             <End Role="Literary_Source_Author" EntitySet="Literary_Source_Author" />
           </AssociationSet>
-          <AssociationSet Name="FK_Topic_Chapter" Association="Self.FK_Topic_Chapter">
-            <End Role="Chapter" EntitySet="Chapter" />
-            <End Role="Topic" EntitySet="Topic" />
-          </AssociationSet>
           <AssociationSet Name="FK_Discipline_Competencies_Competencies" Association="Self.FK_Discipline_Competencies_Competencies">
             <End Role="Competencies" EntitySet="Competencies" />
             <End Role="Discipline_Competencies" EntitySet="Discipline_Competencies" />
           </AssociationSet>
-          <AssociationSet Name="FK_Topic_Competencies_Competencies" Association="Self.FK_Topic_Competencies_Competencies">
-            <End Role="Competencies" EntitySet="Competencies" />
-            <End Role="Topic_Competencies" EntitySet="Topic_Competencies" />
-          </AssociationSet>
           <AssociationSet Name="FK_Discipline_Competencies_Discipline" Association="Self.FK_Discipline_Competencies_Discipline">
             <End Role="Discipline" EntitySet="Discipline" />
             <End Role="Discipline_Competencies" EntitySet="Discipline_Competencies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Discipline_HourlyLoad_Discipline" Association="Self.FK_Discipline_HourlyLoad_Discipline">
-            <End Role="Discipline" EntitySet="Discipline" />
-            <End Role="Discipline_HourlyLoad" EntitySet="Discipline_HourlyLoad" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Discipline_Kind_Of_Discipline" Association="Self.FK_Discipline_Kind_Of_Discipline">
-            <End Role="Kind_Of_Discipline" EntitySet="Kind_Of_Discipline" />
-            <End Role="Discipline" EntitySet="Discipline" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Discipline_Proffessional_Module" Association="Self.FK_Discipline_Proffessional_Module">
-            <End Role="Proffessional_Module" EntitySet="Proffessional_Module" />
-            <End Role="Discipline" EntitySet="Discipline" />
           </AssociationSet>
           <AssociationSet Name="FK_Knowledge_Discipline" Association="Self.FK_Knowledge_Discipline">
             <End Role="Discipline" EntitySet="Discipline" />
@@ -1247,23 +859,40 @@
             <End Role="Discipline" EntitySet="Discipline" />
             <End Role="Skills" EntitySet="Skills" />
           </AssociationSet>
-          <AssociationSet Name="FK_Topic_Discipline" Association="Self.FK_Topic_Discipline">
-            <End Role="Discipline" EntitySet="Discipline" />
-            <End Role="Topic" EntitySet="Topic" />
-          </AssociationSet>
           <AssociationSet Name="FK_Literary_Source_Author_Literary_Source" Association="Self.FK_Literary_Source_Author_Literary_Source">
             <End Role="Literary_Source" EntitySet="Literary_Source" />
             <End Role="Literary_Source_Author" EntitySet="Literary_Source_Author" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Topic_Competencies_Topic" Association="Self.FK_Topic_Competencies_Topic">
-            <End Role="Topic" EntitySet="Topic" />
-            <End Role="Topic_Competencies" EntitySet="Topic_Competencies" />
           </AssociationSet>
           <EntitySet Name="sysdiagrams" EntityType="RPModel.sysdiagrams" />
           <EntitySet Name="ExpPractice" EntityType="RPModel.ExpPractice" />
           <AssociationSet Name="FK_ExpPractice_Discipline" Association="RPModel.FK_ExpPractice_Discipline">
             <End Role="Discipline" EntitySet="Discipline" />
             <End Role="ExpPractice" EntitySet="ExpPractice" />
+          </AssociationSet>
+          <EntitySet Name="Content" EntityType="RPModel.Content" />
+          <AssociationSet Name="FK_Proffessional_Module_Specialty" Association="RPModel.FK_Proffessional_Module_Specialty">
+            <End Role="Specialty" EntitySet="Specialty" />
+            <End Role="Proffessional_Module" EntitySet="Proffessional_Module" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AcademicPlan_Discipline1" Association="RPModel.FK_AcademicPlan_Discipline1">
+            <End Role="Discipline" EntitySet="Discipline" />
+            <End Role="AcademicPlan" EntitySet="AcademicPlan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AcademicPlan_Proffessional_Module1" Association="RPModel.FK_AcademicPlan_Proffessional_Module1">
+            <End Role="Proffessional_Module" EntitySet="Proffessional_Module" />
+            <End Role="AcademicPlan" EntitySet="AcademicPlan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assessment_Form_Discipline1" Association="RPModel.FK_Assessment_Form_Discipline1">
+            <End Role="Discipline" EntitySet="Discipline" />
+            <End Role="Assessment_Form" EntitySet="Assessment_Form" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chapter_Discipline1" Association="RPModel.FK_Chapter_Discipline1">
+            <End Role="Discipline" EntitySet="Discipline" />
+            <End Role="Chapter" EntitySet="Chapter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Content_Chapter1" Association="RPModel.FK_Content_Chapter1">
+            <End Role="Chapter" EntitySet="Chapter" />
+            <End Role="Content" EntitySet="Content" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="sysdiagrams">
@@ -1297,6 +926,89 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Hourly_Load" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Chapter" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Chapter1" Relationship="RPModel.FK_Content_Chapter1" FromRole="Content" ToRole="Chapter" />
+        </EntityType>
+        <Association Name="FK_Proffessional_Module_Specialty">
+          <End Type="RPModel.Specialty" Role="Specialty" Multiplicity="1" />
+          <End Type="RPModel.Proffessional_Module" Role="Proffessional_Module" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialty">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proffessional_Module">
+              <PropertyRef Name="Id_Specialty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AcademicPlan_Discipline1">
+          <End Type="RPModel.Discipline" Role="Discipline" Multiplicity="1" />
+          <End Type="RPModel.AcademicPlan" Role="AcademicPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discipline">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicPlan">
+              <PropertyRef Name="Id_Discipline" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AcademicPlan_Proffessional_Module1">
+          <End Type="RPModel.Proffessional_Module" Role="Proffessional_Module" Multiplicity="1" />
+          <End Type="RPModel.AcademicPlan" Role="AcademicPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proffessional_Module">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicPlan">
+              <PropertyRef Name="Id_PM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assessment_Form_Discipline1">
+          <End Type="RPModel.Discipline" Role="Discipline" Multiplicity="1" />
+          <End Type="RPModel.Assessment_Form" Role="Assessment_Form" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discipline">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Assessment_Form">
+              <PropertyRef Name="Id_Discipline" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chapter_Discipline1">
+          <End Type="RPModel.Discipline" Role="Discipline" Multiplicity="1" />
+          <End Type="RPModel.Chapter" Role="Chapter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discipline">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Chapter">
+              <PropertyRef Name="Id_Discipline" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Content_Chapter1">
+          <End Type="RPModel.Chapter" Role="Chapter" Multiplicity="1" />
+          <End Type="RPModel.Content" Role="Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chapter">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="Id_Chapter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1306,27 +1018,19 @@
           <EntitySetMapping Name="AcademicPlan">
             <EntityTypeMapping TypeName="RPModel.AcademicPlan">
               <MappingFragment StoreEntitySet="AcademicPlan">
+                <ScalarProperty Name="Id_Discipline" ColumnName="Id_Discipline" />
+                <ScalarProperty Name="Id_PM" ColumnName="Id_PM" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="Id_Specialty" ColumnName="Id_Specialty" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AcademicPlan_Competencies">
-            <EntityTypeMapping TypeName="RPModel.AcademicPlan_Competencies">
-              <MappingFragment StoreEntitySet="AcademicPlan_Competencies">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Id_AcademicPlan" ColumnName="Id_AcademicPlan" />
-                <ScalarProperty Name="Id_Competencies" ColumnName="Id_Competencies" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Assessment_Form">
             <EntityTypeMapping TypeName="RPModel.Assessment_Form">
               <MappingFragment StoreEntitySet="Assessment_Form">
+                <ScalarProperty Name="Id_Discipline" ColumnName="Id_Discipline" />
+                <ScalarProperty Name="Hourly_Load" ColumnName="Hourly_Load" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Semestr_Number" ColumnName="Semestr_Number" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1344,7 +1048,6 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Id_Auditory" ColumnName="Id_Auditory" />
                 <ScalarProperty Name="Id_Equipment" ColumnName="Id_Equipment" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1368,6 +1071,7 @@
           <EntitySetMapping Name="Chapter">
             <EntityTypeMapping TypeName="RPModel.Chapter">
               <MappingFragment StoreEntitySet="Chapter">
+                <ScalarProperty Name="Id_Discipline" ColumnName="Id_Discipline" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
@@ -1387,10 +1091,7 @@
               <MappingFragment StoreEntitySet="Discipline">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id_Kind_Of_Discipline" ColumnName="Id_Kind_Of_Discipline" />
-                <ScalarProperty Name="Id_PM" ColumnName="Id_PM" />
-                <ScalarProperty Name="Id_Assessment_Form" ColumnName="Id_Assessment_Form" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Discipline_Competencies">
@@ -1402,31 +1103,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Discipline_HourlyLoad">
-            <EntityTypeMapping TypeName="RPModel.Discipline_HourlyLoad">
-              <MappingFragment StoreEntitySet="Discipline_HourlyLoad">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="TheoreticalTraining" ColumnName="TheoreticalTraining" />
-                <ScalarProperty Name="PracticalTraining" ColumnName="PracticalTraining" />
-                <ScalarProperty Name="LaboratoryTraining" ColumnName="LaboratoryTraining" />
-                <ScalarProperty Name="Coursework" ColumnName="Coursework" />
-                <ScalarProperty Name="IndependentWork" ColumnName="IndependentWork" />
-                <ScalarProperty Name="AssesmentWork" ColumnName="AssesmentWork" />
-                <ScalarProperty Name="Id_Discipline" ColumnName="Id_Discipline" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Equipment">
             <EntityTypeMapping TypeName="RPModel.Equipment">
               <MappingFragment StoreEntitySet="Equipment">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Kind_Of_Discipline">
-            <EntityTypeMapping TypeName="RPModel.Kind_Of_Discipline">
-              <MappingFragment StoreEntitySet="Kind_Of_Discipline">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
@@ -1469,10 +1148,10 @@
           <EntitySetMapping Name="Proffessional_Module">
             <EntityTypeMapping TypeName="RPModel.Proffessional_Module">
               <MappingFragment StoreEntitySet="Proffessional_Module">
+                <ScalarProperty Name="Id_Specialty" ColumnName="Id_Specialty" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Id_AcademicPlan" ColumnName="Id_AcademicPlan" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1500,26 +1179,6 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Qualification" ColumnName="Qualification" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Topic">
-            <EntityTypeMapping TypeName="RPModel.Topic">
-              <MappingFragment StoreEntitySet="Topic">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Hourly_Load" ColumnName="Hourly_Load" />
-                <ScalarProperty Name="Id_Chapter" ColumnName="Id_Chapter" />
-                <ScalarProperty Name="Id_Discipline" ColumnName="Id_Discipline" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Topic_Competencies">
-            <EntityTypeMapping TypeName="RPModel.Topic_Competencies">
-              <MappingFragment StoreEntitySet="Topic_Competencies">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Id_Topic" ColumnName="Id_Topic" />
-                <ScalarProperty Name="Id_Competencies" ColumnName="Id_Competencies" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1551,6 +1210,17 @@
                 <ScalarProperty Name="Id_Discipline" ColumnName="Id_Discipline" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Content">
+            <EntityTypeMapping TypeName="RPModel.Content">
+              <MappingFragment StoreEntitySet="Content">
+                <ScalarProperty Name="Id_Chapter" ColumnName="Id_Chapter" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Hourly_Load" ColumnName="Hourly_Load" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

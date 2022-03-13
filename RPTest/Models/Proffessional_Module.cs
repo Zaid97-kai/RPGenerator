@@ -17,16 +17,16 @@ namespace RPTest.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Proffessional_Module()
         {
-            this.Discipline = new HashSet<Discipline>();
+            this.AcademicPlan = new HashSet<AcademicPlan>();
         }
     
         public int Id { get; set; }
         public string Code { get; set; }
-        public int Id_AcademicPlan { get; set; }
         public string Name { get; set; }
+        public int Id_Specialty { get; set; }
     
-        public virtual AcademicPlan AcademicPlan { get; set; }
+        public virtual Specialty Specialty { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Discipline> Discipline { get; set; }
+        public virtual ICollection<AcademicPlan> AcademicPlan { get; set; }
     }
 }

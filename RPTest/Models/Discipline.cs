@@ -18,33 +18,30 @@ namespace RPTest.Models
         public Discipline()
         {
             this.Discipline_Competencies = new HashSet<Discipline_Competencies>();
-            this.Discipline_HourlyLoad = new HashSet<Discipline_HourlyLoad>();
             this.Knowledge = new HashSet<Knowledge>();
             this.Skills = new HashSet<Skills>();
-            this.Topic = new HashSet<Topic>();
             this.ExpPractice = new HashSet<ExpPractice>();
+            this.AcademicPlan1 = new HashSet<AcademicPlan>();
+            this.Assessment_Form = new HashSet<Assessment_Form>();
+            this.Chapter1 = new HashSet<Chapter>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Id_Kind_Of_Discipline { get; set; }
-        public Nullable<int> Id_PM { get; set; }
-        public int Id_Assessment_Form { get; set; }
     
-        public virtual Assessment_Form Assessment_Form { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Discipline_Competencies> Discipline_Competencies { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Discipline_HourlyLoad> Discipline_HourlyLoad { get; set; }
-        public virtual Kind_Of_Discipline Kind_Of_Discipline { get; set; }
-        public virtual Proffessional_Module Proffessional_Module { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Knowledge> Knowledge { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Skills> Skills { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Topic> Topic { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ExpPractice> ExpPractice { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AcademicPlan> AcademicPlan1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Assessment_Form> Assessment_Form { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Chapter> Chapter1 { get; set; }
     }
 }

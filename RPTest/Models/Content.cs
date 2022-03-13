@@ -12,18 +12,14 @@ namespace RPTest.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Kind_Of_Discipline
+    public partial class Content
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Kind_Of_Discipline()
-        {
-            this.Discipline = new HashSet<Discipline>();
-        }
-    
-        public int Id { get; set; }
+        public string Type { get; set; }
         public string Name { get; set; }
+        public int Hourly_Load { get; set; }
+        public int Id { get; set; }
+        public int Id_Chapter { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Discipline> Discipline { get; set; }
+        public virtual Chapter Chapter1 { get; set; }
     }
 }
