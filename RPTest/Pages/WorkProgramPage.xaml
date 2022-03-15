@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:RPTest.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="WorkProgramPage" KeyDown="Page_KeyDown">
+      Title="WorkProgramPage">
     <Page.Resources>
         <Style x:Key="FirstStyle">
             <Setter Property="TextBlock.TextWrapping" Value="Wrap"></Setter>
@@ -43,23 +43,22 @@
                     <TextBlock Grid.Row="1" Style="{StaticResource FirstStyle}">Институт компьютерных технологий и защиты информации <LineBreak/> Отделение СПО ИКТЗИ «Колледж информационных технологий» <LineBreak/></TextBlock>
                     <TextBlock Grid.Row="2" Style="{StaticResource FirstStyle}" HorizontalAlignment="Right" TextAlignment="Right">УТВЕРЖДАЮ<LineBreak/>Проректор по ОД<LineBreak/>____________________ А.А. Лопатин<LineBreak/>«___» ______________ 20 __ г.<LineBreak/>Регистрационный  №_____</TextBlock>
                     <TextBlock Grid.Row="3" Style="{StaticResource FirstStyle}" FontWeight="Bold"><LineBreak/><LineBreak/>РАБОЧАЯ ПРОГРАММА<LineBreak/>профессионального модуля<LineBreak/><LineBreak/></TextBlock>
-                    <ComboBox x:Name="CbNameDiscipline" Grid.Row="4" FontFamily="Times New Roman" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="30,3,30,3" DisplayMemberPath="Name" SelectionChanged="CbNameDiscipline_SelectionChanged"></ComboBox>
+                    <ComboBox x:Name="CbNamePM" Grid.Row="4" FontFamily="Times New Roman" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="30,3,30,3" DisplayMemberPath="Name" SelectionChanged="CbNamePM_SelectionChanged"></ComboBox>
                     <TextBlock x:Name="TbCode" Grid.Row="5" Style="{StaticResource FirstStyle}">для специальности</TextBlock>
-                    <ComboBox x:Name="CbCode" Grid.Row="6" FontFamily="Times New Roman" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectionChanged="CbCode_SelectionChanged" Padding="30,3,30,3" ></ComboBox>
-                    <TextBox x:Name="QualName" Grid.Row="7" Style="{StaticResource FirstStyle}">Квалификация: </TextBox>
+                    <ComboBox x:Name="CbCode" Grid.Row="6" FontFamily="Times New Roman" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" DisplayMemberPath="Code" SelectionChanged="CbCode_SelectionChanged" Padding="30,3,30,3" ></ComboBox>
+                    <UniformGrid Grid.Row="7">
+                        <TextBlock x:Name="TbQualName" Grid.Row="7" Style="{StaticResource FirstStyle}">Квалификация:</TextBlock>
+                        <TextBox x:Name="QualName" IsReadOnly="True" Grid.Row="7" Style="{StaticResource FirstStyle}"></TextBox>
+                    </UniformGrid>
                     <TextBox x:Name="TbYear" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Times New Roman" FontSize="16">Казань 2022</TextBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Лист согласования">
-                <UniformGrid Columns="2" Rows="4">
+                <UniformGrid Columns="2" Rows="2">
                     <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold">Специальность</TextBlock>
                     <TextBox x:Name="TbSpecialtyApprovalSheet" IsReadOnly="True" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="20,0,20,0"/>
-                    <TextBlock TextWrapping="Wrap" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center">Дата утверждения ученым советом</TextBlock>
-                    <TextBox x:Name="TbDateApproval" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="20,0,20,0" TextChanged="TbDateApproval_TextChanged"></TextBox>
-                    <TextBlock TextWrapping="Wrap" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center">Номер протокола</TextBlock>
-                    <TextBox x:Name="TbNumberProtocol" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="20,0,20,0" TextChanged="TbNumberProtocol_TextChanged"></TextBox>
                     <TextBlock TextWrapping="Wrap" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center">Разработчик рабочей программы</TextBlock>
-                    <TextBox x:Name="TbAuthor" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="20,0,20,0" TextChanged="TbAuthor_TextChanged"></TextBox>
+                    <TextBox x:Name="TbAuthor" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextChanged="TbAuthor_TextChanged" Padding="20,0,20,0"></TextBox>
                 </UniformGrid>
             </TabItem>
             <TabItem Header="Компетенции">
@@ -67,6 +66,8 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="11*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -77,11 +78,19 @@
                     <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Код</TextBlock>
                     <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Наименование общих компетенций</TextBlock>
                     <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Код</TextBlock>
-                    <TextBlock Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Наименование проф. компетенций</TextBlock>
-                    <ListBox x:Name="GeneralCompCode" Grid.Row="1" Grid.Column="0" DisplayMemberPath="GenCompCode"></ListBox>
-                    <ListBox x:Name="GeneralComtDesc" Grid.Row="1" Grid.Column="1" DisplayMemberPath="GenCompDesc"></ListBox>
-                    <ListBox x:Name="ProfessionalCompCode" Grid.Row="1" Grid.Column="2" DisplayMemberPath="ProfCompCode"></ListBox>
-                    <ListBox x:Name="ProfessionalCompDesc" Grid.Row="1" Grid.Column="3" DisplayMemberPath="ProfCompDesc"></ListBox>
+                    <TextBlock Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Наименование професс. компетенций</TextBlock>
+                    <ListBox x:Name="DgCompCode" Grid.Row="1" Grid.Column="0" DisplayMemberPath="Code"></ListBox>
+                    <ListBox x:Name="DgCompDesc" Grid.Row="1" Grid.Column="1" DisplayMemberPath="Description"></ListBox>
+                    <ListBox x:Name="DgProfCompCode" Grid.Row="1" Grid.Column="2" DisplayMemberPath="Code"></ListBox>
+                    <ListBox x:Name="DgProfCompDesc" Grid.Row="1" Grid.Column="3" DisplayMemberPath="Description"></ListBox>
+                    <TextBox x:Name="TbCodeComp" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="12"></TextBox>
+                    <TextBox x:Name="TbDescComp" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="12"></TextBox>
+                    <TextBox x:Name="TbProfCodeComp" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="12"></TextBox>
+                    <TextBox x:Name="TbProfDescComp" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="12"></TextBox>
+                    <Button x:Name="BtnAddComp" Grid.Row="4" FontFamily="Arial" FontSize="14" Click="BtnAddComp_Click">Добавить</Button>
+                    <Button x:Name="BtnDelComp" Grid.Row="4" Grid.Column="1" FontFamily="Arial" FontSize="14" Click="BtnDelComp_Click">Удалить</Button>
+                    <Button x:Name="BtnAddProfComp" Grid.Row="4" Grid.Column="2" FontFamily="Arial" FontSize="14" Click="BtnAddProfComp_Click" >Добавить</Button>
+                    <Button x:Name="BtnDelProfComp" Grid.Row="4" Grid.Column="4" FontFamily="Arial" FontSize="14" Click="BtnDelProfComp_Click">Удалить</Button>
                 </Grid>
             </TabItem>
             <TabItem Header="Умения">
@@ -89,6 +98,8 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="11*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -98,49 +109,27 @@
                     <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Практический опыт</TextBlock>
                     <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Умения</TextBlock>
                     <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Знания</TextBlock>
-                    <ListBox x:Name="ExpPracticeName"  Grid.Row="1" Grid.Column="0" DisplayMemberPath="Name"></ListBox>
-                    <ListBox x:Name="SkillsName"  Grid.Row="1" Grid.Column="1" DisplayMemberPath="Name"></ListBox>
-                    <ListBox x:Name="KnowledgeName"  Grid.Row="1" Grid.Column="2" DisplayMemberPath="Name"></ListBox>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Объем учебной дисциплины">
-                <UniformGrid Columns="2" Rows="6">
-                    <TextBlock Style="{StaticResource FirstStyle}">Теоретическое обучение (количество часов)</TextBlock>
-                    <TextBox x:Name="TbTheoreticalTraining" Style="{StaticResource TbStyle}"></TextBox>
-                    <TextBlock Style="{StaticResource FirstStyle}">Практические занятия (количество часов)</TextBlock>
-                    <TextBox x:Name="TbPracticalTraining" Style="{StaticResource TbStyle}"></TextBox>
-                    <TextBlock Style="{StaticResource FirstStyle}">Лабораторные занятия (количество часов)</TextBlock>
-                    <TextBox x:Name="TbLaboratoryTraining" Style="{StaticResource TbStyle}"></TextBox>
-                    <TextBlock Style="{StaticResource FirstStyle}">Курсовая работа (количество часов)</TextBlock>
-                    <TextBox x:Name="TbCoursework" Style="{StaticResource TbStyle}"></TextBox>
-                    <TextBlock Style="{StaticResource FirstStyle}">Самостоятельная работа (количество часов)</TextBlock>
-                    <TextBox x:Name="TbIndependentWork" Style="{StaticResource TbStyle}"></TextBox>
-                    <TextBlock Style="{StaticResource FirstStyle}">Промежуточная аттестация (количество часов)</TextBlock>
-                    <TextBox x:Name="TbAttestation" Style="{StaticResource TbStyle}" Margin="0,0,0,0"></TextBox>
-                </UniformGrid>
-            </TabItem>
-            <TabItem Header="Тематический план">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="9*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <DataGrid x:Name="DgThemes" Grid.Row="0" AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="*">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Номер" Binding="{Binding NumberTopic}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Название темы" Binding="{Binding TopicName}"></DataGridTextColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <UniformGrid Grid.Row="1" Columns="5">
-                        <TextBlock FontFamily="Times New Roman" FontSize="14" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center">Номер темы</TextBlock>
-                        <TextBox x:Name="TbNumberTopic"></TextBox>
-                        <TextBlock FontFamily="Times New Roman" FontSize="14" TextAlignment="Right" HorizontalAlignment="Center" VerticalAlignment="Center">Название темы</TextBlock>
-                        <TextBox x:Name="TbNameTopic"></TextBox>
-                        <Button x:Name="BtnAddTopic" FontFamily="Arial" FontSize="14" Click="BtnAddTopic_Click">Добавить тему</Button>
+                    <ListBox x:Name="LbExpPractice"  Grid.Row="1" Grid.Column="0" DisplayMemberPath="ExpPractice"></ListBox>
+                    <ListBox x:Name="LbSkill"  Grid.Row="1" Grid.Column="1" DisplayMemberPath="Skill"></ListBox>
+                    <ListBox x:Name="LbKnowledge"  Grid.Row="1" Grid.Column="2" DisplayMemberPath="Knowledge"></ListBox>
+                    <TextBox x:Name="TbExpPractice" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="12" Width="200"></TextBox>
+                    <TextBox x:Name="TbSkill" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="12" Width="200"></TextBox>
+                    <TextBox x:Name="TbKnowledge" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="12" Width="200"></TextBox>
+                    <UniformGrid Grid.Row="3" Grid.Column="0" Columns="2">
+                        <Button x:Name="BtnAddExpPractice" FontFamily="Arial" FontSize="14" Click="BtnAddExpPractice_Click">Добавить</Button>
+                        <Button x:Name="BtnDeleteExpPractice" FontFamily="Arial" FontSize="14" Click="BtnDeleteExpPractice_Click">Удалить</Button>
+                    </UniformGrid>
+                    <UniformGrid Grid.Row="3" Grid.Column="1" Columns="2">
+                        <Button x:Name="BtnAddSkill" FontFamily="Arial" FontSize="14" Click="BtnAddSkill_Click">Добавить</Button>
+                        <Button x:Name="BtnDeleteSkill" FontFamily="Arial" FontSize="14" Click="BtnDeleteSkill_Click">Удалить</Button>
+                    </UniformGrid>
+                    <UniformGrid Grid.Row="3" Grid.Column="2" Columns="2">
+                        <Button x:Name="BtnAddKnowledge" FontFamily="Arial" FontSize="14" Click="BtnAddKnowledge_Click">Добавить</Button>
+                        <Button x:Name="BtnDeleteKnowledge" FontFamily="Arial" FontSize="14" Click="BtnDeleteKnowledge_Click">Удалить</Button>
                     </UniformGrid>
                 </Grid>
             </TabItem>
-            <TabItem Header="МТО">
+            <TabItem Header="Дисциплины">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
@@ -150,29 +139,13 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Аудитория</TextBlock>
-                    <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Условия</TextBlock>
-                    <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Программное обеспечение</TextBlock>
-                    <ListBox  Grid.Row="1" Grid.Column="0" ></ListBox>
-                    <ListBox  Grid.Row="1" Grid.Column="1" ></ListBox>
-                    <ListBox  Grid.Row="1" Grid.Column="2" ></ListBox>
-                    <ComboBox Grid.Row="2" Grid.Column="0"  ></ComboBox>
+                    <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Дисциплины</TextBlock>
+                    <ListBox x:Name="LbDis"  Grid.Row="1" Grid.Column="0" DisplayMemberPath="Discipline"></ListBox>
+                    <TextBox x:Name="TbDis" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="12" Width="200"></TextBox>
                     <UniformGrid Grid.Row="3" Grid.Column="0" Columns="2">
-                        <Button  FontFamily="Arial" FontSize="14">Добавить</Button>
-                        <Button  FontFamily="Arial" FontSize="14" >Удалить</Button>
-                    </UniformGrid>
-                    <TextBox Grid.Row="2" Grid.Column="1"></TextBox>
-                    <UniformGrid Grid.Row="3" Grid.Column="1" Columns="2">
-                        <Button FontFamily="Arial" FontSize="14">Добавить</Button>
-                        <Button  FontFamily="Arial" FontSize="14">Удалить</Button>
-                    </UniformGrid>
-                    <TextBox  Grid.Row="2" Grid.Column="2"></TextBox>
-                    <UniformGrid Grid.Row="3" Grid.Column="2" Columns="2">
-                        <Button FontFamily="Arial" FontSize="14">Добавить</Button>
-                        <Button FontFamily="Arial" FontSize="14" >Удалить</Button>
+                        <Button x:Name="BtnAddDis" FontFamily="Arial" FontSize="14" Click="BtnAddDis_Click">Добавить</Button>
+                        <Button x:Name="BtnDeleteDis" FontFamily="Arial" FontSize="14" Click="BtnDeleteDis_Click">Удалить</Button>
                     </UniformGrid>
                 </Grid>
             </TabItem>
@@ -200,28 +173,40 @@
 
                     </UniformGrid>
                     <UniformGrid Grid.Column="1" Rows="10">
-                        <TextBox Style="{StaticResource TbStyle}"></TextBox>
-                        <TextBox Style="{StaticResource TbStyle}"></TextBox>
-                        <TextBox Style="{StaticResource TbStyle}"></TextBox>
-                        <TextBox Style="{StaticResource TbStyle}"></TextBox>
-                        <TextBox Style="{StaticResource TbStyle}"></TextBox>
-                        <TextBox Style="{StaticResource TbStyle}"></TextBox>
-                        <TextBox Style="{StaticResource TbStyle}"></TextBox>
-                        <TextBox Style="{StaticResource TbStyle}"></TextBox>
-                        <TextBox Style="{StaticResource TbStyle}"></TextBox>
-                        <TextBox Style="{StaticResource TbStyle}"></TextBox>
+                        <TextBox x:Name="TbAuthorSource" Style="{StaticResource TbStyle}"></TextBox>
+                        <TextBox x:Name="TbName" Style="{StaticResource TbStyle}"></TextBox>
+                        <TextBox x:Name="TbPublishHouse" Style="{StaticResource TbStyle}"></TextBox>
+                        <TextBox x:Name="TbType" Style="{StaticResource TbStyle}"></TextBox>
+                        <TextBox x:Name="TbURL" Style="{StaticResource TbStyle}"></TextBox>
+                        <TextBox x:Name="TbCity" Style="{StaticResource TbStyle}"></TextBox>
+                        <TextBox x:Name="TbYears" Style="{StaticResource TbStyle}"></TextBox>
+                        <TextBox x:Name="TbPages" Style="{StaticResource TbStyle}"></TextBox>
+                        <TextBox x:Name="TbDate" Style="{StaticResource TbStyle}"></TextBox>
+                        <TextBox x:Name="TbAccessType" Style="{StaticResource TbStyle}"></TextBox>
                     </UniformGrid>
-                    <UniformGrid Grid.Row="2" Columns="1">
-                        <UniformGrid Grid.Row="2">
-                            <ComboBox Grid.Row="1"></ComboBox>
-                        </UniformGrid>
-                        <Button  FontFamily="Arial" FontSize="14" Grid.Row="1">Добавить</Button>
-                        <Button  FontFamily="Arial" FontSize="14" >Удалить</Button>
+                    <UniformGrid Grid.Row="1" Rows="2">
+                        <ComboBox x:Name="CbSource" Grid.Row="1" DisplayMemberPath="Name"></ComboBox>
+                        <Button x:Name="BtAddSources"  FontFamily="Arial" FontSize="14" Grid.Row="1" Grid.Column="1" Click="BtAddSource_Click">Добавить</Button>
                     </UniformGrid>
-                    <DataGrid Grid.Column="1" Grid.Row="2">
-
-                    </DataGrid>
+                    <Button x:Name="BtDeleteSources"  FontFamily="Arial" FontSize="14" Click="BtDeleteSource_Click" Grid.Row="3" Grid.Column="1">Удалить</Button>
                 </Grid>
+            </TabItem>
+            <TabItem Header="Документ">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="1" Style="{StaticResource FirstStyle}">Создать рабочую проограмму</TextBlock>
+                    <Button Grid.Row="1" Grid.Column="1" x:Name="FinallyButton" Click="FinallyButton_Click" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="TimesNewRoman" Height="50" Width="200">Создать</Button>
+                </Grid>
+
+
             </TabItem>
         </TabControl>
     </Grid>

@@ -74,6 +74,9 @@
             <TabItem Header="Специальность">
                 
             </TabItem>
+            <TabItem Header="">
+                
+            </TabItem>
         </TabControl>
         
     </Grid>

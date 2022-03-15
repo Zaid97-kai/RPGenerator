@@ -25,7 +25,7 @@ namespace RPTest.Pages
     /// </summary>
     public partial class AddDisciplinePage : Page
     {
-        private Classes.TemporaryDiscipline _temporaryDiscipline = new Classes.TemporaryDiscipline();
+        /*private Classes.TemporaryDiscipline _temporaryDiscipline = new Classes.TemporaryDiscipline();
         private Classes.TemporaryDisciplineText _temporaryDisciplineText;
         private Models.Discipline _discipline;
         private Models.Competencies _competencies;
@@ -42,7 +42,7 @@ namespace RPTest.Pages
             InitializeComponent();
 
             CbAcademicPlan.ItemsSource = _db.GetContext().AcademicPlan.ToList();
-            CbTypeDiscipline.ItemsSource = _db.GetContext().Kind_Of_Discipline.ToList();
+            //CbTypeDiscipline.ItemsSource = _db.GetContext().Kind_Of_Discipline.ToList();
             CbProffessionalModule.ItemsSource = _db.GetContext().Proffessional_Module.ToList();
             CbAssessmentForm.ItemsSource = _assessmentForms;
             CbNumberSemestr.ItemsSource = new List<string>() { "1", "2", "3", "4", "5", "6", "7", "8" };
@@ -375,6 +375,6 @@ namespace RPTest.Pages
         private void LbKnowledge_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             this._knowledge = LbKnowledge.SelectedItem as Models.Knowledge;
-        }
+        }*/
     }
 }
