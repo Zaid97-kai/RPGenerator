@@ -20,9 +20,9 @@
         <TextBlock x:Name="TitleAuthorizationWindow" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Black" FontSize="18">ВХОД В УЧЕТНУЮ ЗАПИСЬ</TextBlock>
         <TextBlock Grid.Row="1" Grid.Column="0" FontFamily="Arial Rounded MT Bold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">ЛОГИН</TextBlock>
         <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial Rounded MT Bold" FontSize="20">ПАРОЛЬ</TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="1" FontFamily="Arial Rounded MT Bold" FontSize="20"></TextBox>
-        <TextBox Grid.Row="2" Grid.Column="1" FontFamily="Arial Rounded MT Bold" FontSize="20"></TextBox>
-        <Button x:Name="BtnAuth" Click="BtnAuth_Click" Content="ВОЙТИ" Grid.Row="3" Grid.Column="0" FontFamily="Arial Narrow" FontSize="20"></Button>
+        <TextBox x:Name="TbLogin" Grid.Row="1" Grid.Column="1" FontFamily="Arial Rounded MT Bold" FontSize="20"></TextBox>
+        <TextBox x:Name="TbPassword" Grid.Row="2" Grid.Column="1" FontFamily="Arial Rounded MT Bold" FontSize="20"></TextBox>
+        <Button x:Name="BtnAuth" Click="BtnAuth_Click" Content="ВОЙТИ" Grid.Row="3" Grid.Column="0" FontFamily="Arial Narrow" FontSize="20" ></Button>
         <Button x:Name="BtnReg" Click="BtnReg_Click" Content="СОЗДАТЬ" Grid.Row="3" Grid.Column="1" FontFamily="Arial Narrow" FontSize="20"></Button>
     </Grid>
 </Window>

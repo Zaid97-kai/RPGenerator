@@ -9,7 +9,7 @@ namespace RPTest.Models
     /// <summary>
     /// Учебный план
     /// </summary>
-    public partial class AcademicPlan
+    /*public partial class AcademicPlan
     {
         private string _PlanName;
         public string PlanName
@@ -17,5 +17,5 @@ namespace RPTest.Models
             get {  return Year + " " + Specialty.Code; }
             set { _PlanName = value; }
         }
-    }
+    }*/
 }

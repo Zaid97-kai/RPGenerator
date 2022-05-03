@@ -9,12 +9,12 @@ using _db = RPTest.Models.DBModel;
 
 namespace RPTest.Classes
 {
-     /*
+    /*
     /// <summary>
     /// Временная дисциплина (со сгенерированными типами
     /// </summary>
     [Serializable]
-    public class TemporaryDiscipline
+    /*public class TemporaryDiscipline
     {
         public string Name;
         public string form;
@@ -22,7 +22,7 @@ namespace RPTest.Classes
         public List<Models.Knowledge> knowledges = new List<Models.Knowledge>();
         public List<Models.Skills> skills = new List<Models.Skills>();
         public List<Models.Competencies> competencies = new List<Models.Competencies>();
-        public Models.Kind_Of_Discipline kind;
+        //public Models.Kind_Of_Discipline kind;
         public Models.Proffessional_Module module;
         public Models.AcademicPlan academicPlan;
         /// <summary>
@@ -40,7 +40,7 @@ namespace RPTest.Classes
             this.Name = temporaryDisciplineText.Name;
             this.form = temporaryDisciplineText.form;
             this.NumberSemestr = temporaryDisciplineText.NumberSemestr;
-            this.kind = _db.GetContext().Kind_Of_Discipline.ToList().Where(k => k.Name == temporaryDisciplineText.kind).FirstOrDefault();
+            //this.kind = _db.GetContext().Kind_Of_Discipline.ToList().Where(k => k.Name == temporaryDisciplineText.kind).FirstOrDefault();
             this.module = _db.GetContext().Proffessional_Module.ToList().Where(m => m.Code == temporaryDisciplineText.module).FirstOrDefault();
             this.academicPlan = _db.GetContext().AcademicPlan.ToList().Where(a => a.PlanName == temporaryDisciplineText.academicPlan).FirstOrDefault();
             if (temporaryDisciplineText.knowledges.Count != 0)
@@ -65,7 +65,7 @@ namespace RPTest.Classes
                 {
                     this.competencies.AddRange(_db.GetContext().Competencies.ToList().Where(c => c.CompetenciesName == competence).ToList());
                 }
-            }
+            }*
         }
     }
     /// <summary>

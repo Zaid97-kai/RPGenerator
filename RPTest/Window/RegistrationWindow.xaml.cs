@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPTest.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,11 +20,9 @@ namespace RPTest.Window
     /// </summary>
     public partial class RegistrationWindow : System.Windows.Window
     {
-        private Models.DBModel _db;
         public RegistrationWindow()
         {
             InitializeComponent();
-            _db = new Models.DBModel();
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
@@ -34,15 +33,33 @@ namespace RPTest.Window
         private void OpenAuthorizationWindow()
         {
             Window.AuthorizationWindow authorizationWindow = new Window.AuthorizationWindow();
-            authorizationWindow.ShowDialog();
+            authorizationWindow.Show();
             this.Hide();
         }
 
         private void BtnReg_Click(object sender, RoutedEventArgs e)
         {
-            _db.Users.Add(new Models.Users() { Log = TxtLog.Text, Pass = TxtPassword.Text, Role = "User", Email = TxtEmail.Text });
-            _db.SaveChanges();
-            OpenAuthorizationWindow();
+            try
+            {
+                Auth auth = new Auth();
+                string flag = auth.Registration(TxtLog.Text, TxtPassword.Text, TxtEmail.Text);
+                if (flag == "true")
+                {
+                    OpenAuthorizationWindow();
+                }
+                if (flag == "false")
+                {
+                    MessageBox.Show("Пользователь уже существует!");
+                }
+                if (flag == "empty")
+                {
+                    MessageBox.Show("Вы не ввели данные");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

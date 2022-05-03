@@ -13,18 +13,10 @@
         </Grid.RowDefinitions>
         <Menu x:Name="MainMenu" Grid.Row="0">
             <MenuItem Header="Файл">
-                <MenuItem Header="Закрыть программу"></MenuItem>
-                <MenuItem Header="Выйти из учетной записи"></MenuItem>
-            </MenuItem>
-            <MenuItem Header="Дисциплина">
-                <MenuItem x:Name="MIAddDiscipline" Header="Добавить" Click="MIAddDiscipline_Click"></MenuItem>
-                <MenuItem Header="Редактировать"></MenuItem>
-                <MenuItem Header="Удалить"></MenuItem>
+                <MenuItem Header="Закрыть программу" Click="MenuItem_Click_1"></MenuItem>
             </MenuItem>
             <MenuItem Header="Рабочая программа">
                 <MenuItem Header="Добавить" Click="MenuItem_Click"></MenuItem>
-                <MenuItem Header="Редактировать"></MenuItem>
-                <MenuItem Header="Удалить"></MenuItem>
             </MenuItem>
         </Menu>
         <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" ContentRendered="MainFrame_ContentRendered"></Frame>

@@ -69,6 +69,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\AcademicPlan.cs" />
+    <Compile Include="Classes\Auth.cs" />
     <Compile Include="Classes\Competencies.cs" />
     <Compile Include="Classes\TemporaryDiscipline.cs" />
     <Compile Include="Classes\WorkProgram.cs" />
@@ -180,10 +181,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\AddDisciplinePage.xaml">
+    <None Include="Pages\AddDisciplinePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
+    </None>
     <Page Include="Pages\WorkProgramPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

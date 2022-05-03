@@ -44,5 +44,10 @@ namespace RPTest.Window
         {
             MainFrame.Navigate(new Pages.WorkProgramPage());
         }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPTest.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,16 +27,32 @@ namespace RPTest.Window
         
         private void BtnAuth_Click(object sender, RoutedEventArgs e)
         {
-            Window.StateWindow stateWindow = new Window.StateWindow();
-            stateWindow.Show();
-            this.Hide();
+            try
+            {
+                Auth auth = new Auth();
+                string flag = auth.Login(TbLogin.Text, TbPassword.Text);
+                if (flag == "true")
+                {
+                    this.Hide();
+                    StateWindow stateWindow = new StateWindow();
+                    stateWindow.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Вы ввели неверные данные!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void BtnReg_Click(object sender, RoutedEventArgs e)
         {
-            Window.RegistrationWindow registrationWindow = new Window.RegistrationWindow();
-            registrationWindow.ShowDialog();
             this.Hide();
+            Window.RegistrationWindow registrationWindow = new Window.RegistrationWindow();
+            registrationWindow.Show();
         }
     }
 }
