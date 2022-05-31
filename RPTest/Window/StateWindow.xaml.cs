@@ -49,5 +49,10 @@ namespace RPTest.Window
         {
             System.Windows.Application.Current.Shutdown();
         }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new Pages.DataPage());
+        }
     }
 }

@@ -5,27 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RPTest.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="800" MinHeight="450" MinWidth="800"
       Title="WorkProgramPage">
-    <Page.Resources>
-        <Style x:Key="FirstStyle">
-            <Setter Property="TextBlock.TextWrapping" Value="Wrap"></Setter>
-            <Setter Property="Control.FontFamily" Value="Times New Roman"></Setter>
-            <Setter Property="Control.FontSize" Value="16"></Setter>
-            <Setter Property="Control.VerticalAlignment" Value="Center"></Setter>
-            <Setter Property="Control.HorizontalAlignment" Value="Center"></Setter>
-            <Setter Property="TextBlock.TextAlignment" Value="Center"></Setter>
-        </Style>
-        <Style x:Key="TbStyle">
-            <Setter Property="Control.FontFamily" Value="Times New Roman"></Setter>
-            <Setter Property="Control.FontSize" Value="16"></Setter>
-            <Setter Property="Control.VerticalAlignment" Value="Center"></Setter>
-            <Setter Property="Control.HorizontalAlignment" Value="Center"></Setter>
-        </Style>
-    </Page.Resources>
-
     <Grid>
-        <TabControl>
+        <TabControl FontFamily="Times New Roman">
             <TabItem Header="Титульный лист">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -48,7 +31,7 @@
                     <ComboBox x:Name="CbCode" Grid.Row="6" FontFamily="Times New Roman" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" DisplayMemberPath="Code" SelectionChanged="CbCode_SelectionChanged" Padding="30,3,30,3" ></ComboBox>
                     <UniformGrid Grid.Row="7">
                         <TextBlock x:Name="TbQualName" Grid.Row="7" Style="{StaticResource FirstStyle}">Квалификация:</TextBlock>
-                        <TextBox x:Name="QualName" IsReadOnly="True" Grid.Row="7" Style="{StaticResource FirstStyle}"></TextBox>
+                        <TextBox x:Name="QualName" IsReadOnly="True" Grid.Row="7" Style="{StaticResource FirstStyle}" MinWidth="200"></TextBox>
                     </UniformGrid>
                     <TextBox x:Name="TbYear" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Times New Roman" FontSize="16">Казань 2022</TextBox>
                 </Grid>
@@ -56,9 +39,9 @@
             <TabItem Header="Лист согласования">
                 <UniformGrid Columns="2" Rows="2">
                     <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold">Специальность</TextBlock>
-                    <TextBox x:Name="TbSpecialtyApprovalSheet" IsReadOnly="True" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="20,0,20,0"/>
+                    <TextBox x:Name="TbSpecialtyApprovalSheet" IsReadOnly="True" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="20,0,20,0" MinWidth="200"/>
                     <TextBlock TextWrapping="Wrap" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center">Разработчик рабочей программы</TextBlock>
-                    <TextBox x:Name="TbAuthor" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextChanged="TbAuthor_TextChanged" Padding="20,0,20,0"></TextBox>
+                    <TextBox x:Name="TbAuthor" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextChanged="TbAuthor_TextChanged" Padding="20,0,20,0" MinWidth="200"></TextBox>
                 </UniformGrid>
             </TabItem>
             <TabItem Header="Компетенции">
@@ -137,9 +120,6 @@
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Дисциплины</TextBlock>
                     <ListBox x:Name="LbDis"  Grid.Row="1" Grid.Column="0" DisplayMemberPath="Discipline"></ListBox>
                     <TextBox x:Name="TbDis" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="12" Width="200"></TextBox>

@@ -3,7 +3,7 @@ using RPTest.Classes;
 
 namespace UnitTestProject1
 {
-    [TestClass]
+    /*[TestClass]
     public class UnitTest1
     {
         [TestMethod]
@@ -58,6 +58,5 @@ namespace UnitTestProject1
 
             bool actual = auth.EditSpecializtion("Лучезарики", "03.06.02");
             Assert.AreEqual(exp, actual);
-        }
-    }
+        }*/
 }

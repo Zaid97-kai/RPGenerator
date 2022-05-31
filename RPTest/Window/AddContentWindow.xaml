@@ -1,0 +1,48 @@
+﻿<Window x:Class="RPTest.Window.AddContentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RPTest.Window"
+        mc:Ignorable="d"
+        Title="AddContentWindow" Height="800" Width="1200" MinHeight="800" MinWidth="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="9*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="0.15*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Style="{StaticResource FirstStyle}">Описание</TextBlock>
+        <ComboBox x:Name="CbContentDescription" IsReadOnly="false" Style="{StaticResource CbStyle}"  Grid.Row="0" Grid.Column="1" DisplayMemberPath="Name" SelectionChanged="CbChapterName_SelectionChanged"></ComboBox>
+        <Button x:Name="BtnAddContent" Grid.Column="2" Style="{StaticResource BtnStyle}" Width="50" Height="30" Click="BtnAddContent_Click">+</Button>
+        <UniformGrid Rows="6" Grid.Column="0" Grid.Row="1">
+            <TextBlock Style="{StaticResource FirstStyle}">Наименование</TextBlock>
+            <TextBlock Style="{StaticResource FirstStyle}">Тема</TextBlock>
+            <TextBlock Style="{StaticResource FirstStyle}">Нагрузка</TextBlock>
+            <TextBlock Style="{StaticResource FirstStyle}">Содержание</TextBlock>
+            <TextBlock Style="{StaticResource FirstStyle}">Лабораторные работы</TextBlock>
+            <TextBlock Style="{StaticResource FirstStyle}">Самостоятельные работы</TextBlock>
+        </UniformGrid>
+        <UniformGrid Rows="6" Grid.Row="1" Grid.Column="1">
+            <TextBox x:Name="TbContent" Height="80"   TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Style="{StaticResource TbStyle}"></TextBox>
+            <ComboBox x:Name="CbContentChapter" IsReadOnly="false" Style="{StaticResource CbStyle}"  Grid.Row="0" Grid.Column="1" DisplayMemberPath="Name" SelectionChanged="CbChapterName_SelectionChanged"></ComboBox>
+            <TextBox x:Name="TbContentLoad" Style="{StaticResource TbStyle}"></TextBox>
+            <Viewbox Height="30">
+                <RadioButton x:Name="RbContentPR" GroupName="Contents"/>
+            </Viewbox>
+            <Viewbox Height="30">
+                <RadioButton x:Name="RbContentLR" GroupName="Contents"/>
+            </Viewbox>
+            <Viewbox Height="30">
+                <RadioButton x:Name="RbContentSR" GroupName="Contents"/>
+            </Viewbox>
+        </UniformGrid>
+        <Button x:Name="BtnDeleteContent" Grid.Row="3" Style="{StaticResource BtnStyle}" Grid.Column="0" Click="BtnDeleteContent_Click">Удалить</Button>
+        <Button x:Name="BtnSaveContent" Style="{StaticResource BtnStyle}" Grid.Row="3" Grid.Column="1" Click="BtnSaveContent_Click">Сохранить</Button>
+    </Grid>
+</Window>

@@ -67,8 +67,6 @@ namespace RPTest.Pages
         private void CbNamePM_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _workProgram.NameProfessonalModule = ((Models.Proffessional_Module)CbNamePM.SelectedItem).Name;
-
-
         }
 
         private void TbAuthor_TextChanged(object sender, TextChangedEventArgs e)
@@ -195,7 +193,7 @@ namespace RPTest.Pages
             InsertSimpleRangeBoldCenterAlignment(document, "1. ОБЩАЯ ХАРАКТЕРИСТИКА РАБОЧЕЙ ПРОГРАММЫ ПРОФЕССИОНАЛЬНОГО МОДУЛЯ" + "\n" + _workProgram.NameProfessonalModule + "\n" + "1.1. Область применения программы");
             InsertSimpleRangeSelectedAlignment(document, "Программа профессионального модуля является частью основной профессиональной образовательной программы по специальности СПО: " + _workProgram.Specialization, Word.WdParagraphAlignment.wdAlignParagraphThaiJustify);
             InsertSimpleRangeBoldCenterAlignment(document, "1.2. Цели и задачи учебной дисциплины – требования к результатам освоения профессионального модуля");
-            InsertSimpleRangeSelectedAlignment(document, "В результате изучения профессионального модуля студент должен освоить основной вид деятельности " + _workProgram.NameProfessonalModule + "и соответствующие ему общие компетенции и профессиональные компетенции:", Word.WdParagraphAlignment.wdAlignParagraphThaiJustify);
+            InsertSimpleRangeSelectedAlignment(document, "В результате изучения профессионального модуля студент должен освоить основной вид деятельности " + _workProgram.NameProfessonalModule + " и соответствующие ему общие компетенции и профессиональные компетенции:", Word.WdParagraphAlignment.wdAlignParagraphThaiJustify);
 
             InsertSimpleRangeBoldCenterAlignment(document, "1.2.1. Перечень общих компетенций");
             InsertSimpleTableRightAligment(document, "Таблица 1.");
@@ -887,7 +885,7 @@ namespace RPTest.Pages
         /// <param name="document"Ссылка на редактируемый документ</param>
         private void InsertSecondPage(Word.Document document)
         {
-            InsertSimpleRangeSelectedAlignment(document, "Составлена в соответствии с требованиями основной профессиональной образовательной программы ФГОС СПО по специальности " + _workProgram.Specialization + "и в соответствии с учебным планом специальности " + _workProgram.Specialization + "утвержденным ученым советом КНИТУ – КАИ «__» ________ 20__г. протокол №__." + "\n", Word.WdParagraphAlignment.wdAlignParagraphThaiJustify);
+            InsertSimpleRangeSelectedAlignment(document, "Составлена в соответствии с требованиями основной профессиональной образовательной программы ФГОС СПО по специальности " + _workProgram.Specialization + " и в соответствии с учебным планом специальности " + _workProgram.Specialization + "    утвержденным ученым советом КНИТУ – КАИ «__» ________ 20__г. протокол №__." + "\n", Word.WdParagraphAlignment.wdAlignParagraphThaiJustify);
             InsertSimpleRangeSelectedAlignment(document, "Рабочую программу учебной дисциплины разработал(а):", Word.WdParagraphAlignment.wdAlignParagraphJustify);
             InsertSimpleRangeSelectedAlignment(document, "\n" + "Преподаватель СПО ИКТЗИ " + _workProgram.TeacherName + "\n", Word.WdParagraphAlignment.wdAlignParagraphThaiJustify);
             InsertApprovalTable(document);
@@ -1114,7 +1112,7 @@ namespace RPTest.Pages
             InsertChapterFifth(document);
 
             application.Visible = true;
-            document.SaveAs2(@"C:\Users\Артур\Desktop\Курсач\doc2.docx");
+            document.SaveAs2(@"C:\Users\Artur\Desktop\Курсач\doc2.docx");
             document.Close();
         }
     }

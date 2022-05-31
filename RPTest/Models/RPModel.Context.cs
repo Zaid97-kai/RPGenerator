@@ -40,7 +40,6 @@ namespace RPTest.Models
         public virtual DbSet<Auditory_Software> Auditory_Software { get; set; }
         public virtual DbSet<Author> Author { get; set; }
         public virtual DbSet<Chapter> Chapter { get; set; }
-        public virtual DbSet<Competencies> Competencies { get; set; }
         public virtual DbSet<Discipline> Discipline { get; set; }
         public virtual DbSet<Discipline_Competencies> Discipline_Competencies { get; set; }
         public virtual DbSet<Equipment> Equipment { get; set; }
@@ -51,9 +50,10 @@ namespace RPTest.Models
         public virtual DbSet<Skills> Skills { get; set; }
         public virtual DbSet<Software> Software { get; set; }
         public virtual DbSet<Specialty> Specialty { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<ExpPractice> ExpPractice { get; set; }
         public virtual DbSet<Content> Content { get; set; }
+        public virtual DbSet<GeneralCompetencies> GeneralCompetencies { get; set; }
+        public virtual DbSet<ProfessionalCompetencies> ProfessionalCompetencies { get; set; }
     }
 }

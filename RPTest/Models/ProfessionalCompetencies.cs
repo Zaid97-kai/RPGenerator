@@ -12,14 +12,21 @@ namespace RPTest.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Discipline_Competencies
+    public partial class ProfessionalCompetencies
     {
-        public int Id { get; set; }
-        public int Id_Discipline { get; set; }
-        public int Id_Competencies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ProfessionalCompetencies()
+        {
+            this.Discipline_Competencies = new HashSet<Discipline_Competencies>();
+        }
     
-        public virtual Discipline Discipline { get; set; }
-        public virtual GeneralCompetencies GeneralCompetencies { get; set; }
-        public virtual ProfessionalCompetencies ProfessionalCompetencies { get; set; }
+        public int Id { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
+        public string EvaluationCriteria { get; set; }
+        public string AssessmentMethods { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Discipline_Competencies> Discipline_Competencies { get; set; }
     }
 }

@@ -12,7 +12,6 @@
         <EntityTypeShape EntityType="RPModel.Auditory_Software" Width="1.5" PointX="15" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RPModel.Author" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="RPModel.Chapter" Width="1.5" PointX="10.5" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="RPModel.Competencies" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="RPModel.Discipline" Width="1.5" PointX="7.5" PointY="12.125" IsExpanded="true" />
         <EntityTypeShape EntityType="RPModel.Discipline_Competencies" Width="1.5" PointX="9.75" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="RPModel.Equipment" Width="1.5" PointX="12.75" PointY="7" IsExpanded="true" />
@@ -23,13 +22,11 @@
         <EntityTypeShape EntityType="RPModel.Skills" Width="1.5" PointX="9.75" PointY="18.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RPModel.Software" Width="1.5" PointX="12.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="RPModel.Specialty" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="RPModel.Users" Width="1.5" PointX="5.75" PointY="2" IsExpanded="true" />
         <AssociationConnector Association="RPModel.FK_Auditory_Equipment_Auditory" ManuallyRouted="false" />
         <AssociationConnector Association="RPModel.FK_Auditory_Software_Auditory" ManuallyRouted="false" />
         <AssociationConnector Association="RPModel.FK_Auditory_Equipment_Equipment" ManuallyRouted="false" />
         <AssociationConnector Association="RPModel.FK_Auditory_Software_Software" ManuallyRouted="false" />
         <AssociationConnector Association="RPModel.FK_Literary_Source_Author_Author" ManuallyRouted="false" />
-        <AssociationConnector Association="RPModel.FK_Discipline_Competencies_Competencies" ManuallyRouted="false" />
         <AssociationConnector Association="RPModel.FK_Discipline_Competencies_Discipline" ManuallyRouted="false" />
         <AssociationConnector Association="RPModel.FK_Knowledge_Discipline" ManuallyRouted="false" />
         <AssociationConnector Association="RPModel.FK_Skills_Discipline" ManuallyRouted="false" />
@@ -44,6 +41,10 @@
         <AssociationConnector Association="RPModel.FK_Assessment_Form_Discipline1" />
         <AssociationConnector Association="RPModel.FK_Chapter_Discipline1" />
         <AssociationConnector Association="RPModel.FK_Content_Chapter1" />
+        <EntityTypeShape EntityType="RPModel.GeneralCompetencies" Width="1.5" PointX="7.5" PointY="9" />
+        <EntityTypeShape EntityType="RPModel.ProfessionalCompetencies" Width="1.5" PointX="7.375" PointY="4.875" />
+        <AssociationConnector Association="RPModel.FK_Discipline_Competencies_Competencies1" />
+        <AssociationConnector Association="RPModel.FK_Discipline_Competencies_ProfessionalCompetencies" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

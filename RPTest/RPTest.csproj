@@ -94,9 +94,6 @@
     <Compile Include="Models\Chapter.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Competencies.cs">
-      <DependentUpon>RPModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Content.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
@@ -112,6 +109,9 @@
     <Compile Include="Models\ExpPractice.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GeneralCompetencies.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Knowledge.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
@@ -119,6 +119,9 @@
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Literary_Source_Author.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProfessionalCompetencies.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Proffessional_Module.cs">
@@ -151,20 +154,26 @@
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Users.cs">
-      <DependentUpon>RPModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Pages\AddDisciplinePage.xaml.cs">
       <DependentUpon>AddDisciplinePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DataPage.xaml.cs">
+      <DependentUpon>DataPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\WorkProgramPage.xaml.cs">
       <DependentUpon>WorkProgramPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Window\AuthorizationWindow.xaml.cs">
-      <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
+    <Compile Include="Window\AddCompetencionWindow.xaml.cs">
+      <DependentUpon>AddCompetencionWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Window\RegistrationWindow.xaml.cs">
-      <DependentUpon>RegistrationWindow.xaml</DependentUpon>
+    <Compile Include="Window\AddContentWindow.xaml.cs">
+      <DependentUpon>AddContentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Window\AddTopicWindow.xaml.cs">
+      <DependentUpon>AddTopicWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Window\SkillsAddWindow.xaml.cs">
+      <DependentUpon>SkillsAddWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Window\StateWindow.xaml.cs">
       <DependentUpon>StateWindow.xaml</DependentUpon>
@@ -185,15 +194,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </None>
+    <Page Include="Pages\DataPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\WorkProgramPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Window\AuthorizationWindow.xaml">
+    <Page Include="Window\AddCompetencionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Window\RegistrationWindow.xaml">
+    <Page Include="Window\AddContentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window\AddTopicWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window\SkillsAddWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

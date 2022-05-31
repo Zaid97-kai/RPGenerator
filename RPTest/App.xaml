@@ -4,6 +4,37 @@
              xmlns:local="clr-namespace:RPTest"
              StartupUri="Window\StateWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="FirstStyle">
+            <Setter Property="TextBlock.TextWrapping" Value="Wrap"></Setter>
+            <Setter Property="Control.FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="Control.FontSize" Value="18"></Setter>
+            <Setter Property="Control.VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="Control.HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="TextBlock.TextAlignment" Value="Center"></Setter>
+        </Style>
+        <Style x:Key="TbStyle" TargetType="TextBox">
+            <Setter Property="Control.FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="Control.FontSize" Value="18"></Setter>
+            <Setter Property="Control.VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="Control.HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="Control.Width" Value="300"></Setter>
+            <Setter Property="Control.Height" Value="40"></Setter>
+        </Style>
+        <Style x:Key="BtnStyle" TargetType="Button">
+            <Setter Property="Control.FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="Control.FontSize" Value="16"></Setter>
+            <Setter Property="Control.VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="Control.HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="Control.Width" Value="300"></Setter>
+            <Setter Property="Control.Height" Value="40"></Setter>
+        </Style>
+        <Style x:Key="CbStyle" TargetType="ComboBox">
+            <Setter Property="Control.FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="Control.FontSize" Value="16"></Setter>
+            <Setter Property="Control.VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="Control.HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="Control.Width" Value="300"></Setter>
+            <Setter Property="Control.Height" Value="40"></Setter>
+        </Style>
     </Application.Resources>
 </Application>
