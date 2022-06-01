@@ -68,9 +68,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Classes\AcademicPlan.cs" />
     <Compile Include="Classes\Auth.cs" />
-    <Compile Include="Classes\Competencies.cs" />
     <Compile Include="Classes\TemporaryDiscipline.cs" />
     <Compile Include="Classes\WorkProgram.cs" />
     <Compile Include="Models\AcademicPlan.cs">
@@ -169,6 +167,12 @@
     <Compile Include="Window\AddContentWindow.xaml.cs">
       <DependentUpon>AddContentWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Window\AddDisciplineCompet.xaml.cs">
+      <DependentUpon>AddDisciplineCompet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Window\AddSpecialtyWindow.xaml.cs">
+      <DependentUpon>AddSpecialtyWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Window\AddTopicWindow.xaml.cs">
       <DependentUpon>AddTopicWindow.xaml</DependentUpon>
     </Compile>
@@ -207,6 +211,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Window\AddContentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window\AddDisciplineCompet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window\AddSpecialtyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

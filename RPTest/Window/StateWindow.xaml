@@ -15,11 +15,17 @@
             <MenuItem Header="Файл">
                 <MenuItem Header="Закрыть программу" Click="MenuItem_Click_1"></MenuItem>
             </MenuItem>
-            <MenuItem Header="Рабочая программа">
-                <MenuItem Header="Добавить" Click="MenuItem_Click"></MenuItem>
+            <MenuItem Header="Рабочая программа" Click="MenuItem_Click">
             </MenuItem>
             <MenuItem Header="Работа с данными" Click="MenuItem_Click_2"></MenuItem>
         </Menu>
         <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" ContentRendered="MainFrame_ContentRendered"></Frame>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+        </Grid>
     </Grid>
 </Window>

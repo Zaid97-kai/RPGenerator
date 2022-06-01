@@ -3,27 +3,29 @@ using RPTest.Classes;
 
 namespace UnitTestProject1
 {
-    /*[TestClass]
+    [TestClass]
     public class UnitTest1
     {
         [TestMethod]
-        public void AuthTest()
+        public void AddSkillTest()
         {
             Auth auth = new Auth();
-            string exp = "true";
 
-            string actual = auth.Login("123", "123");
+            bool exp = true;
+
+            bool actual = auth.AddSkill("Name", 1);
 
             Assert.AreEqual(exp, actual);
         }
 
         [TestMethod]
-        public void RegTest()
+        public void RemoveSkillTest()
         {
             Auth auth = new Auth();
-            string exp = "true";
 
-            string actual = auth.Registration("127", "123", "123");
+            bool exp = true;
+
+            bool actual = auth.RemoveSkill("Умение 3");
 
             Assert.AreEqual(exp, actual);
         }
@@ -58,5 +60,6 @@ namespace UnitTestProject1
 
             bool actual = auth.EditSpecializtion("Лучезарики", "03.06.02");
             Assert.AreEqual(exp, actual);
-        }*/
+        }
+    }
 }

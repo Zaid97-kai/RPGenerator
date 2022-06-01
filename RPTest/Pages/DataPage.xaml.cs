@@ -30,56 +30,65 @@ namespace RPTest.Pages
 
         private void RefreshAll()
         {
-            RefreshSkills();
             RefreshDiscipline();
             RefreshCompetencies();
             RefreshChapter();
+            RefreshContent();
+            RefreshSpecialty();
         }
-        private void BtAddSkill_Click(object sender, RoutedEventArgs e)
+
+        private void RefreshSpecialty()
         {
-            Models.Skills skills = new Models.Skills() { Name = TbSkillName.Text };
-            _db.GetContext().Skills.Add(skills);
-            _db.GetContext().SaveChanges();
-            MessageBox.Show("Вы успешно добавили специальность!");
-            RefreshSkills();
+            CbSpecialtyCode.Items.Clear();
+            foreach(Specialty u in _db.GetContext().Specialty)
+            {
+                CbSpecialtyCode.Items.Add(u);
+            }
         }
         private void RefreshCompetencies()
         {
-            CbGeneralCompetCode.Items.Clear();       
+            CbGeneralCompetCode.Items.Clear();
+           // CbDisciplineGeneralCompet.Items.Clear();
             foreach (Models.GeneralCompetencies u in _db.GetContext().GeneralCompetencies)
             {
                 CbGeneralCompetCode.Items.Add(u);
+                //CbDisciplineGeneralCompet.Items.Add(u);
             }
             CbCompetCode.Items.Clear();
+            //CbDisciplineProfCompet.Items.Clear();
             foreach (Models.ProfessionalCompetencies u in _db.GetContext().ProfessionalCompetencies)
             {
                 CbCompetCode.Items.Add(u);
-            }
-        }
-        private void RefreshSkills()
-        {
-            CbSkillName.Items.Clear();
-            foreach (Models.Skills u in _db.GetContext().Skills)
-            {
-                CbSkillName.Items.Add(u);
+               // CbDisciplineProfCompet.Items.Add(u);
             }
         }
         private void RefreshDiscipline()
         {
             CbChapterDiscipline.Items.Clear();
-            CbDisciplineName.Items.Clear();
-            foreach(Models.Discipline u in _db.GetContext().Discipline)
+            //CbDiscipline.Items.Clear();
+            foreach (Models.Discipline u in _db.GetContext().Discipline)
             {
                 CbChapterDiscipline.Items.Add(u);
-                CbDisciplineName.Items.Add(u);
+                //CbDiscipline.Items.Add(u);
+            }
+        }
+
+        private void RefreshContent()
+        {
+            CbContentDescription.Items.Clear();
+            foreach (Models.Content u in _db.GetContext().Content)
+            {
+                CbContentDescription.Items.Add(u);
             }
         }
         private void RefreshChapter()
         {
             CbChapterName.Items.Clear();
-            foreach(Chapter u in _db.GetContext().Chapter)
+            CbContentChapter.Items.Clear();
+            foreach (Chapter u in _db.GetContext().Chapter)
             {
                 CbChapterName.Items.Add(u);
+                CbContentChapter.Items.Add(u);
             }
         }
 
@@ -89,31 +98,7 @@ namespace RPTest.Pages
             skillsAdd.ShowDialog();
         }
 
-        private void BtnSaveSkill_Click(object sender, RoutedEventArgs e)
-        {
 
-            Models.Skills skills = _db.GetContext().Skills.FirstOrDefault(p => p.Id == ((Models.Skills)CbSkillName.SelectedItem).Id);
-            _db.GetContext().Skills.Remove(skills);
-            _db.GetContext().SaveChanges();
-            skills.Name = TbSkillName.Text;
-            skills.Id_Discipline = ((Models.Discipline)CbDisciplineName.SelectedItem).Id;
-            _db.GetContext().Skills.Add(skills);
-            _db.GetContext().SaveChanges();
-            MessageBox.Show("Успешно!");
-            RefreshSkills();
-        }
-
-        private void CbSkillName_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if(CbSkillName.SelectedItem != null)
-            {
-                Models.Skills skills = _db.GetContext().Skills.FirstOrDefault(p => p.Id == ((Models.Skills)CbSkillName.SelectedItem).Id);
-                TbSkillId.Text = Convert.ToString(skills.Id);
-                TbSkillName.Text = skills.Name;
-                CbDisciplineName.SelectedItem = _db.GetContext().Discipline.FirstOrDefault(p => p.Id == skills.Id_Discipline);
-            }
-            
-        }
 
         private void BtnAddCompet_Click(object sender, RoutedEventArgs e)
         {
@@ -244,10 +229,18 @@ namespace RPTest.Pages
 
         private void BtnDeleteChapter_Click(object sender, RoutedEventArgs e)
         {
-            Chapter chapter = _db.GetContext().Chapter.FirstOrDefault(p => p.Name == ((Chapter)CbChapterName.SelectedItem).Name);
-            _db.GetContext().Chapter.Remove(chapter);
-            _db.GetContext().SaveChanges();
-            RefreshChapter();
+            try
+            {
+                Chapter chapter = _db.GetContext().Chapter.FirstOrDefault(p => p.Name == ((Chapter)CbChapterName.SelectedItem).Name);
+                _db.GetContext().Chapter.Remove(chapter);
+                _db.GetContext().SaveChanges();
+                RefreshChapter();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Возникла непредвиденная ошибка!" + "\n" + ex.Message);
+            }
+
         }
 
         private void BtnSaveChapter_Click(object sender, RoutedEventArgs e)
@@ -259,7 +252,7 @@ namespace RPTest.Pages
                 chapter.Id_Discipline = ((Discipline)CbChapterDiscipline.SelectedItem).Id;
                 _db.GetContext().SaveChanges();
                 MessageBox.Show("Успешно сохранено!");
-                RefreshCompetencies();
+                RefreshChapter();
             }
             catch (Exception ex)
             {
@@ -279,17 +272,166 @@ namespace RPTest.Pages
 
         private void BtnDeleteContent_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                Content content = _db.GetContext().Content.FirstOrDefault(p => p.Name == ((Content)CbContentDescription.SelectedItem).Name);
+                _db.GetContext().Content.Remove(content);
+                _db.GetContext().SaveChanges();
+                RefreshContent();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Возникла непредвиденная ошибка!" + "\n" + ex.Message);
+            }
         }
 
         private void BtnSaveContent_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                Content content = _db.GetContext().Content.FirstOrDefault(p => p.Name == ((Content)CbContentDescription.SelectedItem).Name);
+                content.Name = TbContent.Text;
+                content.Id_Chapter = ((Chapter)CbContentChapter.SelectedItem).Id;
+                content.Hourly_Load = Convert.ToInt32(TbContentLoad.Text);
+                if (RbContentPR.IsChecked == true)
+                    content.Type = "Содержание";
+                if (RbContentLR.IsChecked == true)
+                    content.Type = "Лабораторная работа";
+                if (RbContentSR.IsChecked == true)
+                    content.Type = "Самостоятельная работа";
+                _db.GetContext().SaveChanges();
+                MessageBox.Show("Успешно сохранено!");
+                RefreshContent();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Возникла непредвиденная ошибка!" + "\n" + ex.Message);
+            }
         }
 
         private void BtnAddContent_Click(object sender, RoutedEventArgs e)
         {
+            Window.AddContentWindow addContentWindow = new Window.AddContentWindow();
+            addContentWindow.ShowDialog();
+            RefreshAll();
+        }
+
+        private void CbContentDescription_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CbContentDescription.SelectedItem != null)
+            {
+                Content content = _db.GetContext().Content.FirstOrDefault(p => p.Name == ((Content)CbContentDescription.SelectedItem).Name);
+                TbContent.Text = content.Name;
+                CbContentChapter.SelectedItem = _db.GetContext().Chapter.FirstOrDefault(p => p.Id == content.Id_Chapter);
+                TbContentLoad.Text = Convert.ToString(content.Hourly_Load);
+                if (content.Type == "Содержание")
+                    RbContentPR.IsChecked = true;
+                if (content.Type == "Лабораторная работа")
+                    RbContentLR.IsChecked = true;
+                if (content.Type == "Самостоятельная работа")
+                    RbContentSR.IsChecked = true;
+
+            }
+        }
+
+        private void CbSpecialtyCode_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CbSpecialtyCode.SelectedItem != null)
+            {
+                Specialty specialty = _db.GetContext().Specialty.FirstOrDefault(p => p.Code == ((Specialty)CbSpecialtyCode.SelectedItem).Code);
+                TbSpecialtyID.Text = Convert.ToString(specialty.Id);
+                TbSpecialtyName.Text = specialty.Name;
+                TbSpecialtyCode.Text = specialty.Code;
+                TbSpecialtyQualification.Text = specialty.Qualification;
+            }
+        }
+
+        private void BtnAddSpecialty_Click(object sender, RoutedEventArgs e)
+        {
+            Window.AddSpecialtyWindow addSpecialtyWindow = new Window.AddSpecialtyWindow();
+            addSpecialtyWindow.ShowDialog();
+            RefreshAll();
+        }
+
+        private void BtnDeleteSpecialty_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Specialty specialty = _db.GetContext().Specialty.FirstOrDefault(p => p.Id == ((Specialty)CbSpecialtyCode.SelectedItem).Id);
+                _db.GetContext().Specialty.Remove(specialty);
+                _db.GetContext().SaveChanges();
+                RefreshSpecialty();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Возникла непредвиденная ошибка!" + "\n" + ex.Message);
+            }
+        }
+
+        private void BtnSaveSpecialty_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Specialty specialty = _db.GetContext().Specialty.FirstOrDefault(p => p.Id == ((Specialty)CbSpecialtyCode.SelectedItem).Id);
+                specialty.Name = TbSpecialtyName.Text;
+                specialty.Code = TbSpecialtyCode.Text;
+                specialty.Qualification = TbSpecialtyQualification.Text;
+                _db.GetContext().SaveChanges();
+                MessageBox.Show("Успешно сохранено!");
+                RefreshSpecialty();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Возникла непредвиденная ошибка!" + "\n" + ex.Message);
+            }
+        }
+
+        /*private void CbDiscipline_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Discipline discipline = _db.GetContext().Discipline.FirstOrDefault(p => p.Id == ((Discipline)CbDiscipline.SelectedItem).Id);
+            List<Discipline_Competencies> discipline_Competencies = new List<Discipline_Competencies>();
+            List<GeneralCompetencies> generalCompetencies = new List<GeneralCompetencies>();
+            foreach (Discipline_Competencies u in _db.GetContext().Discipline_Competencies)
+            {
+                if (u.Id_Discipline == discipline.Id)
+                {
+                    discipline_Competencies.Add(u);
+
+                }
+            }
+            foreach(Discipline_Competencies u in discipline_Competencies)
+            {
+                generalCompetencies.Add(generalCompetencies.FirstOrDefault(p => p.Id == u.Id_Competencies));
+                LbDisciplineGeneralCompet.Items.Add(generalCompetencies);
+            }
+            LbDisciplineGeneralCompet.ItemsSource = generalCompetencies;
+        }
+
+        private void BtnAddDisciplineGeneralCompet_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                GeneralCompetencies generalCompetencies = _db.GetContext().GeneralCompetencies.FirstOrDefault(p => p.Id == ((GeneralCompetencies)CbDisciplineGeneralCompet.SelectedItem).Id);
+                Discipline discipline = _db.GetContext().Discipline.FirstOrDefault(p => p.Id == ((Discipline)CbDiscipline.SelectedItem).Id);
+                Discipline_Competencies discipline_Competencies = new Discipline_Competencies();
+                discipline_Competencies.Id_Competencies = generalCompetencies.Id;
+                discipline_Competencies.Id_Discipline = discipline.Id;
+                _db.GetContext().Discipline_Competencies.Add(discipline_Competencies);
+                _db.GetContext().SaveChanges();
+                LbDisciplineGeneralCompet.Items.Add(generalCompetencies);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Возникла непредвиденная ошибка!" + "\n" + ex.Message);
+            }
 
         }
+
+        private void BtnAddDiscipline_Click(object sender, RoutedEventArgs e)
+        {
+            Window.AddDisciplineCompet addDisciplineCompet = new Window.AddDisciplineCompet();
+            addDisciplineCompet.ShowDialog();
+            RefreshAll();
+        }*/
     }
 }

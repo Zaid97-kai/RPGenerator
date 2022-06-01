@@ -98,12 +98,16 @@ namespace RPTest.Classes
     {
         public string Code { get; set; }
         public string Description { get; set; }
+        public string Evaluation { get; set; }
+        public string Methods { get; set; }
     }
 
     public class ProfCompetencies
     {
         public string Code { get; set; }
         public string Description { get; set; }
+        public string Evaluation { get; set; }
+        public string Methods { get; set; }
     }
 
     public class ExpPractices

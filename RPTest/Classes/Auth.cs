@@ -11,68 +11,7 @@ namespace RPTest.Classes
 {
     public class Auth
     {
-        /*public string Login(string log, string pass)
-        {
-             Auth auth = new Auth();
-             try
-             {
-                 var users = _db.GetContext().Users;
-                 foreach (Models.Users u in users)
-                 {
-                     if (log == u.Log && pass == u.Pass)
-                     {
-                         return "true";
-                     }
-                 }
-                 return "false";
-             }
-
-             catch (Exception ex)
-             {
-                 MessageBox.Show(ex.Message);
-                 return "false";
-             }
-
-         }
-
-         public string Registration(string log, string pass, string email)
-         {
-             Auth auth = new Auth();
-             try
-             {
-                 if (log != "" && pass != "" && email != "")
-                 {
-                     var users = _db.GetContext().Users;
-                     bool access = false;
-                     foreach (Models.Users u in users)
-                     {
-                         if (log == u.Log)
-                         {
-                             access = true;
-                         }
-                     }
-                     if (access == false)
-                     {
-                         Models.Users user = new Models.Users() { Log = log, Pass = pass, Email = email, Role = "User" };
-                         _db.GetContext().Users.Add(user);
-                         _db.GetContext().SaveChanges();
-                         MessageBox.Show("Успешная регистрация!");
-                         return "true";
-                     }
-                     else
-                     {
-                         return "false";
-                     }
-                 }
-                 else return "empty";
-             }
-             catch (Exception ex)
-             {
-                 MessageBox.Show(ex.Message);
-                 return "false";
-             }
-         }
-
+       
          public bool AddSpecializtion(string name, string code, string qualification)
          {
              try
@@ -90,7 +29,38 @@ namespace RPTest.Classes
 
          }
 
-         public bool RemoveSpecializtion(string code)
+        public bool AddSkill(string name, int idDis)
+        {
+            try
+            {
+                Models.Skills skill = new Models.Skills() { Name = name, Id_Discipline = idDis };
+                _db.GetContext().Skills.Add(skill);
+                _db.GetContext().SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+
+        public bool RemoveSkill(string name)
+        {
+            try
+            {
+                Models.Skills skill = _db.GetContext().Skills.Where(s => s.Name == name).FirstOrDefault();
+                _db.GetContext().Skills.Remove(skill);
+                _db.GetContext().SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+        public bool RemoveSpecializtion(string code)
          {
              try
              {
@@ -122,7 +92,7 @@ namespace RPTest.Classes
                  MessageBox.Show(ex.Message);
                  return false;
              }
-         }*/
+         }
 
     }
 }

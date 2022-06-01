@@ -23,6 +23,7 @@ namespace RPTest.Window
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            MainFrame.Navigate(new Pages.WorkProgramPage());
         }
 
         private void MainFrame_ContentRendered(object sender, EventArgs e)
