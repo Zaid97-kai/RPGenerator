@@ -45,6 +45,9 @@
         <EntityTypeShape EntityType="RPModel.ProfessionalCompetencies" Width="1.5" PointX="7.375" PointY="4.875" />
         <AssociationConnector Association="RPModel.FK_Discipline_Competencies_Competencies1" />
         <AssociationConnector Association="RPModel.FK_Discipline_Competencies_ProfessionalCompetencies" />
+        <EntityTypeShape EntityType="RPModel.Discipline_ProfCompet" Width="1.5" PointX="12.75" PointY="10" />
+        <AssociationConnector Association="RPModel.FK_Discipline_ProfCompet_Discipline" />
+        <AssociationConnector Association="RPModel.FK_Discipline_ProfCompet_ProfessionalCompetencies" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

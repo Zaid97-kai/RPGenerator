@@ -32,10 +32,12 @@ namespace RPTest.Classes
         /// Преподаватель-разработчик рабочей программы
         /// </summary>
         public string TeacherName { get; set; }
-        /// <summary>
-        /// Тип дисциплины
-        /// </summary>
-        public string TypeDiscipline { get; set; }
+        public List<LectionClass> lectionClasses {get;set;}
+        public List<LRClass> lRClasses {get;set;}
+/// <summary>
+/// Тип дисциплины
+/// </summary>
+public string TypeDiscipline { get; set; }
         /// <summary>
         /// Список компетенций
         /// </summary>
@@ -48,10 +50,13 @@ namespace RPTest.Classes
         /// </summary>
         public List<ProfCompetencies> ProfCompetencies { get; set; }
         public List <Disciplines> Disciplines { get; set; }
-        public List<Auditories> Auditories { get; set; }
         public List<Softwares> Softwares { get; set; }
         public List<Equipments> Equipments { get; set; }
         public List<Sources> Sources { get; set; }
+        public string Prorektor { get; set; }
+
+        public List<Content> Contents { get; set; }
+        public List<Chapter> Chapters { get; set; }
         /// <summary>
         /// Часы на теоретическое обучение
         /// </summary>
@@ -64,10 +69,13 @@ namespace RPTest.Classes
             Skills = new List<Skills>();
             Knowledges = new List<Knowledges>();
             Disciplines = new List<Disciplines>();
-            Auditories = new List<Auditories>();
+            lectionClasses = new List<LectionClass>();
+            lRClasses = new List<LRClass>();
             Equipments = new List<Equipments>();
             Softwares = new List<Softwares>();
             Sources = new List<Sources>();
+            Contents = new List<Content>();
+            Chapters = new List<Chapter>();
         }
     }
     /// <summary>
@@ -78,12 +86,16 @@ namespace RPTest.Classes
         public int NumberTopic { get; set; }
         public string TopicName { get; set; }
     }
-    public class Auditories
+    public class LectionClass
     {
-        public string Auditory { get; set; }
         public string Equipment { get; set; }
-        public string Software { get; set; }
     }
+
+public class LRClass
+{
+    public string Equipment { get; set; }
+}
+
     public class Equipments
     {
         public string Equipment { get; set; }
@@ -126,6 +138,7 @@ namespace RPTest.Classes
     }
     public class Disciplines
     {
+        public int Id { get; set; }
         public string Discipline { get; set; }
         public List<string> Competenciees { get; set; }
     }
@@ -141,6 +154,19 @@ namespace RPTest.Classes
         public string Pages { get; set; }
         public string Date { get; set; }
         public string AccessType { get; set; }
+    }
+
+    public class Content
+    {
+        public string ChapterName { get; set; }
+        public string Type { get; set; }
+        public string Name { get; set; }
+        public int Hourly_Load { get; set; }
+
+    }
+    public class Chapter
+    {
+        public string Name { get; set; }
     }
 
 }

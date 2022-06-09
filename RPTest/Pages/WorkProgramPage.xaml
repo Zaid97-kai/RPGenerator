@@ -24,7 +24,7 @@
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Style="{StaticResource FirstStyle}" FontWeight="Bold">федеральное государственное бюджетное образовательное учреждение высшего образования «Казанский национальный исследовательский технический университет им. А.Н. Туполева - КАИ» (КНИТУ-КАИ)<LineBreak/></TextBlock>
                     <TextBlock Grid.Row="1" Style="{StaticResource FirstStyle}">Институт компьютерных технологий и защиты информации <LineBreak/> Отделение СПО ИКТЗИ «Колледж информационных технологий» <LineBreak/></TextBlock>
-                    <TextBlock Grid.Row="2" Style="{StaticResource FirstStyle}" HorizontalAlignment="Right" TextAlignment="Right">УТВЕРЖДАЮ<LineBreak/>Проректор по ОД<LineBreak/>____________________ А.А. Лопатин<LineBreak/>«___» ______________ 20 __ г.<LineBreak/>Регистрационный  №_____</TextBlock>
+                    <TextBlock Grid.Row="2" Style="{StaticResource FirstStyle}" HorizontalAlignment="Right" TextAlignment="Right">УТВЕРЖДАЮ<LineBreak/>Проректор по ОД<LineBreak/>____________________<LineBreak/>«___» ______________ 20 __ г.<LineBreak/>Регистрационный  №_____</TextBlock>
                     <TextBlock Grid.Row="3" Style="{StaticResource FirstStyle}" FontWeight="Bold"><LineBreak/><LineBreak/>РАБОЧАЯ ПРОГРАММА<LineBreak/>профессионального модуля<LineBreak/><LineBreak/></TextBlock>
                     <ComboBox x:Name="CbNamePM" Grid.Row="4" FontFamily="Times New Roman" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="30,3,30,3" DisplayMemberPath="Name" SelectionChanged="CbNamePM_SelectionChanged"></ComboBox>
                     <TextBlock x:Name="TbCode" Grid.Row="5" Style="{StaticResource FirstStyle}">для специальности</TextBlock>
@@ -37,46 +37,16 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Лист согласования">
-                <UniformGrid Columns="2" Rows="2">
+                <UniformGrid Columns="2" Rows="3">
                     <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold">Специальность</TextBlock>
                     <TextBox x:Name="TbSpecialtyApprovalSheet" IsReadOnly="True" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="20,0,20,0" MinWidth="200"/>
                     <TextBlock TextWrapping="Wrap" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center">Разработчик рабочей программы</TextBlock>
                     <TextBox x:Name="TbAuthor" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextChanged="TbAuthor_TextChanged" Padding="20,0,20,0" MinWidth="200"></TextBox>
+                    <TextBlock TextWrapping="Wrap" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center">Проректор по ОД</TextBlock>
+                    <TextBox x:Name="TbProrektor" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextChanged="TbProrektor_TextChanged"  Padding="20,0,20,0" MinWidth="200"></TextBox>
                 </UniformGrid>
             </TabItem>
-            <TabItem Header="Компетенции">
-                <Grid x:Name="GridTrirdRow">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="11*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="2*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="2*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Код</TextBlock>
-                    <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Наименование общих компетенций</TextBlock>
-                    <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Код</TextBlock>
-                    <TextBlock Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Наименование професс. компетенций</TextBlock>
-                    <ListBox x:Name="DgCompCode" Grid.Row="1" Grid.Column="0" DisplayMemberPath="Code"></ListBox>
-                    <ListBox x:Name="DgCompDesc" Grid.Row="1" Grid.Column="1" DisplayMemberPath="Description"></ListBox>
-                    <ListBox x:Name="DgProfCompCode" Grid.Row="1" Grid.Column="2" DisplayMemberPath="Code"></ListBox>
-                    <ListBox x:Name="DgProfCompDesc" Grid.Row="1" Grid.Column="3" DisplayMemberPath="Description"></ListBox>
-                    <ComboBox x:Name="CbCompetCode" DisplayMemberPath="Code" Style="{StaticResource CbStyle}" Width="150" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="12" SelectionChanged="CbCompetCode_SelectionChanged"></ComboBox>
-                    <TextBox IsReadOnly="True" x:Name="TbDescComp" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="12"></TextBox>
-                    <ComboBox x:Name="CbGeneralCompetCode" DisplayMemberPath="Code" Style="{StaticResource CbStyle}" Width="150" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="12" SelectionChanged="CbGeneralCompetCode_SelectionChanged"></ComboBox>
-                    <TextBox IsReadOnly="True" x:Name="TbProfDescComp" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="12"></TextBox>
-                    <Button x:Name="BtnAddComp" Grid.Row="4" FontFamily="Arial" FontSize="14" Click="BtnAddComp_Click">Добавить</Button>
-                    <Button x:Name="BtnDelComp" Grid.Row="4" Grid.Column="1" FontFamily="Arial" FontSize="14" Click="BtnDelComp_Click">Удалить</Button>
-                    <Button x:Name="BtnAddProfComp" Grid.Row="4" Grid.Column="2" FontFamily="Arial" FontSize="14" Click="BtnAddProfComp_Click" >Добавить</Button>
-                    <Button x:Name="BtnDelProfComp" Grid.Row="4" Grid.Column="4" FontFamily="Arial" FontSize="14" Click="BtnDelProfComp_Click">Удалить</Button>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Умения">
+            <TabItem Header="Оснащение">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
@@ -89,12 +59,12 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Практический опыт</TextBlock>
-                    <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Умения</TextBlock>
-                    <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Знания</TextBlock>
-                    <ListBox x:Name="LbExpPractice"  Grid.Row="1" Grid.Column="0" DisplayMemberPath="ExpPractice"></ListBox>
-                    <ListBox x:Name="LbSkill"  Grid.Row="1" Grid.Column="1" DisplayMemberPath="Skill"></ListBox>
-                    <ListBox x:Name="LbKnowledge"  Grid.Row="1" Grid.Column="2" DisplayMemberPath="Knowledge"></ListBox>
+                    <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Для лекций</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Для лабораторных работ</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">ПО</TextBlock>
+                    <ListBox x:Name="LbExpPractice"  Grid.Row="1" Grid.Column="0" DisplayMemberPath="Equipment"></ListBox>
+                    <ListBox x:Name="LbSkill"  Grid.Row="1" Grid.Column="1" DisplayMemberPath="Equipment"></ListBox>
+                    <ListBox x:Name="LbKnowledge"  Grid.Row="1" Grid.Column="2" DisplayMemberPath="Software"></ListBox>
                     <TextBox x:Name="TbExpPractice" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="12" Width="200"></TextBox>
                     <TextBox x:Name="TbSkill" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="12" Width="200"></TextBox>
                     <TextBox x:Name="TbKnowledge" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="12" Width="200"></TextBox>
@@ -116,14 +86,31 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="11*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
+                    <UniformGrid Grid.Row="1" Grid.Column="0" Columns="6">
+                        <TextBlock Width="200" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Дисциплина</TextBlock>
+                        <TextBlock Width="200" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Общие компетенции</TextBlock>
+                        <TextBlock Width="200"  VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Проф. компетенции</TextBlock>
+                        <TextBlock Width="200" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Умения</TextBlock>
+                        <TextBlock Width="200"  VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Практический опыт</TextBlock>
+                        <TextBlock Width="200"  VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Знания</TextBlock>
+                    </UniformGrid>
+
                     <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="14">Дисциплины</TextBlock>
-                    <ListBox Width="200" HorizontalAlignment="Center" x:Name="LbDis"  Grid.Row="1" Grid.Column="0" DisplayMemberPath="Discipline" FontFamily="Arial" FontSize="20"></ListBox>
-                    <ComboBox x:Name= "CbChapterDiscipline" Style="{StaticResource CbStyle}" DisplayMemberPath="Name" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="16" Width="200"></ComboBox>
-                    <UniformGrid Grid.Row="3" Grid.Column="0" Columns="2">
+                    <UniformGrid Grid.Row="2" Grid.Column="0" Columns="6">
+                        <ListBox Width="200" HorizontalAlignment="Center" x:Name="LbDis"  Grid.Row="1" Grid.Column="0" DisplayMemberPath="Discipline" FontFamily="Arial" FontSize="20" SelectionChanged="LbDis_SelectionChanged"></ListBox>
+                        <ListBox Width="200" HorizontalAlignment="Center" x:Name="LbCompetencies"  Grid.Row="1" Grid.Column="0" DisplayMemberPath="Code" FontFamily="Arial" FontSize="20"></ListBox>
+                        <ListBox Width="200" HorizontalAlignment="Center" x:Name="LbProfCompetencies"  Grid.Row="1" Grid.Column="0" DisplayMemberPath="Code" FontFamily="Arial" FontSize="20"></ListBox>
+                        <ListBox Width="200" HorizontalAlignment="Center" x:Name="LbSkills"  Grid.Row="1" Grid.Column="0" DisplayMemberPath="Name" FontFamily="Arial" FontSize="20"></ListBox>
+                        <ListBox Width="200" HorizontalAlignment="Center" x:Name="LbExpPractices"  Grid.Row="1" Grid.Column="0" DisplayMemberPath="Name" FontFamily="Arial" FontSize="20"></ListBox>
+                        <ListBox Width="200" HorizontalAlignment="Center" x:Name="LbKnowledges"  Grid.Row="1" Grid.Column="0" DisplayMemberPath="Name" FontFamily="Arial" FontSize="20"></ListBox>
+                    </UniformGrid>
+                    <ComboBox x:Name= "CbChapterDiscipline" Style="{StaticResource CbStyle}" DisplayMemberPath="Name" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="16" Width="200"></ComboBox>
+                    <UniformGrid Grid.Row="4" Grid.Column="0" Columns="2">
                         <Button x:Name="BtnAddDis" FontFamily="Arial" FontSize="14" Click="BtnAddDis_Click">Добавить</Button>
                         <Button x:Name="BtnDeleteDis" FontFamily="Arial" FontSize="14" Click="BtnDeleteDis_Click">Удалить</Button>
                     </UniformGrid>
@@ -180,10 +167,9 @@
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="1" Style="{StaticResource FirstStyle}">Создать рабочую проограмму</TextBlock>
-                    <Button Grid.Row="1" Style="{StaticResource BtnStyle}" Grid.Column="1" x:Name="FinallyButton" Click="FinallyButton_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Height="50" Width="200">Создать</Button>
+                    <TextBlock Grid.Row="0" Style="{StaticResource FirstStyle}">Создать рабочую проограмму</TextBlock>
+                    <Button Grid.Row="0" Style="{StaticResource BtnStyle}" Grid.Column="1" x:Name="FinallyButton" Click="FinallyButton_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Height="50" Width="200">Создать</Button>
                 </Grid>
 
 

@@ -32,7 +32,6 @@ namespace RPTest.Models
         {
             throw new UnintentionalCodeFirstException();
         }
-    
         public virtual DbSet<AcademicPlan> AcademicPlan { get; set; }
         public virtual DbSet<Assessment_Form> Assessment_Form { get; set; }
         public virtual DbSet<Auditory> Auditory { get; set; }
@@ -55,5 +54,6 @@ namespace RPTest.Models
         public virtual DbSet<Content> Content { get; set; }
         public virtual DbSet<GeneralCompetencies> GeneralCompetencies { get; set; }
         public virtual DbSet<ProfessionalCompetencies> ProfessionalCompetencies { get; set; }
+        public virtual DbSet<Discipline_ProfCompet> Discipline_ProfCompet { get; set; }
     }
 }

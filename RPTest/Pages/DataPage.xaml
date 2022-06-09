@@ -21,7 +21,7 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition Width="0.15*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBlock Style="{StaticResource FirstStyle}">Компетенция</TextBlock>
+                <TextBlock Style="{StaticResource FirstStyle}">Специальности</TextBlock>
                 <ComboBox x:Name="CbSpecialtyCode" IsReadOnly="false" Style="{StaticResource CbStyle}"  Grid.Row="0" Grid.Column="1" DisplayMemberPath="Code" SelectionChanged="CbSpecialtyCode_SelectionChanged"></ComboBox>
                 <Button x:Name="BtnAddSpecialty" Grid.Column="2" Style="{StaticResource BtnStyle}" Width="50" Height="30" Click="BtnAddSpecialty_Click">+</Button>
                 <UniformGrid Rows="4" Grid.Column="0" Grid.Row="1">
@@ -39,6 +39,64 @@
                 <Button x:Name="BtnDeleteSpecialty" Grid.Row="3" Style="{StaticResource BtnStyle}" Grid.Column="0" Click="BtnDeleteSpecialty_Click">Удалить</Button>
                 <Button x:Name="BtnSaveSpecialty" Style="{StaticResource BtnStyle}" Grid.Row="3" Grid.Column="1" Click="BtnSaveSpecialty_Click">Сохранить</Button>
             </Grid>
+            </TabItem>
+            <TabItem Header="Дисциплины">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="9*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="0.15*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource FirstStyle}">Дисциплина</TextBlock>
+                    <ComboBox x:Name="CbDisciplineName" IsReadOnly="false" Style="{StaticResource CbStyle}"  Grid.Row="0" Grid.Column="1" DisplayMemberPath="Name" SelectionChanged="CbDisciplineName_SelectionChanged"></ComboBox>
+                    <Button x:Name="BtnAddDiscipline" Grid.Column="2" Style="{StaticResource BtnStyle}" Width="50" Height="30" Click="BtnAddDiscipline_Click">+</Button>
+                    <UniformGrid Rows="2" Grid.Column="0" Grid.Row="1">
+                        <TextBlock Style="{StaticResource FirstStyle}">ID</TextBlock>
+                        <TextBlock Style="{StaticResource FirstStyle}">Название</TextBlock>
+                    </UniformGrid>
+                    <UniformGrid Rows="2" Grid.Row="1" Grid.Column="1">
+                        <TextBox x:Name="TbDisID"  IsReadOnly="True" Style="{StaticResource TbStyle}"></TextBox>
+                        <TextBox x:Name="TbDisName" Style="{StaticResource TbStyle}"></TextBox>
+                    </UniformGrid>
+                    <Button x:Name="BtnDeleteDiscipline" Grid.Row="3" Style="{StaticResource BtnStyle}" Grid.Column="0" Click="BtnDeleteDiscipline_Click">Удалить</Button>
+                    <Button x:Name="BtnSaveDiscipline" Style="{StaticResource BtnStyle}" Grid.Row="3" Grid.Column="1" Click="BtnSaveDiscipline_Click">Сохранить</Button>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Профессиональный модуль">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="9*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="0.15*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource FirstStyle}">Профессиональный модуль</TextBlock>
+                    <ComboBox x:Name="CbPMCode" IsReadOnly="false" Style="{StaticResource CbStyle}"  Grid.Row="0" Grid.Column="1" DisplayMemberPath="Code" SelectionChanged="CbPMCode_SelectionChanged"></ComboBox>
+                    <Button x:Name="BtnAddPM" Grid.Column="2" Style="{StaticResource BtnStyle}" Width="50" Height="30" Click="BtnAddPM_Click">+</Button>
+                    <UniformGrid Rows="4" Grid.Column="0" Grid.Row="1">
+                        <TextBlock Style="{StaticResource FirstStyle}">ID</TextBlock>
+                        <TextBlock Style="{StaticResource FirstStyle}">Код</TextBlock>
+                        <TextBlock Style="{StaticResource FirstStyle}">Наименование</TextBlock>
+                        <TextBlock Style="{StaticResource FirstStyle}">Специальность</TextBlock>
+                    </UniformGrid>
+                    <UniformGrid Rows="4" Grid.Row="1" Grid.Column="1">
+                        <TextBox x:Name="TbPMID" Style="{StaticResource TbStyle}"></TextBox>
+                        <TextBox x:Name="TbPMCode" Style="{StaticResource TbStyle}"></TextBox>
+                        <TextBox x:Name="TbPMName" Style="{StaticResource TbStyle}"></TextBox>
+                        <ComboBox IsReadOnly="false" x:Name= "CbPMSpecialty" Grid.Row="0" Grid.Column="3" Style="{StaticResource CbStyle}" DisplayMemberPath="Code"></ComboBox>
+                    </UniformGrid>
+                    <Button x:Name="BtnDeletePM" Grid.Row="3" Style="{StaticResource BtnStyle}" Grid.Column="0" Click="BtnDeletePM_Click">Удалить</Button>
+                    <Button x:Name="BtnSavePM" Style="{StaticResource BtnStyle}" Grid.Row="3" Grid.Column="1" Click="BtnSavePM_Click">Сохранить</Button>
+                </Grid>
             </TabItem>
             <TabItem Header="Профессиональные компетенции">
                 <Grid>
@@ -106,6 +164,28 @@
                     <Button x:Name="BtnSaveGeneralCompet" Style="{StaticResource BtnStyle}" Grid.Row="3" Grid.Column="1" Click="BtnSaveGeneralCompet_Click">Сохранить</Button>
                 </Grid>
             </TabItem>
+            <TabItem Header="Добавление компетенций">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="9*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource FirstStyle}">Дисциплина</TextBlock>
+                    <ComboBox x:Name="CbDiscipline" IsReadOnly="false" Style="{StaticResource CbStyle}"  Grid.Row="0" Grid.Column="1" DisplayMemberPath="Name" SelectionChanged="CbDiscipline_SelectionChanged"></ComboBox>
+                    <ListBox Grid.Column="0" Grid.Row="1" DisplayMemberPath="Code" x:Name="LbDisciplineGeneralCompet" SelectionChanged="LbDisciplineGeneralCompet_SelectionChanged"></ListBox>
+                    <ComboBox Grid.Column="0" Grid.Row="2" x:Name="CbDisciplineGeneralCompet" IsReadOnly="false" Style="{StaticResource CbStyle}"  DisplayMemberPath="Code"></ComboBox>
+                    <ListBox Grid.Column="1" Grid.Row="1" DisplayMemberPath="Code" x:Name="LbDisciplineProfCompet" SelectionChanged="LbDisciplineProfCompet_SelectionChanged"></ListBox>
+                    <ComboBox  Grid.Row="2" Grid.Column="1" x:Name="CbDisciplineProfCompet" IsReadOnly="false" Style="{StaticResource CbStyle}" DisplayMemberPath="Code"></ComboBox>
+                    <Button x:Name="BtnAddDisciplineGeneralCompet" Grid.Row="3" Style="{StaticResource BtnStyle}" Grid.Column="0" Click="BtnAddDisciplineGeneralCompet_Click">Удалить</Button>
+                    <Button x:Name="BtnAddCompetencies" Style="{StaticResource BtnStyle}" Grid.Row="3" Grid.Column="1" Click="BtnAddCompetencies_Click" Content="Добавить"/>
+                </Grid>
+            </TabItem>
             <TabItem Header="Тема тематического плана">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -148,18 +228,22 @@
                     <TextBlock Style="{StaticResource FirstStyle}">Описание</TextBlock>
                     <ComboBox x:Name="CbContentDescription" IsReadOnly="false" Style="{StaticResource CbStyle}"  Grid.Row="0" Grid.Column="1" DisplayMemberPath="Name" SelectionChanged="CbContentDescription_SelectionChanged"></ComboBox>
                     <Button x:Name="BtnAddContent" Grid.Column="2" Style="{StaticResource BtnStyle}" Width="50" Height="30" Click="BtnAddContent_Click">+</Button>
-                    <UniformGrid Rows="6" Grid.Column="0" Grid.Row="1">
+                    <UniformGrid Rows="7" Grid.Column="0" Grid.Row="1">
                         <TextBlock Style="{StaticResource FirstStyle}">Наименование</TextBlock>
                         <TextBlock Style="{StaticResource FirstStyle}">Тема</TextBlock>
                         <TextBlock Style="{StaticResource FirstStyle}">Нагрузка</TextBlock>
                         <TextBlock Style="{StaticResource FirstStyle}">Содержание</TextBlock>
+                        <TextBlock Style="{StaticResource FirstStyle}">Практические работы</TextBlock>
                         <TextBlock Style="{StaticResource FirstStyle}">Лабораторные работы</TextBlock>
                         <TextBlock Style="{StaticResource FirstStyle}">Самостоятельные работы</TextBlock>
                     </UniformGrid>
-                    <UniformGrid Rows="6" Grid.Row="1" Grid.Column="1">
+                    <UniformGrid Rows="7" Grid.Row="1" Grid.Column="1">
                         <TextBox x:Name="TbContent" Height="80"   TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Style="{StaticResource TbStyle}"></TextBox>
                         <ComboBox x:Name="CbContentChapter" IsReadOnly="false" Style="{StaticResource CbStyle}"  Grid.Row="0" Grid.Column="1" DisplayMemberPath="Name"></ComboBox>
                         <TextBox x:Name="TbContentLoad" Style="{StaticResource TbStyle}"></TextBox>
+                        <Viewbox Height="30">
+                            <RadioButton x:Name="RbContentLections" GroupName="Contents"/>
+                        </Viewbox>
                         <Viewbox Height="30">
                             <RadioButton x:Name="RbContentPR" GroupName="Contents"/>
                         </Viewbox>
@@ -174,33 +258,45 @@
                     <Button x:Name="BtnSaveContent" Style="{StaticResource BtnStyle}" Grid.Row="3" Grid.Column="1" Click="BtnSaveContent_Click">Сохранить</Button>
                 </Grid>
             </TabItem>
-            <!--<TabItem Header="Наполнение тем">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="9*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition Width="0.15*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Style="{StaticResource FirstStyle}">Дисциплина</TextBlock>
-                <ComboBox x:Name="CbDiscipline" IsReadOnly="false" Style="{StaticResource CbStyle}"  Grid.Row="0" Grid.Column="1" DisplayMemberPath="Name" SelectionChanged="CbDiscipline_SelectionChanged"></ComboBox>
-                <Button x:Name="BtnAddDiscipline" Grid.Column="2" Style="{StaticResource BtnStyle}" Width="50" Height="30" Click="BtnAddDiscipline_Click">+</Button>
-                    <UniformGrid Rows="2" Grid.Column="0" Grid.Row="1">
-                        <ListBox DisplayMemberPath="Code" x:Name="LbDisciplineGeneralCompet"></ListBox>
-                        <ComboBox x:Name="CbDisciplineGeneralCompet" IsReadOnly="false" Style="{StaticResource CbStyle}"  Grid.Row="0" Grid.Column="1" DisplayMemberPath="Code"></ComboBox>
+            <TabItem Header="Навыки, умения, опыт">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="9*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="0.15*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource FirstStyle}">Описание</TextBlock>
+                    <ComboBox x:Name="CbSkillsName" IsReadOnly="false" Style="{StaticResource CbStyle}"  Grid.Row="0" Grid.Column="1" DisplayMemberPath="Name" SelectionChanged="CbSkillsName_SelectionChanged"></ComboBox>
+                    <Button x:Name="BtnAddSkills" Grid.Column="2" Style="{StaticResource BtnStyle}" Width="50" Height="30" Click="BtnAddSkills_Click_1">+</Button>
+                    <UniformGrid Rows="5" Grid.Column="0" Grid.Row="1">
+                        <TextBlock Style="{StaticResource FirstStyle}">Практический опыт</TextBlock>
+                        <TextBlock Style="{StaticResource FirstStyle}">Умения</TextBlock>
+                        <TextBlock Style="{StaticResource FirstStyle}">Знания</TextBlock>
+                        <TextBlock Style="{StaticResource FirstStyle}">Наименование</TextBlock>
+                        <TextBlock Style="{StaticResource FirstStyle}">Дисциплина</TextBlock>
                     </UniformGrid>
-                    <UniformGrid Rows="2" Grid.Row="1" Grid.Column="1">
-                        <ListBox x:Name="LbDisciplineProfCompet"></ListBox>
-                        <ComboBox x:Name="CbDisciplineProfCompet" IsReadOnly="false" Style="{StaticResource CbStyle}"  Grid.Row="0" Grid.Column="1" DisplayMemberPath="Code"></ComboBox>
+                    <UniformGrid Rows="5" Grid.Row="1" Grid.Column="1">
+                        <Viewbox Height="30">
+                            <RadioButton x:Name="RbSkillExp" Checked="RbSkillExp_Checked" GroupName="Skills"/>
+                        </Viewbox>
+                        <Viewbox Height="30">
+                            <RadioButton x:Name="RbSkillSkill" Checked="RbSkillSkill_Checked" GroupName="Skills"/>
+                        </Viewbox>
+                        <Viewbox Height="30">
+                            <RadioButton x:Name="RbSkillKnoweledge" Checked="RbSkillKnoweledge_Checked" GroupName="Skills"/>
+                        </Viewbox>
+                        <TextBox x:Name="TbSkillName" Height="80"   TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Style="{StaticResource TbStyle}"></TextBox>
+                        <ComboBox x:Name="CbSkillDiscipline" IsReadOnly="false" Style="{StaticResource CbStyle}"  Grid.Row="0" Grid.Column="1" DisplayMemberPath="Name"></ComboBox>
                     </UniformGrid>
-                <Button x:Name="BtnAddDisciplineGeneralCompet" Grid.Row="3" Style="{StaticResource BtnStyle}" Grid.Column="0" Click="BtnAddDisciplineGeneralCompet_Click">Удалить</Button>
-                <Button x:Name="sadas" Style="{StaticResource BtnStyle}" Grid.Row="3" Grid.Column="1" Click="BtnSaveContent_Click">Сохранить</Button>
-            </Grid>
-            </TabItem>-->
+                    <Button x:Name="BtnDeleteSkill" Grid.Row="3" Style="{StaticResource BtnStyle}" Grid.Column="0" Click="BtnDeleteSkill_Click">Удалить</Button>
+                    <Button x:Name="BtnAddSkill" Style="{StaticResource BtnStyle}" Grid.Row="3" Grid.Column="1" Click="BtnAddSkill_Click">Сохранить</Button>
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 </Page>

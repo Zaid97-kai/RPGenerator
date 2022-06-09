@@ -1,11 +1,11 @@
-﻿<Window x:Class="RPTest.Window.AddSpecialtyWindow"
+﻿<Window x:Class="RPTest.Window.AddPMWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RPTest.Window"
         mc:Ignorable="d"
-        Title="Добавление специальностей" Height="450" Width="800">
+        Title="Добавление профессионального модуя" Height="600" Width="800" MinHeight="600" MinWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="9*"></RowDefinition>
@@ -16,15 +16,15 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <UniformGrid Rows="3" Grid.Column="0" Grid.Row="0">
-            <TextBlock Style="{StaticResource FirstStyle}">Наименование</TextBlock>
             <TextBlock Style="{StaticResource FirstStyle}">Код</TextBlock>
-            <TextBlock Style="{StaticResource FirstStyle}">Квалификация</TextBlock>
+            <TextBlock Style="{StaticResource FirstStyle}">Наименование</TextBlock>
+            <TextBlock Style="{StaticResource FirstStyle}">Специальность</TextBlock>
         </UniformGrid>
         <UniformGrid Rows="3" Grid.Row="0" Grid.Column="1">
-            <TextBox x:Name="TbSpecialtyName" Style="{StaticResource TbStyle}"></TextBox>
-            <TextBox x:Name="TbSpecialtyCode" Style="{StaticResource TbStyle}"></TextBox>
-            <TextBox x:Name="TbSpecialtyQualification" Style="{StaticResource TbStyle}"></TextBox>
+            <TextBox x:Name="TbPMCode" Style="{StaticResource TbStyle}"></TextBox>
+            <TextBox x:Name="TbPMName" Style="{StaticResource TbStyle}"></TextBox>
+            <ComboBox IsReadOnly="false" x:Name= "CbPMSpecialty" Grid.Row="0" Grid.Column="3" Style="{StaticResource CbStyle}" DisplayMemberPath="Code"></ComboBox>
         </UniformGrid>
-        <Button x:Name="BtnAddSpecialty" Style="{StaticResource BtnStyle}" Grid.Row="3" Grid.Column="1" Click="BtnAddSpecialty_Click">Сохранить</Button>
+        <Button x:Name="BtnAddPM" Style="{StaticResource BtnStyle}" Grid.Row="1" Grid.Column="1" Click="BtnAddPM_Click">Добавить</Button>
     </Grid>
 </Window>

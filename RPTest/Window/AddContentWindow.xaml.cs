@@ -38,11 +38,23 @@ namespace RPTest.Window
         {
             try
             {
-                if (RbContentPR.IsChecked == true)
+                if (RbContentLections.IsChecked == true)
                 {
                     Content content = new Content()
                     {
                         Type = "Содержание",
+                        Name = TbContent.Text,
+                        Id_Chapter = ((Chapter)CbContentChapter.SelectedItem).Id,
+                        Hourly_Load = Convert.ToInt32(TbContentLoad.Text)
+                    };
+                    _db.GetContext().Content.Add(content);
+                    _db.GetContext().SaveChanges();
+                }
+                if (RbContentPR.IsChecked == true)
+                {
+                    Content content = new Content()
+                    {
+                        Type = "Практическая работа",
                         Name = TbContent.Text,
                         Id_Chapter = ((Chapter)CbContentChapter.SelectedItem).Id,
                         Hourly_Load = Convert.ToInt32(TbContentLoad.Text)

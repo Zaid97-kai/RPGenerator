@@ -69,10 +69,10 @@ namespace RPTest.Window
                 {
                     ProfessionalCompetencies professionalCompetencies = _db.GetContext().ProfessionalCompetencies.FirstOrDefault(p => p.Id == ((ProfessionalCompetencies)CbDisciplineProfCompet.SelectedItem).Id);
                     Discipline discipline = _db.GetContext().Discipline.FirstOrDefault(p => p.Id == ((Discipline)CbDiscipline.SelectedItem).Id);
-                    Discipline_Competencies discipline_Competencies = new Discipline_Competencies();
-                    discipline_Competencies.Id_Competencies = professionalCompetencies.Id;
-                    discipline_Competencies.Id_Discipline = discipline.Id;
-                    _db.GetContext().Discipline_Competencies.Add(discipline_Competencies);
+                    Discipline_ProfCompet discipline_ProfCompet = new Discipline_ProfCompet();
+                    discipline_ProfCompet.Id_Competencies = professionalCompetencies.Id;
+                    discipline_ProfCompet.Id_Discipline = discipline.Id;
+                    _db.GetContext().Discipline_ProfCompet.Add(discipline_ProfCompet);
                     _db.GetContext().SaveChanges();
                     LbDisciplineProfCompet.Items.Add(professionalCompetencies);
                     CbDisciplineProfCompet.SelectedItem = null;

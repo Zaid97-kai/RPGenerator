@@ -101,6 +101,9 @@
     <Compile Include="Models\Discipline_Competencies.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Discipline_ProfCompet.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Equipment.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
@@ -170,14 +173,20 @@
     <Compile Include="Window\AddDisciplineCompet.xaml.cs">
       <DependentUpon>AddDisciplineCompet.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Window\AddDIsciplineWindow.xaml.cs">
+      <DependentUpon>AddDIsciplineWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Window\AddPMWindow.xaml.cs">
+      <DependentUpon>AddPMWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Window\AddSkillWindow.xaml.cs">
+      <DependentUpon>AddSkillWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Window\AddSpecialtyWindow.xaml.cs">
       <DependentUpon>AddSpecialtyWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Window\AddTopicWindow.xaml.cs">
       <DependentUpon>AddTopicWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Window\SkillsAddWindow.xaml.cs">
-      <DependentUpon>SkillsAddWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Window\StateWindow.xaml.cs">
       <DependentUpon>StateWindow.xaml</DependentUpon>
@@ -218,15 +227,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Window\AddDIsciplineWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window\AddPMWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window\AddSkillWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Window\AddSpecialtyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Window\AddTopicWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Window\SkillsAddWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

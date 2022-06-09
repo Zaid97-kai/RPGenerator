@@ -24,6 +24,7 @@ namespace RPTest.Models
             this.AcademicPlan1 = new HashSet<AcademicPlan>();
             this.Assessment_Form = new HashSet<Assessment_Form>();
             this.Chapter1 = new HashSet<Chapter>();
+            this.Discipline_ProfCompet = new HashSet<Discipline_ProfCompet>();
         }
     
         public int Id { get; set; }
@@ -43,5 +44,7 @@ namespace RPTest.Models
         public virtual ICollection<Assessment_Form> Assessment_Form { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Chapter> Chapter1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Discipline_ProfCompet> Discipline_ProfCompet { get; set; }
     }
 }

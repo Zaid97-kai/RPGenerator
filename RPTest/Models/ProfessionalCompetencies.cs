@@ -18,6 +18,7 @@ namespace RPTest.Models
         public ProfessionalCompetencies()
         {
             this.Discipline_Competencies = new HashSet<Discipline_Competencies>();
+            this.Discipline_ProfCompet = new HashSet<Discipline_ProfCompet>();
         }
     
         public int Id { get; set; }
@@ -28,5 +29,7 @@ namespace RPTest.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Discipline_Competencies> Discipline_Competencies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Discipline_ProfCompet> Discipline_ProfCompet { get; set; }
     }
 }

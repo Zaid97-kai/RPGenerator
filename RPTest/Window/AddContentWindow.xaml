@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RPTest.Window"
         mc:Ignorable="d"
-        Title="AddContentWindow" Height="800" Width="1200" MinHeight="800" MinWidth="1200">
+        Title="Добавление содержания" Height="800" Width="1200" MinHeight="800" MinWidth="1200">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="9*"></RowDefinition>
@@ -16,18 +16,22 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition Width="0.15*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <UniformGrid Rows="6" Grid.Column="0" Grid.Row="0">
+        <UniformGrid Rows="7" Grid.Column="0" Grid.Row="0">
             <TextBlock Style="{StaticResource FirstStyle}">Наименование</TextBlock>
             <TextBlock Style="{StaticResource FirstStyle}">Тема</TextBlock>
             <TextBlock Style="{StaticResource FirstStyle}">Нагрузка</TextBlock>
             <TextBlock Style="{StaticResource FirstStyle}">Содержание</TextBlock>
+            <TextBlock Style="{StaticResource FirstStyle}">Практические работы</TextBlock>
             <TextBlock Style="{StaticResource FirstStyle}">Лабораторные работы</TextBlock>
             <TextBlock Style="{StaticResource FirstStyle}">Самостоятельные работы</TextBlock>
         </UniformGrid>
-        <UniformGrid Rows="6" Grid.Row="0" Grid.Column="01">
+        <UniformGrid Rows="7" Grid.Row="0" Grid.Column="01">
             <TextBox x:Name="TbContent" Height="80"   TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Style="{StaticResource TbStyle}"></TextBox>
             <ComboBox x:Name="CbContentChapter" IsReadOnly="false" Style="{StaticResource CbStyle}"  Grid.Row="0" Grid.Column="1" DisplayMemberPath="Name"></ComboBox>
             <TextBox x:Name="TbContentLoad" Style="{StaticResource TbStyle}"></TextBox>
+            <Viewbox Height="30">
+                <RadioButton x:Name="RbContentLections" GroupName="Contents"/>
+            </Viewbox>
             <Viewbox Height="30">
                 <RadioButton x:Name="RbContentPR" GroupName="Contents"/>
             </Viewbox>

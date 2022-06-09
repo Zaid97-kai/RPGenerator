@@ -1,0 +1,40 @@
+﻿<Window x:Class="RPTest.Window.AddSkillWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RPTest.Window"
+        mc:Ignorable="d"
+        Title="Добавление умений" Height="800" Width="1200" MinHeight="800" MinWidth="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <UniformGrid Rows="5" Grid.Column="0" Grid.Row="0">
+            <TextBlock Style="{StaticResource FirstStyle}">Наименование</TextBlock>
+            <TextBlock Style="{StaticResource FirstStyle}">Дисциплина</TextBlock>
+            <TextBlock Style="{StaticResource FirstStyle}">Практический опыт</TextBlock>
+            <TextBlock Style="{StaticResource FirstStyle}">Умения</TextBlock>
+            <TextBlock Style="{StaticResource FirstStyle}">Знания</TextBlock>
+        </UniformGrid>
+        <UniformGrid Rows="5" Grid.Row="0" Grid.Column="1">
+            <TextBox x:Name="TbSkillName" Height="80"   TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Style="{StaticResource TbStyle}"></TextBox>
+            <ComboBox x:Name="CbSkillDiscipline" IsReadOnly="false" Style="{StaticResource CbStyle}"  Grid.Row="0" Grid.Column="1" DisplayMemberPath="Name"></ComboBox>
+            <Viewbox Height="30">
+                <RadioButton x:Name="RbSkillExp" GroupName="Skills"/>
+            </Viewbox>
+            <Viewbox Height="30">
+                <RadioButton x:Name="RbSkillSkill" GroupName="Skills"/>
+            </Viewbox>
+            <Viewbox Height="30">
+                <RadioButton x:Name="RbSkillKnoweledge" GroupName="Skills"/>
+            </Viewbox>
+        </UniformGrid>
+        <Button x:Name="BtnAddSkill" Style="{StaticResource BtnStyle}" Grid.Row="3" Grid.Column="1" Click="BtnAddSkill_Click">Сохранить</Button>
+    </Grid>
+</Window>
