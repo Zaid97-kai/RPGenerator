@@ -48,6 +48,9 @@ namespace RPTest.Window
                 _db.GetContext().Proffessional_Module.Add(proffessional_Module);
                 _db.GetContext().SaveChanges();
                 MessageBox.Show("Вы успешно добавили профессиональный модуль!");
+                TbPMCode.Text = "";
+                TbPMName.Text = "";
+                CbPMSpecialty.SelectedItem = null;
             }
             catch (Exception ex)
             {

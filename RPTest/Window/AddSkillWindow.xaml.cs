@@ -41,35 +41,47 @@ namespace RPTest.Window
         {
             try
             {
-                if (RbSkillExp.IsChecked == true)
+                if( RbSkillExp.IsChecked == true || RbSkillSkill.IsChecked == true || RbSkillKnoweledge.IsChecked == true)
                 {
-                    ExpPractice expPractice = new ExpPractice()
+                    if (RbSkillExp.IsChecked == true)
                     {
-                        Name = TbSkillName.Text,
-                        Id_Discipline = ((Discipline)CbSkillDiscipline.SelectedItem).Id
-                    };
-                    _db.GetContext().ExpPractice.Add(expPractice);
+                        ExpPractice expPractice = new ExpPractice()
+                        {
+                            Name = TbSkillName.Text,
+                            Id_Discipline = ((Discipline)CbSkillDiscipline.SelectedItem).Id
+                        };
+                        _db.GetContext().ExpPractice.Add(expPractice);
+                    }
+                    if (RbSkillSkill.IsChecked == true)
+                    {
+                        Skills skills = new Skills()
+                        {
+                            Name = TbSkillName.Text,
+                            Id_Discipline = ((Discipline)CbSkillDiscipline.SelectedItem).Id
+                        };
+                        _db.GetContext().Skills.Add(skills);
+                    }
+                    if (RbSkillKnoweledge.IsChecked == true)
+                    {
+                        Knowledge knowledge = new Knowledge()
+                        {
+                            Name = TbSkillName.Text,
+                            Id_Discipline = ((Discipline)CbSkillDiscipline.SelectedItem).Id
+                        };
+                        _db.GetContext().Knowledge.Add(knowledge);
+                    }
+                    _db.GetContext().SaveChanges();
+                    MessageBox.Show("Успешно добавлено!");
+                    TbSkillName.Text = "";
+                    CbSkillDiscipline.SelectedItem = null;
+                    RbSkillExp.IsChecked = false;
+                    RbSkillKnoweledge.IsChecked = false;
+                    RbSkillSkill.IsChecked = false;
                 }
-                if (RbSkillSkill.IsChecked == true)
+                else
                 {
-                    Skills skills = new Skills()
-                    {
-                        Name = TbSkillName.Text,
-                        Id_Discipline = ((Discipline)CbSkillDiscipline.SelectedItem).Id
-                    };
-                    _db.GetContext().Skills.Add(skills);
+                    MessageBox.Show("Выберите тип занятия");
                 }
-                if (RbSkillKnoweledge.IsChecked == true)
-                {
-                    Knowledge knowledge = new Knowledge()
-                    {
-                        Name = TbSkillName.Text,
-                        Id_Discipline = ((Discipline)CbSkillDiscipline.SelectedItem).Id
-                    };
-                    _db.GetContext().Knowledge.Add(knowledge);
-                }
-                _db.GetContext().SaveChanges();
-                MessageBox.Show("Успешно добавлено!");
 
             }
             catch (Exception ex)

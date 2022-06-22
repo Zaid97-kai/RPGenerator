@@ -38,55 +38,65 @@ namespace RPTest.Window
         {
             try
             {
-                if (RbContentLections.IsChecked == true)
+                if(RbContentLections.IsChecked == true || RbContentLR.IsChecked == true || RbContentPR.IsChecked == true || RbContentSR.IsChecked == true )
                 {
-                    Content content = new Content()
+                    if (RbContentLections.IsChecked == true)
                     {
-                        Type = "Содержание",
-                        Name = TbContent.Text,
-                        Id_Chapter = ((Chapter)CbContentChapter.SelectedItem).Id,
-                        Hourly_Load = Convert.ToInt32(TbContentLoad.Text)
-                    };
-                    _db.GetContext().Content.Add(content);
-                    _db.GetContext().SaveChanges();
-                }
-                if (RbContentPR.IsChecked == true)
-                {
-                    Content content = new Content()
+                        Content content = new Content()
+                        {
+                            Type = "Содержание",
+                            Name = TbContent.Text,
+                            Id_Chapter = ((Chapter)CbContentChapter.SelectedItem).Id,
+                            Hourly_Load = Convert.ToInt32(TbContentLoad.Text)
+                        };
+                        _db.GetContext().Content.Add(content);
+                        _db.GetContext().SaveChanges();
+                    }
+                    if (RbContentPR.IsChecked == true)
                     {
-                        Type = "Практическая работа",
-                        Name = TbContent.Text,
-                        Id_Chapter = ((Chapter)CbContentChapter.SelectedItem).Id,
-                        Hourly_Load = Convert.ToInt32(TbContentLoad.Text)
-                    };
-                    _db.GetContext().Content.Add(content);
-                    _db.GetContext().SaveChanges();
-                }
-                if (RbContentLR.IsChecked == true)
-                {
-                    Content content = new Content()
+                        Content content = new Content()
+                        {
+                            Type = "Практическая работа",
+                            Name = TbContent.Text,
+                            Id_Chapter = ((Chapter)CbContentChapter.SelectedItem).Id,
+                            Hourly_Load = Convert.ToInt32(TbContentLoad.Text)
+                        };
+                        _db.GetContext().Content.Add(content);
+                        _db.GetContext().SaveChanges();
+                    }
+                    if (RbContentLR.IsChecked == true)
                     {
-                        Type = "Лабораторная работа",
-                        Name = TbContent.Text,
-                        Id_Chapter = ((Chapter)CbContentChapter.SelectedItem).Id,
-                        Hourly_Load = Convert.ToInt32(TbContentLoad.Text)
-                    };
-                    _db.GetContext().Content.Add(content);
-                    _db.GetContext().SaveChanges();
-                }
-                if (RbContentSR.IsChecked == true)
-                {
-                    Content content = new Content()
+                        Content content = new Content()
+                        {
+                            Type = "Лабораторная работа",
+                            Name = TbContent.Text,
+                            Id_Chapter = ((Chapter)CbContentChapter.SelectedItem).Id,
+                            Hourly_Load = Convert.ToInt32(TbContentLoad.Text)
+                        };
+                        _db.GetContext().Content.Add(content);
+                        _db.GetContext().SaveChanges();
+                    }
+                    if (RbContentSR.IsChecked == true)
                     {
-                        Type = "Самостоятельная работа",
-                        Name = TbContent.Text,
-                        Id_Chapter = ((Chapter)CbContentChapter.SelectedItem).Id,
-                        Hourly_Load = Convert.ToInt32(TbContentLoad.Text)
-                    };
-                    _db.GetContext().Content.Add(content);
-                    _db.GetContext().SaveChanges();
+                        Content content = new Content()
+                        {
+                            Type = "Самостоятельная работа",
+                            Name = TbContent.Text,
+                            Id_Chapter = ((Chapter)CbContentChapter.SelectedItem).Id,
+                            Hourly_Load = Convert.ToInt32(TbContentLoad.Text)
+                        };
+                        _db.GetContext().Content.Add(content);
+                        _db.GetContext().SaveChanges();
+                    }
+                    MessageBox.Show("Вы успешно добавили контент для темы!");
+                    TbContent.Text = "";
+                    CbContentChapter.SelectedItem = null;
+                    TbContentLoad.Text = "";
+                    RbContentLections.IsChecked = false;
+                    RbContentLR.IsChecked = false;
+                    RbContentPR.IsChecked = false;
+                    RbContentSR.IsChecked = false;
                 }
-                MessageBox.Show("Вы успешно добавили контент для темы!");
             }
             catch (Exception ex)
             {

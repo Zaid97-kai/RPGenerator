@@ -40,6 +40,9 @@ namespace RPTest.Window
                 _db.GetContext().Specialty.Add(specialty);
                 _db.GetContext().SaveChanges();
                 MessageBox.Show("Вы успешно добавили компетенцию!");
+                TbSpecialtyName.Text = "";
+                TbSpecialtyCode.Text = "";
+                TbSpecialtyQualification.Text = "";
             }
             catch (Exception ex)
             {

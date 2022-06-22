@@ -28,6 +28,12 @@ namespace RPTest.Models
             return entities;
         }
 
+        public static DBModel NewContext()
+        {
+            entities = new DBModel();
+            return entities;
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

@@ -47,6 +47,8 @@ namespace RPTest.Window
                 _db.GetContext().Chapter.Add(chapter);
                 _db.GetContext().SaveChanges();
                 MessageBox.Show("Вы успешно добавили тему!");
+                TbChapterName.Text = "";
+                CbChapterDiscipline.SelectedItem = null;
             }
             catch (Exception ex)
             {

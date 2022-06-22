@@ -37,6 +37,7 @@ namespace RPTest.Window
                 _db.GetContext().Discipline.Add(discipline);
                 _db.GetContext().SaveChanges();
                 MessageBox.Show("Вы успешно добавили дисциплину!");
+                TbDisName.Text = "";
             }
             catch (Exception ex)
             {

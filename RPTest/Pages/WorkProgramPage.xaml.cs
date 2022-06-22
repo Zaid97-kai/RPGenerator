@@ -114,8 +114,16 @@ namespace RPTest.Pages
 
         private void CbNamePM_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(CbNamePM.Text != null)
-            _workProgram.NameProfessonalModule = ((Models.Proffessional_Module)CbNamePM.SelectedItem).Name;
+            try
+            {
+                if (CbNamePM.Text != null)
+                    _workProgram.NameProfessonalModule = ((Models.Proffessional_Module)CbNamePM.SelectedItem).Name;
+            }
+
+            catch
+            {
+
+            }
         }
 
         private void TbAuthor_TextChanged(object sender, TextChangedEventArgs e)
@@ -151,7 +159,7 @@ namespace RPTest.Pages
 
         private void BtnDeleteSkill_Click(object sender, RoutedEventArgs e)
         {
-            _workProgram.lRClasses.Remove(LbExpPractice.SelectedItem as Classes.LRClass);
+            _workProgram.lRClasses.Remove(LbSkill.SelectedItem as Classes.LRClass);
             LbSkill.Items.Refresh();
         }
 
@@ -273,6 +281,21 @@ namespace RPTest.Pages
             _workProgram.Sources.Add(sources);
             CbSource.ItemsSource = _workProgram.Sources;
             CbSource.Items.Refresh();
+
+            TbAuthor.Text = "";
+            TbPublishHouse.Text = "";
+            TbName.Text = "";
+            TbType.Text = "";
+            TbURL.Text = "";
+            TbCity.Text = "";
+            TbYears.Text = "";
+            TbPages.Text = "";
+            TbDate.Text = "";
+            TbAccessType.Text = "";
+
+
+
+
         }
 
         /// <summary>
@@ -415,8 +438,8 @@ namespace RPTest.Pages
                 {
                     generalCompetencies.Add(_db.GetContext().GeneralCompetencies.FirstOrDefault(p => p.Id == u.Id_Competencies));
                 }
-
-                foreach (GeneralCompetencies u in generalCompetencies)
+                List<GeneralCompetencies> noDistinctGeneralCompetencies = generalCompetencies.Distinct().ToList();
+                foreach (GeneralCompetencies u in noDistinctGeneralCompetencies)
                 {
                     Classes.Competencies competencies = new Classes.Competencies()
                     {
@@ -429,9 +452,10 @@ namespace RPTest.Pages
                 }
 
             }
+            _workProgram.Competencies = _workProgram.Competencies.GroupBy(x => x.Code).Select(y => y.First()).ToList();
             Word.Paragraph tableParagraph = document.Paragraphs.Add();
             Word.Range tableRange = tableParagraph.Range;
-            Word.Table approvalTable = document.Tables.Add(tableRange, _workProgram.Competencies.Count + 2, 2);
+            Word.Table approvalTable = document.Tables.Add(tableRange, _workProgram.Competencies.Count+1, 2);
             approvalTable.Borders.InsideLineStyle = approvalTable.Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
             approvalTable.Range.Cells.VerticalAlignment = Word.WdCellVerticalAlignment.wdCellAlignVerticalCenter;
 
@@ -452,9 +476,7 @@ namespace RPTest.Pages
             cellRange.Columns.Width = 350;
             cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
 
-
-
-
+          
             for (int i = 0; i < _workProgram.Competencies.Count; i++)
             {
                 cellRange = approvalTable.Cell(i + 2, 1).Range;
@@ -472,7 +494,6 @@ namespace RPTest.Pages
                 cellRange.Columns.Width = 350;
                 cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
             }
-            MessageBox.Show("OK count" + Convert.ToString(_workProgram.Competencies.Count));
         }
 
         /// <summary>
@@ -513,10 +534,10 @@ namespace RPTest.Pages
                 }
 
             }
-
+            _workProgram.ProfCompetencies = _workProgram.ProfCompetencies.GroupBy(x => x.Code).Select(y => y.First()).ToList();
             Word.Paragraph tableParagraph = document.Paragraphs.Add();
             Word.Range tableRange = tableParagraph.Range;
-            Word.Table approvalTable = document.Tables.Add(tableRange, _workProgram.ProfCompetencies.Count + 2, 2);
+            Word.Table approvalTable = document.Tables.Add(tableRange, _workProgram.ProfCompetencies.Count+1, 2);
             approvalTable.Borders.InsideLineStyle = approvalTable.Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
             approvalTable.Range.Cells.VerticalAlignment = Word.WdCellVerticalAlignment.wdCellAlignVerticalCenter;
 
@@ -537,7 +558,6 @@ namespace RPTest.Pages
             cellRange.Columns.Width = 350;
             cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
 
-            
 
             for (int i = 0; i < _workProgram.ProfCompetencies.Count; i++)
             {
@@ -556,7 +576,6 @@ namespace RPTest.Pages
                 cellRange.Columns.Width = 350;
                 cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
             }
-            MessageBox.Show("PK count" + Convert.ToString(_workProgram.ProfCompetencies.Count));
         }
 
         private void InsertKnowledgeTable(Word.Document document)
@@ -626,7 +645,7 @@ namespace RPTest.Pages
             //document1.PageSetup.Orientation = WdOrientation.wdOrientLandscape;
             Word.Paragraph tableParagraph = document.Paragraphs.Add();
             Word.Range tableRange = tableParagraph.Range;
-            Word.Table approvalTable = document.Tables.Add(tableRange, _workProgram.Disciplines.Count+4, 9);
+            Word.Table approvalTable = document.Tables.Add(tableRange, _workProgram.Disciplines.Count+3, 9);
 
             approvalTable.Cell(1, 1).Merge(approvalTable.Cell(3, 1));
             approvalTable.Cell(1, 2).Merge(approvalTable.Cell(3, 2));
@@ -831,9 +850,9 @@ namespace RPTest.Pages
             cellRange.Text = "3";
             cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
 
-            for(int i =0; i<_workProgram.Chapters.Count; i++)
+            /*for(int i =0; i<_workProgram.Chapters.Count; i++)
             {
-                /*approvalTable.Cell(i+8, 1).Merge(approvalTable.Cell(i+8, 2));
+                approvalTable.Cell(i+8, 1).Merge(approvalTable.Cell(i+8, 2));
                 approvalTable.Cell(i+9, 1).Merge(approvalTable.Cell(i+9, 2));
                 approvalTable.Cell(i+10, 1).Merge(approvalTable.Cell(i+10, 2));
                 approvalTable.Cell(i+11, 1).Merge(approvalTable.Cell(i+11, 2));
@@ -889,8 +908,8 @@ namespace RPTest.Pages
                 cellRange.Font.Size = 14;
                 cellRange.Bold = 1;
                 cellRange.Text = "";
-                cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;*/
-            }
+                cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            }*/
 
 
             cellRange = approvalTable.Cell(10, 1).Range;
@@ -927,10 +946,15 @@ namespace RPTest.Pages
         /// <param name="document"></param>
         private void InsertMarksTable(Document document)
         {
+            List<Discipline_Competencies> discipline_Competencies = new List<Discipline_Competencies>();
+            List<Discipline_ProfCompet> discipline_ProfCompet = new List<Discipline_ProfCompet>();
+            List<ProfessionalCompetencies> professionalCompetencies = new List<ProfessionalCompetencies>();
+            List<GeneralCompetencies> generalCompetencies = new List<GeneralCompetencies>();
+
             Word.Paragraph tableParagraph = document.Paragraphs.Add();
             Word.Range tableRange = tableParagraph.Range;
-            Word.Table approvalTable = document.Tables.Add(tableRange, _workProgram.ProfCompetencies.Count + _workProgram.Competencies.Count+1, 3);
-            approvalTable.Cell(2, 1).Merge(approvalTable.Cell(2, 3));
+            Word.Table approvalTable = document.Tables.Add(tableRange, 2, 3);
+
 
             approvalTable.Borders.InsideLineStyle = approvalTable.Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
             approvalTable.Range.Cells.VerticalAlignment = Word.WdCellVerticalAlignment.wdCellAlignVerticalCenter;
@@ -956,54 +980,93 @@ namespace RPTest.Pages
             cellRange.Text = "Методы оценки";
             cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
 
-            cellRange = approvalTable.Cell(2, 1).Range;
-            cellRange.Font.Name = "Times New Roman";
-            cellRange.Font.Size = 14;
-            cellRange.Bold = 1;
-            cellRange.Text = "Раздел 1. ";
-            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            int summ = 1;
 
-            for(int i = 0; i<_workProgram.Competencies.Count; i++)
+            for (int i = 0; i < _workProgram.Disciplines.Count; i++)
             {
-                cellRange = approvalTable.Cell(i+3, 1).Range;
+                discipline_Competencies.Clear();
+                discipline_ProfCompet.Clear();
+                professionalCompetencies.Clear();
+                generalCompetencies.Clear();
+                summ++;
+
+                Object oMissing = System.Reflection.Missing.Value;
+                document.Tables[7].Rows.Add(ref oMissing);
+                approvalTable.Cell(summ, 1).Merge(approvalTable.Cell(summ, 3));
+                cellRange = approvalTable.Cell(summ, 1).Range;
                 cellRange.Font.Name = "Times New Roman";
                 cellRange.Font.Size = 14;
-                cellRange.Text = _workProgram.Competencies[i].Code;
+                cellRange.Bold = 1;
+                cellRange.Text = "Раздел " + (i+1) + ". " + _workProgram.Disciplines[i].Discipline;
                 cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
 
-                cellRange = approvalTable.Cell(i + 3, 2).Range;
-                cellRange.Font.Name = "Times New Roman";
-                cellRange.Font.Size = 14;
-                cellRange.Text = _workProgram.Competencies[i].Evaluation;
-                cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+                foreach (Discipline_Competencies u in _db.GetContext().Discipline_Competencies)
+                {
+                    if (u.Id_Discipline == _workProgram.Disciplines[i].Id)
+                    {
+                        discipline_Competencies.Add(u);
+                    }
+                }
+                foreach (Discipline_Competencies u in discipline_Competencies)
+                {
+                    generalCompetencies.Add(_db.GetContext().GeneralCompetencies.FirstOrDefault(p => p.Id == u.Id_Competencies));
+                }
+                foreach (GeneralCompetencies u in generalCompetencies)
+                {
+                    summ++;
+                    document.Tables[7].Rows.Add(ref oMissing);
+                    cellRange = approvalTable.Cell(summ, 1).Range;
+                    cellRange.Font.Name = "Times New Roman";
+                    cellRange.Font.Size = 14;
+                    cellRange.Text = u.Code;
+                    cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
 
-                cellRange = approvalTable.Cell(i + 3, 3).Range;
-                cellRange.Font.Name = "Times New Roman";
-                cellRange.Font.Size = 14;
-                cellRange.Text = _workProgram.Competencies[i].Methods;
-                cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+                    cellRange = approvalTable.Cell(summ, 2).Range;
+                    cellRange.Font.Name = "Times New Roman";
+                    cellRange.Font.Size = 14;
+                    cellRange.Text = u.EvaluationCriteria;
+                    cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
+                    cellRange = approvalTable.Cell(summ, 3).Range;
+                    cellRange.Font.Name = "Times New Roman";
+                    cellRange.Font.Size = 14;
+                    cellRange.Text = u.AssessmentMethods;
+                    cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+                }
+                foreach (Discipline_ProfCompet u in _db.GetContext().Discipline_ProfCompet)
+                {
+                    if (u.Id_Discipline == _workProgram.Disciplines[i].Id)
+                    {
+                        discipline_ProfCompet.Add(u);
+                    }
+                }
+                foreach (Discipline_ProfCompet u in discipline_ProfCompet)
+                {
+                    professionalCompetencies.Add(_db.GetContext().ProfessionalCompetencies.FirstOrDefault(p => p.Id == u.Id_Competencies));
+                }
+                foreach (ProfessionalCompetencies u in professionalCompetencies)
+                {
+                    summ++;
+                    document.Tables[7].Rows.Add(ref oMissing);
+                    cellRange = approvalTable.Cell(summ, 1).Range;
+                    cellRange.Font.Name = "Times New Roman";
+                    cellRange.Font.Size = 14;
+                    cellRange.Text = u.Code;
+                    cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
+                    cellRange = approvalTable.Cell(summ, 2).Range;
+                    cellRange.Font.Name = "Times New Roman";
+                    cellRange.Font.Size = 14;
+                    cellRange.Text = u.EvaluationCriteria;
+                    cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
+                    cellRange = approvalTable.Cell(summ, 3).Range;
+                    cellRange.Font.Name = "Times New Roman";
+                    cellRange.Font.Size = 14;
+                    cellRange.Text = u.AssessmentMethods;
+                    cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+                }
             }
-            for (int i = 3; i < _workProgram.ProfCompetencies.Count; i++)
-            {
-                cellRange = approvalTable.Cell(i +_workProgram.Competencies.Count, 1).Range;
-                cellRange.Font.Name = "Times New Roman";
-                cellRange.Font.Size = 14;
-                cellRange.Text = _workProgram.ProfCompetencies[i].Code;
-                cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
-
-                cellRange = approvalTable.Cell(i + _workProgram.Competencies.Count, 2).Range;
-                cellRange.Font.Name = "Times New Roman";
-                cellRange.Font.Size = 14;
-                cellRange.Text = _workProgram.ProfCompetencies[i].Evaluation;
-                cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
-
-                cellRange = approvalTable.Cell(i + _workProgram.Competencies.Count, 3).Range;
-                cellRange.Font.Name = "Times New Roman";
-                cellRange.Font.Size = 14;
-                cellRange.Text = _workProgram.ProfCompetencies[i].Methods;
-                cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
-            }
-
         }
 
         private static void InsertYearsTable(Document document)
@@ -1364,6 +1427,94 @@ namespace RPTest.Pages
 
         }
 
+        private static void TryMethod(Document document)
+        {/*
+            Word.Paragraph tableParagraph = document.Paragraphs.Add();
+            Word.Range tableRange = tableParagraph.Range;
+            Word.Table approvalTable = document.Tables.Add(tableRange,  2, 3);
+
+
+            approvalTable.Borders.InsideLineStyle = approvalTable.Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
+            approvalTable.Range.Cells.VerticalAlignment = Word.WdCellVerticalAlignment.wdCellAlignVerticalCenter;
+
+            Word.Range cellRange;
+
+            cellRange = approvalTable.Cell(1, 1).Range;
+            cellRange.Font.Name = "Times New Roman";
+            cellRange.Font.Size = 14;
+            cellRange.Bold = 1;
+            cellRange.Text = "Код и наименование профессиональных и общих компетенций, формируемых в рамках модуля";
+            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            cellRange = approvalTable.Cell(1, 2).Range;
+            cellRange.Font.Name = "Times New Roman";
+            cellRange.Font.Size = 14;
+            cellRange.Bold = 1;
+            cellRange.Text = "Критерии оценки";
+            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+            cellRange = approvalTable.Cell(1, 3).Range;
+            cellRange.Font.Name = "Times New Roman";
+            cellRange.Font.Size = 14;
+            cellRange.Bold = 1;
+            cellRange.Text = "Методы оценки";
+            cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
+            int summ1 = 1;
+            for (int i = 0; i < 5; i++)
+            {
+                summ1++;
+                Object oMissing = System.Reflection.Missing.Value;
+                document.Tables[1].Rows.Add(ref oMissing);
+                approvalTable.Cell(summ1, 1).Merge(approvalTable.Cell(summ1, 3));
+                cellRange = approvalTable.Cell(i + 2, 1).Range;
+                cellRange.Font.Name = "Times New Roman";
+                cellRange.Font.Size = 14;
+                cellRange.Bold = 1;
+                cellRange.Text = "Раздел" + i + ". " + _workProgram.Disciplines[i].Discipline;
+                cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+                for (int k = 0; k < 3; k++)
+                {
+                    summ1++;
+                    document.Tables[1].Rows.Add(ref oMissing);
+                    cellRange = approvalTable.Cell(summ1, 1).Range;
+                    cellRange.Font.Name = "Times New Roman";
+                    cellRange.Font.Size = 14;
+                    cellRange.Text = _workProgram.Competencies[i].Code;
+                    cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
+                    cellRange = approvalTable.Cell(summ1, 2).Range;
+                    cellRange.Font.Name = "Times New Roman";
+                    cellRange.Font.Size = 14;
+                    cellRange.Text = _workProgram.Competencies[i].Evaluation;
+                    cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
+                    cellRange = approvalTable.Cell(summ1, 3).Range;
+                    cellRange.Font.Name = "Times New Roman";
+                    cellRange.Font.Size = 14;
+                    cellRange.Text = _workProgram.Competencies[i].Methods;
+                    cellRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
+                }
+            }*/
+        }
+
+        private static void InsertTryMethod(Word.Document document)
+        {
+            TryMethod(document);
+            InsertSectionBreak(document);
+        }
+
+        /*private void TryButton_Click(object sender, RoutedEventArgs e)
+        {
+            var application = new Word.Application();
+            Word.Document document = new Word.Document();
+            InsertGeneralCompetetionTable(document);
+
+            application.Visible = true;
+            document.SaveAs2(@"C:\Users\Artur\Desktop\Курсач\Test.docx");
+            document.Close();
+        }*/
+
+
         private void FinallyButton_Click(object sender, RoutedEventArgs e)
         {
 
@@ -1382,6 +1533,8 @@ namespace RPTest.Pages
                 application.Visible = true;
                 document.SaveAs2(@"C:\Users\Artur\Desktop\Курсач\doc2.docx");
                 document.Close();
+
+                
     
         }
 
@@ -1402,6 +1555,9 @@ namespace RPTest.Pages
             {
                 int id = _workProgram.Disciplines.FirstOrDefault(p => p.Id == ((Classes.Disciplines)LbDis.SelectedItem).Id).Id;
                 Discipline discipline = _db.GetContext().Discipline.FirstOrDefault(p => p.Id == id);
+
+                List<Classes.Skills> skills1 = new List<Classes.Skills>();
+
                 List<Skills> skills = new List<Skills>();
                 List<Knowledge> knowledges = new List<Knowledge>();
                 List<ExpPractice> expPractices = new List<ExpPractice>();
@@ -1409,6 +1565,7 @@ namespace RPTest.Pages
                 List<Discipline_ProfCompet> discipline_ProfCompet = new List<Discipline_ProfCompet>();
                 List<ProfessionalCompetencies> professionalCompetencies = new List<ProfessionalCompetencies>();
                 List<GeneralCompetencies> generalCompetencies = new List<GeneralCompetencies>();
+
                 foreach (Discipline_Competencies u in _db.GetContext().Discipline_Competencies)
                 {
                     if (u.Id_Discipline == discipline.Id)
@@ -1432,20 +1589,23 @@ namespace RPTest.Pages
                     professionalCompetencies.Add(_db.GetContext().ProfessionalCompetencies.FirstOrDefault(p => p.Id == u.Id_Competencies));
                 }
 
+
                 foreach (Skills u in _db.GetContext().Skills)
                 {
-                    
-                    skills.Add(_db.GetContext().Skills.FirstOrDefault(p => p.Id_Discipline == discipline.Id));
+                    if(u.Id_Discipline == discipline.Id)
+                    skills.Add(u);
                 }
 
                 foreach (ExpPractice u in _db.GetContext().ExpPractice)
                 {
-                    expPractices.Add(_db.GetContext().ExpPractice.FirstOrDefault(p => p.Id_Discipline == discipline.Id));
+                    if (u.Id_Discipline == discipline.Id)
+                        expPractices.Add(u);
                 }
 
                 foreach (Knowledge u in _db.GetContext().Knowledge)
                 {
-                    knowledges.Add(_db.GetContext().Knowledge.FirstOrDefault(p => p.Id_Discipline == discipline.Id));
+                    if (u.Id_Discipline == discipline.Id)
+                        knowledges.Add(u);
                 }
 
                 LbCompetencies.ItemsSource = generalCompetencies;
@@ -1456,6 +1616,7 @@ namespace RPTest.Pages
             }
             
         }
+
     }
 }
 

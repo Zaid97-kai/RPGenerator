@@ -14,6 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using _db = RPTest.Models.DBModel;
 using RPTest.Models;
+using System.Data.Entity.Validation;
+using System.Data.SqlClient;
+using System.Data.Entity.Infrastructure;
 
 namespace RPTest.Pages
 {
@@ -178,6 +181,11 @@ namespace RPTest.Pages
             Window.AddCompetencionWindow addCompetencionWindow = new Window.AddCompetencionWindow();
             addCompetencionWindow.ShowDialog();
             RefreshAll();
+            TbCompetCode.Text = "";
+            TbCompetDescription.Text = "";
+            TbCompetEvaluation.Text = "";
+            TbCompetMethods.Text = "";
+            TbCompetID.Text = "";
 
         }
 
@@ -213,6 +221,7 @@ namespace RPTest.Pages
             catch (Exception ex)
             {
                 MessageBox.Show("Возникла непредвиденная ошибка!" + "\n" + ex.Message);
+                _db.NewContext();
             }
         }
 
@@ -241,6 +250,11 @@ namespace RPTest.Pages
             Window.AddCompetencionWindow addCompetencionWindow = new Window.AddCompetencionWindow();
             addCompetencionWindow.ShowDialog();
             RefreshAll();
+            TbGeneralCompetCode.Text = "";
+            TbGeneralCompetDescription.Text = "";
+            TbGeneralCompetEvaluation.Text = "";
+            TbGeneralCompetMethods.Text = "";
+            TbGeneralCompetID.Text = "";
         }
 
         private void CbGeneralCompetCode_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -269,6 +283,7 @@ namespace RPTest.Pages
             catch (Exception ex)
             {
                 MessageBox.Show("Возникла непредвиденная ошибка!" + "\n" + ex.Message);
+                _db.NewContext();
             }
 
         }
@@ -295,9 +310,19 @@ namespace RPTest.Pages
 
         private void BtnAddChapter_Click(object sender, RoutedEventArgs e)
         {
-            Window.AddTopicWindow addTopicWindow = new Window.AddTopicWindow();
-            addTopicWindow.ShowDialog();
-            RefreshAll();
+            try
+            {
+                Window.AddTopicWindow addTopicWindow = new Window.AddTopicWindow();
+                addTopicWindow.ShowDialog();
+                RefreshAll();
+                TbChapterName.Text = "";
+                CbChapterDiscipline.SelectedItem = null;
+            }
+            catch(Exception ex )
+            {
+
+            }
+            
         }
 
         private void BtnDeleteChapter_Click(object sender, RoutedEventArgs e)
@@ -312,6 +337,7 @@ namespace RPTest.Pages
             catch (Exception ex)
             {
                 MessageBox.Show("Возникла непредвиденная ошибка!" + "\n" + ex.Message);
+                _db.NewContext();
             }
 
         }
@@ -355,6 +381,7 @@ namespace RPTest.Pages
             catch (Exception ex)
             {
                 MessageBox.Show("Возникла непредвиденная ошибка!" + "\n" + ex.Message);
+                _db.NewContext();
             }
         }
 
@@ -390,6 +417,13 @@ namespace RPTest.Pages
             Window.AddContentWindow addContentWindow = new Window.AddContentWindow();
             addContentWindow.ShowDialog();
             RefreshAll();
+            TbContent.Text = "";
+            CbContentChapter.SelectedItem = null;
+            TbContentLoad.Text = "";
+            RbContentLections.IsChecked = false;
+            RbContentLR.IsChecked = false;
+            RbContentPR.IsChecked = false;
+            RbContentSR.IsChecked = false;
         }
 
         private void CbContentDescription_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -402,8 +436,8 @@ namespace RPTest.Pages
                 TbContentLoad.Text = Convert.ToString(content.Hourly_Load);
                 if (content.Type == "Практическая работа")
                     RbContentPR.IsChecked = true;
-                if (RbContentLections.IsChecked == true)
-                    content.Type = "Содержание";
+                if (content.Type == "Содержание")
+                    RbContentLections.IsChecked = true;
                 if (content.Type == "Лабораторная работа")
                     RbContentLR.IsChecked = true;
                 if (content.Type == "Самостоятельная работа")
@@ -429,21 +463,28 @@ namespace RPTest.Pages
             Window.AddSpecialtyWindow addSpecialtyWindow = new Window.AddSpecialtyWindow();
             addSpecialtyWindow.ShowDialog();
             RefreshAll();
+            TbSpecialtyID.Text = "";
+            TbSpecialtyName.Text = "";
+            TbSpecialtyCode.Text = "";
+            TbSpecialtyQualification.Text = "";
         }
 
-        private void BtnDeleteSpecialty_Click(object sender, RoutedEventArgs e)
+        private  void BtnDeleteSpecialty_Click(object sender, RoutedEventArgs e)
         {
+
             try
             {
                 Specialty specialty = _db.GetContext().Specialty.FirstOrDefault(p => p.Id == ((Specialty)CbSpecialtyCode.SelectedItem).Id);
                 _db.GetContext().Specialty.Remove(specialty);
                 _db.GetContext().SaveChanges();
-                RefreshSpecialty();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Возникла непредвиденная ошибка!" + "\n" + ex.Message);
+                _db.NewContext();
             }
+                RefreshSpecialty();
         }
 
         private void BtnSaveSpecialty_Click(object sender, RoutedEventArgs e)
@@ -576,6 +617,8 @@ namespace RPTest.Pages
             Window.AddDIsciplineWindow addDIsciplineWindow = new Window.AddDIsciplineWindow();
             addDIsciplineWindow.ShowDialog();
             RefreshAll();
+            TbDisName.Text = "";
+            TbDisID.Text = "";
         }
 
         private void BtnSaveDiscipline_Click(object sender, RoutedEventArgs e)
@@ -608,6 +651,7 @@ namespace RPTest.Pages
             catch (Exception ex)
             {
                 MessageBox.Show("Возникла непредвиденная ошибка!" + "\n" + ex.Message);
+                _db.NewContext();
             }
         }
 
@@ -616,6 +660,10 @@ namespace RPTest.Pages
             Window.AddPMWindow addPMWindow = new Window.AddPMWindow();
             addPMWindow.ShowDialog();
             RefreshAll();
+            TbPMCode.Text = "";
+            TbPMName.Text = "";
+            CbPMSpecialty.SelectedItem = null;
+            TbPMID.Text = "";
         }
 
         private void CbPMCode_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -649,6 +697,7 @@ namespace RPTest.Pages
             catch (Exception ex)
             {
                 MessageBox.Show("Возникла непредвиденная ошибка!" + "\n" + ex.Message);
+                _db.NewContext();
             }
         }
 
@@ -716,6 +765,12 @@ namespace RPTest.Pages
             RefreshSkills();
             RefreshKnowledge();
             CbSkillsName.Items.Clear();
+            TbSkillName.Text = "";
+            CbSkillDiscipline.SelectedItem = null;
+            RbSkillExp.IsChecked = false;
+            RbSkillKnoweledge.IsChecked = false;
+            RbSkillSkill.IsChecked = false;
+            
         }
 
         private void BtnDeleteSkill_Click(object sender, RoutedEventArgs e)
@@ -750,6 +805,7 @@ namespace RPTest.Pages
             catch (Exception ex)
             {
                 MessageBox.Show("Возникла непредвиденная ошибка!" + "\n" + ex.Message);
+                _db.NewContext();
             }
         }
 

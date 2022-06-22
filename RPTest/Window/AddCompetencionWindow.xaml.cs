@@ -43,6 +43,7 @@ namespace RPTest.Window
                     _db.GetContext().ProfessionalCompetencies.Add(professionalCompetencies);
                     _db.GetContext().SaveChanges();
                     MessageBox.Show("Вы успешно добавили компетенцию!");
+
                 }
                 else
                 {
@@ -57,7 +58,12 @@ namespace RPTest.Window
                     _db.GetContext().SaveChanges();
                     MessageBox.Show("Вы успешно добавили компетенцию!");
                 }
-                
+                TbCompetCode.Text = "";
+                TbCompetDescription.Text = "";
+                TbCompetEvaluation.Text = "";
+                TbCompetMethods.Text = "";
+                ChBoxCompetProffessional.IsChecked = null;
+
             }
             catch (Exception ex)
             {

@@ -166,7 +166,6 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Style="{StaticResource FirstStyle}">Создать рабочую проограмму</TextBlock>
                     <Button Grid.Row="0" Style="{StaticResource BtnStyle}" Grid.Column="1" x:Name="FinallyButton" Click="FinallyButton_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Height="50" Width="200">Создать</Button>
